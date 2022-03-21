@@ -1,0 +1,85 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+    buildToolsVersion rootProject.ext.buildTools
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs 'zh'
+        resConfig 'xhdpi'
+        ndk { abiFilters 'armeabi-v7a', 'arm64-v8a' }
+    }
+
+
+    signingConfigs {
+        sign {
+            keyAlias SignKeyAlias
+            keyPassword SignKeyPassword
+            storeFile file(SignStoreFile)
+            storePassword SignStorePassword
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.sign
+            applicationIdSuffix '.debug'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def time = new Date().format("MM月dd日HH时mm分", TimeZone.getDefault())
+                    outputFileName = "debug_v${variant.versionName}_${variant.versionCode}_${time}.apk"
+                }
+            }
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.sign
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def time = new Date().format("MM月dd日HH时mm分", TimeZone.getDefault())
+                    outputFileName = "release_v${variant.versionName}_${variant.versionCode}_${time}.apk"
+                }
+            }
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        ignoreWarnings true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = '1.8' }
+
+    buildFeatures { viewBinding true }
+}
+
+dependencies {
+    implementation project(path: ':base:business')
+    implementation project(path: ':frame:proguard')
+    testImplementation rootProject.ext.TestJunit
+    androidTestImplementation rootProject.ext.TestAndroidJunit
+    androidTestImplementation rootProject.ext.TestAndroidEspresso
+}

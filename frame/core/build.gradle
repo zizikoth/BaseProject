@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+    buildToolsVersion rootProject.ext.buildTools
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = '1.8' }
+
+    buildFeatures { viewBinding true }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api rootProject.ext.AppCompat
+    api rootProject.ext.AutoSize
+    api rootProject.ext.BaseRecyclerViewAdapterHelper
+    api rootProject.ext.Coroutines
+    api rootProject.ext.ConstraintLayout
+    api rootProject.ext.Dialog
+    api rootProject.ext.Gson
+    api rootProject.ext.LifecycleRunTime
+    api rootProject.ext.LifecycleViewModel
+    api rootProject.ext.OkHttp
+    api rootProject.ext.RecycleView
+    api rootProject.ext.RWidgetHelper
+    api rootProject.ext.RxHttp
+    api rootProject.ext.Utils
+
+    implementation rootProject.ext.Glide
+    kapt rootProject.ext.GlideCompiler
+
+    debugApi rootProject.ext.LeakCanary
+
+}
