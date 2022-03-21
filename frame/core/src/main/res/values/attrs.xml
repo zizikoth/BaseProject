@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="waterMark" type="id" />
     <declare-styleable name="TitleBar">
         <attr name="title_title_text" format="string" />
         <attr name="title_subtitle_text" format="string" />
@@ -21,11 +22,11 @@
     </declare-styleable>
 
     <declare-styleable name="IconItemCell">
-        <attr name="icon_item_cell_drawable" format="reference"/>
-        <attr name="icon_item_cell_title" format="string"/>
-        <attr name="icon_item_cell_badge_num" format="integer"/>
-        <attr name="icon_item_cell_show_badge" format="boolean"/>
-        <attr name="icon_item_cell_show_dot" format="boolean"/>
+        <attr name="icon_item_cell_drawable" format="reference" />
+        <attr name="icon_item_cell_title" format="string" />
+        <attr name="icon_item_cell_badge_num" format="integer" />
+        <attr name="icon_item_cell_show_badge" format="boolean" />
+        <attr name="icon_item_cell_show_dot" format="boolean" />
     </declare-styleable>
 
 </resources>

@@ -36,10 +36,6 @@ object DialogHelper {
         TipDialog.show(message, WaitDialog.TYPE.ERROR)
     }
 
-    fun tip(message: String) {
-        PopTip.show(message)
-    }
-
     fun showAlertDialog(title: String, message: String, onPositive: () -> Unit) {
         MessageDialog.show(title, message, "确定", "取消")
             .setOkButtonClickListener { _, _ ->

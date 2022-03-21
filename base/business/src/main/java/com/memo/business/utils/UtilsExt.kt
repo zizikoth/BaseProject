@@ -1,6 +1,6 @@
 package com.memo.business.utils
 
-import com.memo.core.utils.DialogHelper
+import com.blankj.utilcode.util.ToastUtils
 
 /**
  * title:简化调用
@@ -12,6 +12,8 @@ import com.memo.core.utils.DialogHelper
  *
  * Talk is cheap, Show me the code.
  */
-fun toast(message: Any) {
-    DialogHelper.tip(message.toString())
+fun toast(message: Any?) {
+    message?.let {
+        ToastUtils.showShort(it.toString())
+    }
 }

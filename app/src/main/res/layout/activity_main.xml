@@ -12,8 +12,14 @@
         android:id="@+id/mTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:title_show_back="false"
         app:title_right_text="设置"
         app:title_title_text="标题" />
+
+    <TextView
+        android:id="@+id/mTvInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.memo.core.widget.ItemCell
         android:layout_width="match_parent"
@@ -32,9 +38,6 @@
         app:icon_item_cell_show_badge="true"
         app:icon_item_cell_title="这个标题" />
 
-    <TextView
-        android:id="@+id/mTvInfo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
 </LinearLayout>
