@@ -1,5 +1,7 @@
 package com.memo.business.config
 
+import androidx.annotation.Keep
+import com.blankj.utilcode.util.LogUtils
 import rxhttp.wrapper.annotation.DefaultDomain
 
 /**
@@ -13,13 +15,14 @@ import rxhttp.wrapper.annotation.DefaultDomain
  * Talk is cheap, Show me the code.
  */
 
-enum class RunMode(val description: String) {
-    Release("线上地址"),
-    Debug("测试地址"),
-    LocalLuYao("路遥本地"),
-    LocalYangZhuang("杨壮本地"),
-    LocalYunGen("运根本地"),
-    LocalXuYang("旭阳本地")
+@Keep
+enum class RunMode(val description: String, val url: String) {
+    Release("线上地址", "https://server.shwread.cn/whgcserver/server"),
+    Debug("测试地址", "https://test.shwread.cn:8088/whgcserver/server"),
+    LocalLuYao("路遥本地", "http://192.168.31.220:9099/whgcserver/server"),
+    LocalYangZhuang("杨壮本地", "http://192.168.31.146:9099/whgcserver/server"),
+    LocalYunGen("运根本地", "http://192.168.31.135:9099/whgcserver/server"),
+    LocalXuYang("旭阳本地", "http://192.168.31.6:9099/whgcserver/server")
 }
 
 object Config {
@@ -28,17 +31,13 @@ object Config {
 
     /*** 运行模式 ***/
     var runMode = RunMode.Debug
+        set(value) {
+            baseUrl = value.url
+            field = value
+        }
 
     @DefaultDomain
     @JvmField
-    var baseUrl: String = when (runMode) {
-        RunMode.Release -> "https://server.shwread.cn/whgcserver/server"
-        RunMode.Debug -> "https://test.shwread.cn:8088/whgcserver/server"
-        RunMode.LocalLuYao -> "http://192.168.31.220:9099/whgcserver/server"
-        RunMode.LocalYangZhuang -> "http://192.168.31.146:9099/whgcserver/server"
-        RunMode.LocalYunGen -> "http://192.168.31.135:9099/whgcserver/server"
-        RunMode.LocalXuYang -> "http://192.168.31.6:9099/whgcserver/server"
-    }
-
+    var baseUrl: String = runMode.url
 
 }

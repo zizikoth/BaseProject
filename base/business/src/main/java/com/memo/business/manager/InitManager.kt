@@ -4,12 +4,16 @@ import android.app.Application
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
+import com.dylanc.loadingstateview.LoadingStateView
+import com.dylanc.loadingstateview.ViewType
 import com.frame.core.utils.OOMHelper
 import com.kongzue.dialogx.DialogX
 import com.memo.business.config.Config
+import com.memo.business.widget.state.*
 import com.memo.core.utils.GsonHelper
 import rxhttp.RxHttpPlugins
 import rxhttp.wrapper.converter.GsonConverter
+
 
 /**
  * title:初始化管理
@@ -50,5 +54,11 @@ object InitManager {
         DialogX.DEBUGMODE = Config.debug
         DialogX.onlyOnePopTip = true
         DialogX.init(Utils.getApp())
+        // LoadingStateView
+        LoadingStateView.setViewDelegatePool {
+            this.register(ViewType.LOADING, LoadingDelegate())
+            this.register(ViewType.EMPTY, NetErrorDelegate())
+            this.register(ViewType.ERROR, ServerErrorDelegate())
+        }
     }
 }

@@ -1,7 +1,10 @@
 package com.memo.project
 
+import com.blankj.utilcode.util.AppUtils
 import com.memo.business.base.BaseVmActivity
 import com.memo.business.base.observe
+import com.memo.business.config.Config
+import com.memo.business.config.RunMode
 import com.memo.business.entity.local.Zip2Null
 import com.memo.business.utils.toast
 import com.memo.core.utils.ClickHelper
@@ -19,7 +22,8 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun initListener() {
         mBinding.mTitleBar.setOnRightClickListener {
-            toast("设置")
+            Config.runMode = RunMode.LocalLuYao
+            start()
         }
         mBinding.mIconItemCell.onClick {
             WaterMark.remove(this)
@@ -38,7 +42,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onBackPressed() {
         if (ClickHelper.isDoubleClickExit { toast("再次点击退出应用") }) {
-            super.onBackPressed()
+            AppUtils.exitApp()
         }
     }
 

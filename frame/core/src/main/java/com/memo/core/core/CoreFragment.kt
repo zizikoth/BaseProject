@@ -22,7 +22,7 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
 
     protected val mActivity by lazy { requireActivity() }
 
-    private lateinit var mBinding: VB
+    protected lateinit var mBinding: VB
 
     /*** 标识 标识是否界面准备完毕 ***/
     private var isPrepared: Boolean = false
@@ -35,14 +35,13 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isPrepared = true
-        doOnBefore()
         onVisibleToUser()
     }
 
     private fun onVisibleToUser() {
         if (isPrepared && isResumed) {
             isPrepared = false
-            initialize()
+            init()
         }
     }
 
@@ -52,8 +51,6 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
         LogUtils.iTag("TopPage", this::class.java.simpleName)
     }
 
-    protected open fun doOnBefore() {}
-
-    protected abstract fun initialize()
+    protected abstract fun init()
 
 }

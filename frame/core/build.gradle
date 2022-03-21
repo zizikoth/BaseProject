@@ -36,6 +36,8 @@ dependencies {
     api rootProject.ext.Gson
     api rootProject.ext.LifecycleRunTime
     api rootProject.ext.LifecycleViewModel
+    api rootProject.ext.LoadStateView
+    api rootProject.ext.Material
     api rootProject.ext.OkHttp
     api rootProject.ext.RecycleView
     api rootProject.ext.RWidgetHelper

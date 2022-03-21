@@ -13,4 +13,24 @@ import com.memo.core.core.CoreFragment
  *
  * Talk is cheap, Show me the code.
  */
-abstract class BaseFragment<VB : ViewBinding> : CoreFragment<VB>()
+abstract class BaseFragment<VB : ViewBinding> : CoreFragment<VB>() {
+    override fun init() {
+        doOnBefore()
+        initialize()
+    }
+
+    protected open fun doOnBefore() {}
+    protected abstract fun initialize()
+
+    protected fun showLoading() {
+        if (mActivity is BaseActivity<*>) {
+            (mActivity as BaseActivity<*>).showLoading()
+        }
+    }
+
+    protected fun hideLoading() {
+        if (mActivity is BaseActivity<*>) {
+            (mActivity as BaseActivity<*>).hideLoading()
+        }
+    }
+}

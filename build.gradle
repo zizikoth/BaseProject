@@ -35,6 +35,8 @@ ext {
     LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.8.1"
     LifecycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
     LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    LoadStateView = "com.github.DylanCaiCoding:LoadingStateView:3.0.1"
+    Material = "com.google.android.material:material:1.5.0"
     OkHttp = "com.squareup.okhttp3:okhttp:4.9.1"
     RecycleView = "androidx.recyclerview:recyclerview:1.0.0"
     RWidgetHelper = "com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.9"

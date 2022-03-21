@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
+import com.memo.business.entity.local.UiStatus
 import com.memo.business.utils.toast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -27,11 +29,14 @@ open class BaseViewModel : ViewModel() {
     /*** 请求加载框 ***/
     val loadingEvent: MutableLiveData<Boolean> = MutableLiveData()
 
+    /*** 页面状态 ***/
+    val stateEvent: MutableLiveData<UiStatus> = MutableLiveData()
+
     protected fun <T> request(
         request: Flow<T>,
         onSuccess: ((data: T) -> Unit),
         onError: ((code: Int) -> Unit)? = null,
-        showLoading: Boolean = true
+        showLoading: Boolean = false
     ) {
         viewModelScope.launch {
             // 开始请求
@@ -44,15 +49,36 @@ open class BaseViewModel : ViewModel() {
                     // 重新登录
                 } else {
                     onError?.invoke(error.code)
+                    stateEvent.postValue(UiStatus(isFirstLoad, error.code))
                 }
             }.collect {
                 // 请求成功
                 onSuccess(it)
                 isFirstLoad = false
+                stateEvent.postValue(UiStatus(isFirstLoad, ApiCode.Success))
             }
             // 结束请求
             if (showLoading) loadingEvent.postValue(false)
         }
     }
+
+    /**
+     * 只进行请求，但是不对数据进行操作
+     */
+    protected fun <T> request(request: Flow<T>) {
+        viewModelScope.launch { request.collect() }
+    }
+
+    /**
+     * 只进行请求，对获取到的数据进行操作，无所谓失败
+     */
+    protected fun <T> request(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
+        viewModelScope.launch {
+            loadingEvent.postValue(true)
+            request.collect { onSuccess(it) }
+            loadingEvent.postValue(false)
+        }
+    }
+
 
 }

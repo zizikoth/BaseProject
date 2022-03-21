@@ -2,7 +2,8 @@ package com.memo.business.base
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import java.lang.reflect.ParameterizedType
+import com.dylanc.loadingstateview.LoadingStateView
+import com.memo.business.api.ApiCode
 
 /**
  * title:需要请求交互的Activity
@@ -18,11 +19,28 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
 
     protected lateinit var mViewModel: VM
 
-    override fun initialize() {
+    private lateinit var mPageState: LoadingStateView
+
+    override fun doOnBefore() {
+        mPageState = LoadingStateView(mBinding.root).apply {
+            setOnReloadListener {
+                showLoadingView()
+                start()
+            }
+            showLoadingView()
+        }
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
-
         mViewModel.loadingEvent.observe(this) { if (it) showLoading() else hideLoading() }
+        mViewModel.stateEvent.observe(this) {
+            when {
+                it.code == ApiCode.NetError && it.isFirstLoad -> mPageState.showEmptyView()
+                it.code == ApiCode.ServerError && it.isFirstLoad -> mPageState.showErrorView()
+                it.code == ApiCode.Success && !it.isFirstLoad -> mPageState.showContentView()
+            }
+        }
+    }
 
+    override fun initialize() {
         initData()
         initView()
         initListener()

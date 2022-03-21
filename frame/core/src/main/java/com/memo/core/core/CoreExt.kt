@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.ComponentActivity
+import androidx.annotation.Keep
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
@@ -45,7 +46,6 @@ fun <VB : ViewBinding> Any.inflateBindingWithGeneric(layoutInflater: LayoutInfla
         }
     }
 
-
 @Suppress("UNCHECKED_CAST")
 fun <VB : ViewBinding> Any.bindViewWithGeneric(view: View): VB =
     withGenericBindingClass<VB>(this) { clazz ->
@@ -55,7 +55,6 @@ fun <VB : ViewBinding> Any.bindViewWithGeneric(view: View): VB =
             binding.lifecycleOwner = viewLifecycleOwner
         }
     }
-
 
 @Suppress("UNCHECKED_CAST")
 private fun <VB : ViewBinding> withGenericBindingClass(any: Any, block: (Class<VB>) -> VB): VB {

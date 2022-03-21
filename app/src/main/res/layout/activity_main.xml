@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title_show_back="false"
-        app:title_right_text="设置"
+        app:title_right_text="正式接口"
         app:title_title_text="标题" />
 
     <TextView

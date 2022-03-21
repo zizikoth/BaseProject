@@ -1,7 +1,7 @@
 package com.memo.business.api
 
 import com.blankj.utilcode.util.LogUtils
-import com.google.gson.JsonSyntaxException
+import com.google.gson.JsonParseException
 import kotlinx.coroutines.TimeoutCancellationException
 import java.net.ConnectException
 import java.net.SocketException
@@ -27,12 +27,12 @@ object ApiExceptionHandler {
             // 服务器返回的错误
             is ApiException -> exception
             // 解析错误
-            is JsonSyntaxException -> ApiException(ApiCode.ServerError, "数据解析失败")
+            is JsonParseException -> ApiException(ApiCode.ServerError, "数据解析失败")
             // 连接错误
             is SocketTimeoutException,
             is TimeoutCancellationException,
             is ConnectException,
-            is SocketException -> ApiException(ApiCode.ServerError, "连接超时，请稍后重试")
+            is SocketException -> ApiException(ApiCode.ServerError, "服务器连接异常，请稍后重试")
             // 网络错误
             is UnknownHostException -> ApiException(ApiCode.NetError, "网络异常，请检查网络")
             // 未知错误

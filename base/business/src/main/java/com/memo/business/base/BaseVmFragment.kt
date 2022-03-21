@@ -2,6 +2,8 @@ package com.memo.business.base
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.dylanc.loadingstateview.LoadingStateView
+import com.memo.business.api.ApiCode
 
 /**
  * title:
@@ -17,21 +19,37 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
 
     protected lateinit var mViewModel: VM
 
+    private lateinit var mPageState: LoadingStateView
+
     override fun doOnBefore() {
+        mPageState = LoadingStateView(mBinding.root).apply {
+            setOnReloadListener {
+                showLoadingView()
+                start()
+            }
+            showLoadingView()
+        }
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
-        // 加载框
         mViewModel.loadingEvent.observe(this) { if (it) showLoading() else hideLoading() }
-    }
-
-    protected fun showLoading() {
-        if (mActivity is BaseActivity<*>) {
-            (mActivity as BaseActivity<*>).showLoading()
+        mViewModel.stateEvent.observe(this) {
+            when {
+                it.code == ApiCode.NetError && it.isFirstLoad -> mPageState.showEmptyView()
+                it.code == ApiCode.ServerError && it.isFirstLoad -> mPageState.showErrorView()
+                it.code == ApiCode.Success && !it.isFirstLoad -> mPageState.showContentView()
+            }
         }
     }
 
-    protected fun hideLoading() {
-        if (mActivity is BaseActivity<*>) {
-            (mActivity as BaseActivity<*>).hideLoading()
-        }
+    override fun initialize() {
+        initData()
+        initView()
+        initListener()
+        start()
     }
+
+    protected abstract fun initData()
+    protected abstract fun initView()
+    protected abstract fun initListener()
+    protected abstract fun start()
+
 }
