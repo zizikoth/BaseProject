@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
@@ -124,8 +125,8 @@ class TitleBar @JvmOverloads constructor(
      * 设置右侧点击事件
      * @param action Function0<Unit> 点击事件
      */
-    fun setOnRightClickListener(action: () -> Unit) {
-        mBinding.mTvRight.onClick { action.invoke() }
+    fun setOnRightClickListener(action: (View) -> Unit) {
+        mBinding.mTvRight.onClick { action.invoke(it) }
     }
 
 }

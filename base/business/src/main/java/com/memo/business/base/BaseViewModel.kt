@@ -3,6 +3,7 @@ package com.memo.business.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.LogUtils
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
 import com.memo.business.entity.local.UiStatus
@@ -47,6 +48,7 @@ open class BaseViewModel : ViewModel() {
                 toast(error.message)
                 if (error.code == ApiCode.ReLogin501 || error.code == ApiCode.ReLogin502) {
                     // 重新登录
+                    stateEvent.postValue(UiStatus(false, ApiCode.Success))
                 } else {
                     onError?.invoke(error.code)
                     stateEvent.postValue(UiStatus(isFirstLoad, error.code))
@@ -66,16 +68,16 @@ open class BaseViewModel : ViewModel() {
      * 只进行请求，但是不对数据进行操作
      */
     protected fun <T> request(request: Flow<T>) {
-        viewModelScope.launch { request.collect() }
+        viewModelScope.launch { request.catch {  }.collect()}
     }
 
     /**
-     * 只进行请求，对获取到的数据进行操作，无所谓失败
+     * 只进行请求，对获取到的数据进行操作，失败就不操作
      */
-    protected fun <T> request(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
+    protected fun <T> requestSuccess(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
         viewModelScope.launch {
             loadingEvent.postValue(true)
-            request.collect { onSuccess(it) }
+            request.catch {  }.collect { onSuccess(it) }
             loadingEvent.postValue(false)
         }
     }

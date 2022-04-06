@@ -13,4 +13,6 @@ import java.io.IOException
  *
  * Talk is cheap, Show me the code.
  */
-class ApiException(val code: Int, override val message: String) : IOException(message)
+class ApiException(val code: Int, override val message: String) : IOException(message) {
+    override fun toString() = "ApiException(code=$code, message='$message')"
+}

@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="45dp">
+    android:layout_height="45dp"
+    android:background="#ffffff">
 
     <TextView
         android:id="@+id/mTvLeft"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackgroundBorderless"
+        android:drawableStart="@mipmap/icon_arrow"
         android:drawablePadding="5dp"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:drawableStart="@mipmap/icon_arrow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

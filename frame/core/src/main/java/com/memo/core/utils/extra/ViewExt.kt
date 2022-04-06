@@ -167,58 +167,6 @@ fun View.onClick(method: (view: View) -> Unit) {
 }
 
 /**
- * 对控件设置点击事件
- * @receiver View
- * @param listener OnNotFastClickListener
- */
-fun View.onClick(listener: OnNotFastClickListener) {
-    setOnClickListener(listener)
-}
-
-/**
- * 对多个控件设置点击事件
- * @param views 控件列表
- * @param onClick 点击方法
- */
-fun onViewsClickListener(onClick: (View) -> Unit, vararg views: View) {
-    val listener = View.OnClickListener {
-        if (ClickHelper.isNotFastClick) {
-            onClick(it)
-        }
-    }
-    for (view in views) {
-        view.setOnClickListener(listener)
-    }
-}
-
-/**
- * 防止过快点击监听
- */
-interface OnNotFastClickListener : View.OnClickListener {
-    fun onNotFastClick(view: View)
-    override fun onClick(v: View) {
-        if (ClickHelper.isNotFastClick) {
-            onNotFastClick(v)
-        }
-    }
-}
-
-/**
- * 设置距离填充状态栏
- */
-fun View.paddingStatusBar() {
-    setPadding(paddingLeft, BarUtils.getStatusBarHeight(), paddingRight, paddingBottom)
-}
-
-/**
- * 设置距离状态栏高度
- */
-fun View.marginStatusBar() {
-    margin(topMargin = BarUtils.getStatusBarHeight())
-}
-
-
-/**
  * 设置控件圆角
  */
 fun View.round(color: Int = Color.WHITE, radius: Int = 10.dp2px) {

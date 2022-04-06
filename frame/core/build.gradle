@@ -34,14 +34,15 @@ dependencies {
     api rootProject.ext.ConstraintLayout
     api rootProject.ext.Dialog
     api rootProject.ext.Gson
+    api rootProject.ext.GsonFactory
     api rootProject.ext.LifecycleRunTime
     api rootProject.ext.LifecycleViewModel
     api rootProject.ext.LoadStateView
     api rootProject.ext.Material
     api rootProject.ext.OkHttp
     api rootProject.ext.RecycleView
-    api rootProject.ext.RWidgetHelper
     api rootProject.ext.RxHttp
+    api rootProject.ext.ShapeView
     api rootProject.ext.Utils
 
     implementation rootProject.ext.Glide

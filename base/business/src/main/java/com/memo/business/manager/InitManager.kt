@@ -9,7 +9,9 @@ import com.dylanc.loadingstateview.ViewType
 import com.frame.core.utils.OOMHelper
 import com.kongzue.dialogx.DialogX
 import com.memo.business.config.Config
-import com.memo.business.widget.state.*
+import com.memo.business.widget.state.LoadingDelegate
+import com.memo.business.widget.state.NetErrorDelegate
+import com.memo.business.widget.state.ServerErrorDelegate
 import com.memo.core.utils.GsonHelper
 import rxhttp.RxHttpPlugins
 import rxhttp.wrapper.converter.GsonConverter
@@ -41,7 +43,7 @@ object InitManager {
                     param
                 }
                 .setConverter(GsonConverter.create(GsonHelper.getGson()))
-                .setDebug(Config.debug, true)
+                .setDebug(Config.debug,true)
 
 
         }
@@ -52,7 +54,6 @@ object InitManager {
         OOMHelper.startMonitorLowMemory()
         // Dialog
         DialogX.DEBUGMODE = Config.debug
-        DialogX.onlyOnePopTip = true
         DialogX.init(Utils.getApp())
         // LoadingStateView
         LoadingStateView.setViewDelegatePool {

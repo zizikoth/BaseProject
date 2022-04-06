@@ -1,10 +1,8 @@
 package com.memo.business.base
 
 import android.graphics.Color
-import androidx.annotation.FloatRange
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
-import com.dylanc.loadingstateview.LoadingStateView
 import com.memo.core.core.CoreActivity
 import com.memo.core.utils.DialogHelper
 

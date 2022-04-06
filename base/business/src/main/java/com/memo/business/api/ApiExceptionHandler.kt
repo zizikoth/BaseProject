@@ -22,7 +22,7 @@ object ApiExceptionHandler {
 
     fun handleException(exception: Throwable): ApiException {
         //错误日志打印
-        LogUtils.eTag("HTTP ERROR", exception.toString())
+        LogUtils.eTag("HTTP", exception.toString())
         return when (exception) {
             // 服务器返回的错误
             is ApiException -> exception

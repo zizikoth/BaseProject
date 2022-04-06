@@ -22,7 +22,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun initListener() {
         mBinding.mTitleBar.setOnRightClickListener {
-            Config.runMode = RunMode.LocalLuYao
+            Config.runMode = RunMode.Release
             start()
         }
         mBinding.mIconItemCell.onClick {

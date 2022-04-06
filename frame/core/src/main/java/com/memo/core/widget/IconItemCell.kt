@@ -8,9 +8,7 @@ import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
 import com.memo.core.R
 import com.memo.core.databinding.IconItemCellBinding
-import com.memo.core.utils.extra.dp2px
-import com.memo.core.utils.extra.setVisible
-import com.memo.core.utils.extra.visible
+import com.memo.core.utils.extra.*
 
 /**
  * title:图标+内容+小红点(红数字)+右侧箭头
@@ -48,10 +46,11 @@ class IconItemCell @JvmOverloads constructor(
         mBinding.mTvItem.text = title
         mBinding.mBadge.setVisible((showBadge && badgeNum > 0) || showDot)
         if (showBadge) {
+            mBinding.mBadge.round(color(R.color.color_red),16.dp2px)
             mBinding.mBadge.text = if (badgeNum > 99) "99+" else badgeNum.toString()
             if (badgeNum < 10) {
-                mBinding.mBadge.layoutParams.width = 16.dp2px
-                mBinding.mBadge.layoutParams.height = 16.dp2px
+                mBinding.mBadge.layoutParams.width = 12.dp2px
+                mBinding.mBadge.layoutParams.height = 12.dp2px
             } else {
                 mBinding.mBadge.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                 mBinding.mBadge.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
@@ -59,6 +58,7 @@ class IconItemCell @JvmOverloads constructor(
             }
         }
         if (showDot) {
+            mBinding.mBadge.round(color(R.color.color_red),6.dp2px)
             mBinding.mBadge.text = ""
             mBinding.mBadge.layoutParams.width = 6.dp2px
             mBinding.mBadge.layoutParams.height = 6.dp2px

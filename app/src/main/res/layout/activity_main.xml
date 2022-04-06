@@ -32,8 +32,7 @@
         android:id="@+id/mIconItemCell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:icon_item_cell_badge_num="0"
-        app:icon_item_cell_show_dot="true"
+        app:icon_item_cell_badge_num="4"
         app:icon_item_cell_drawable="@mipmap/ic_launcher"
         app:icon_item_cell_show_badge="true"
         app:icon_item_cell_title="这个标题" />
