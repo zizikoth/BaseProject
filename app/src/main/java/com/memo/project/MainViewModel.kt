@@ -16,19 +16,20 @@ import kotlinx.coroutines.flow.combine
  * Talk is cheap, Show me the code.
  */
 class MainViewModel : BaseViewModel() {
+    private val repository = MainRepository()
 
-    val dataLiveData = MutableLiveData<Zip2Null<Banner, Inform>>()
+    val dataLiveData = MutableLiveData<Zip2Null<ArrayList<Article>, ArticleListEntity>>()
 
-    fun getInformList() {
+    fun getArticles(page: Int) {
         request(
-            request = MainRepository.getInformList(),
+            request = repository.getArticles(page),
             onSuccess = { dataLiveData.postValue(Zip2Null(null, it)) }
         )
     }
 
-    fun getAll() {
-        val combine = combine(MainRepository.getBanner(), MainRepository.getInformList()) { banner, inform ->
-            Zip2Null(banner, inform)
+    fun getHomeData() {
+        val combine = combine(repository.getBanner(), repository.getArticles(0)) { banner, article ->
+            Zip2Null(banner, article)
         }
         request(
             request = combine,

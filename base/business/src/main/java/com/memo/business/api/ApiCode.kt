@@ -11,9 +11,8 @@ package com.memo.business.api
  * Talk is cheap, Show me the code.
  */
 object ApiCode {
-    const val Success = 200
+    const val Success = 0
     const val NetError = 404
     const val ServerError = 500
-    const val ReLogin501 = 501
-    const val ReLogin502 = 502
+    const val ReLogin_1001 = -1001
 }

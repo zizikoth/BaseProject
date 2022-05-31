@@ -14,18 +14,15 @@ import rxhttp.wrapper.param.toFlowResponse
  *
  * Talk is cheap, Show me the code.
  */
-object MainRepository {
-    fun getInformList(): Flow<Inform> {
-        return RxHttp.postJson("/inform/myInformList")
-            .add("pageNum", 1)
-            .add("pageSize", 30)
+class MainRepository {
+
+    fun getBanner(): Flow<ArrayList<Article>> {
+        return RxHttp.get("/banner/json")
             .toFlowResponse()
     }
 
-    fun getBanner(): Flow<Banner> {
-        return RxHttp.postJson("/information/carouselList")
-            .add("pageNum", 1)
-            .add("pageSize", 5)
+    fun getArticles(page: Int): Flow<ArticleListEntity> {
+        return RxHttp.get("/article/list/%d/json", page)
             .toFlowResponse()
     }
 

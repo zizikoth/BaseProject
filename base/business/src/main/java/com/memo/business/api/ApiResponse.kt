@@ -13,7 +13,7 @@ import androidx.annotation.Keep
  * Talk is cheap, Show me the code.
  */
 @Keep
-data class ApiResponse<T>(var data: T, var code: Int = ApiCode.Success, var msg: String = "") {
-    fun success() = code == ApiCode.Success
-    fun needReLogin() = code == ApiCode.ReLogin501 || code == ApiCode.ReLogin502
+data class ApiResponse<T>(var data: T, var errorCode: Int = ApiCode.Success, var errorMsg: String = "") {
+    fun success() = errorCode == ApiCode.Success
+    fun needReLogin() = errorCode == ApiCode.ReLogin_1001
 }

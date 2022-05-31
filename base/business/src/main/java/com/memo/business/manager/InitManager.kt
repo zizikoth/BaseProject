@@ -36,12 +36,6 @@ object InitManager {
 
             // RxHttp
             RxHttpPlugins.init(RxHttpPlugins.getOkHttpClient())
-                .setOnParamAssembly { param ->
-                    param.addHeader(
-                        "Authorization",
-                        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJjbGllbnRUeXBlIjoiZGluZ3RhbGsiLCJkZXB0SWQiOjIwNCwiZW50ZXJwcmlzZUlkIjoxMDAwMDMzNCwidXNlck5hbWUiOiIxNTI1NzYyMjMwNSIsInVzZXJJZCI6MTA2LCJub25jZVN0ciI6MTY0NzQ5OTE3NjE2M30.N8parHRVZYR-EqjXNH29xcBwLEXhp9b00tP0RoxyosOE7vMG6QWfS4miYDDZimqXzwVXTQQkts5QGZZ6QTnKtQ")
-                    param
-                }
                 .setConverter(GsonConverter.create(GsonHelper.getGson()))
                 .setDebug(Config.debug,true)
 

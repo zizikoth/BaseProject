@@ -2,17 +2,15 @@ package com.memo.core.utils.extra
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import androidx.annotation.ColorInt
 import androidx.annotation.RequiresApi
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ImageUtils
-import com.blankj.utilcode.util.ViewUtils
 import com.memo.core.utils.ClickHelper
 import kotlin.math.min
 
@@ -169,7 +167,16 @@ fun View.onClick(method: (view: View) -> Unit) {
 /**
  * 设置控件圆角
  */
-fun View.round(color: Int = Color.WHITE, radius: Int = 10.dp2px) {
+fun View.round(radius: Int = 10.dp2px) {
+    background = GradientDrawable().apply {
+        if (this@round.background is ColorDrawable) {
+            setColor((this@round.background as ColorDrawable).color)
+        }
+        cornerRadius = radius.toFloat()
+    }
+}
+
+fun View.round(@ColorInt color: Int, radius: Int = 10.dp2px) {
     background = GradientDrawable().apply {
         setColor(color)
         cornerRadius = radius.toFloat()
@@ -183,7 +190,8 @@ fun View.round(color: Int = Color.WHITE, radius: Int = 10.dp2px) {
 fun View.round(color: Int = Color.WHITE, leftTop: Int, rightTop: Int, rightBottom: Int, leftBottom: Int) {
     background = GradientDrawable().apply {
         setColor(color)
-        cornerRadii = floatArrayOf(leftTop.toFloat(), leftTop.toFloat(), rightTop.toFloat(), rightTop.toFloat(),
+        cornerRadii = floatArrayOf(
+            leftTop.toFloat(), leftTop.toFloat(), rightTop.toFloat(), rightTop.toFloat(),
             rightBottom.toFloat(), rightBottom.toFloat(), leftBottom.toFloat(), leftBottom.toFloat())
     }
 }

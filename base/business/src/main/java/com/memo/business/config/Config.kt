@@ -17,12 +17,9 @@ import rxhttp.wrapper.annotation.DefaultDomain
 
 @Keep
 enum class RunMode(val description: String, val url: String) {
-    Release("线上地址", "https://server.shwread.cn/whgcserver/server"),
-    Debug("测试地址", "https://test.shwread.cn:8088/whgcserver/server"),
-    LocalLuYao("路遥本地", "http://192.168.31.220:9099/whgcserver/server"),
-    LocalYangZhuang("杨壮本地", "http://192.168.31.146:9099/whgcserver/server"),
-    LocalYunGen("运根本地", "http://192.168.31.135:9099/whgcserver/server"),
-    LocalXuYang("旭阳本地", "http://192.168.31.6:9099/whgcserver/server")
+    Release("线上地址", "https://www.wanandroid.com"),
+    Debug("测试地址", "https://www.wanandroid.com"),
+    Local("本地地址", "https://www.wanandroid.com")
 }
 
 object Config {
@@ -32,6 +29,7 @@ object Config {
     /*** 运行模式 ***/
     var runMode = RunMode.Debug
         set(value) {
+            LogUtils.iTag("切换运行模式", "from = $field", "to = $value")
             baseUrl = value.url
             field = value
         }

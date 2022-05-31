@@ -8,8 +8,6 @@ import com.memo.business.config.RunMode
 import com.memo.business.entity.local.Zip2Null
 import com.memo.business.utils.toast
 import com.memo.core.utils.ClickHelper
-import com.memo.core.utils.extra.onClick
-import com.memo.core.widget.WaterMark
 import com.memo.project.databinding.ActivityMainBinding
 
 class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
@@ -17,7 +15,6 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     override fun initData() {}
 
     override fun initView() {
-        WaterMark.add(this, "周个大个侠")
     }
 
     override fun initListener() {
@@ -25,20 +22,24 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
             Config.runMode = RunMode.Release
             start()
         }
-        mBinding.mIconItemCell.onClick {
-            WaterMark.remove(this)
-        }
-        observe(mViewModel.dataLiveData, this::onInform)
+        observe(mViewModel.dataLiveData, this::onArticle)
     }
 
     override fun start() {
-        mViewModel.getAll()
+        mViewModel.getHomeData()
     }
 
-    private fun onInform(data: Zip2Null<Banner, Inform>) {
-        mBinding.mTvInfo.text = data.first?.list?.first()?.title + data.second?.list?.first()?.title
-    }
+    private fun onArticle(data: Zip2Null<ArrayList<Article>, ArticleListEntity>) {
+        data.first?.let {
+            // 轮播图
+            mBinding.mTvInfo.text = "轮播图数量" + it.size
+        }
 
+        data.second?.let {
+            // 文章
+            mBinding.mTvInfo.text = mBinding.mTvInfo.text.toString() + "\t文章数量" + it.size
+        }
+    }
 
     override fun onBackPressed() {
         if (ClickHelper.isDoubleClickExit { toast("再次点击退出应用") }) {

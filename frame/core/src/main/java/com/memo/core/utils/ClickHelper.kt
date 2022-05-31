@@ -56,7 +56,7 @@ object ClickHelper {
      *
      *  override fun onBackPressed() {
      *      if (ClickHelper.isDoubleClickExit { toast("再次点击退出应用") }) {
-     *          super.onBackPressed()
+     *          AppUtils.exitApp()
      *      }
      *  }
      *

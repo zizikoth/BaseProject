@@ -26,7 +26,7 @@ class SearchEditText : AppCompatEditText {
         if (mListener != null) {
             // 判断最终和开始前是否一致
             if (!StringUtils.equals(mStartText, text!!.toString())) {
-                mStartText = text!!.toString() // 更新 mStartText
+                mStartText = text!!.toString()
                 mListener!!.onTextChanged(mStartText)
             }
         }

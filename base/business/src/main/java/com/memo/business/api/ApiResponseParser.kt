@@ -25,7 +25,7 @@ open class ApiResponseParser<T> : TypeParser<T> {
     override fun onParse(response: Response): T {
         val data: ApiResponse<T> = response.convertTo(ApiResponse::class, *types)
         if (!data.success()) {
-            throw ApiException(data.code, data.msg)
+            throw ApiException(data.errorCode, data.errorMsg)
         }
         return data.data
 
