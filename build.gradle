@@ -2,7 +2,7 @@
 plugins {
     id 'com.android.application' version '7.2.1' apply false
     id 'com.android.library' version '7.2.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
 }
 
 task clean(type: Delete) {
@@ -40,9 +40,8 @@ ext {
     Material = "com.google.android.material:material:1.5.0"
     OkHttp = "com.squareup.okhttp3:okhttp:4.9.1"
     RecycleView = "androidx.recyclerview:recyclerview:1.2.1"
-    RxHttp = "com.github.liujingxing.rxhttp:rxhttp:2.8.5"
-    RxHttpCompiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:2.8.5"
+    RxHttp = "com.github.liujingxing.rxhttp:rxhttp:2.8.8"
+    RxHttpCompiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:2.8.8"
     ShapeView = "com.github.getActivity:ShapeView:6.2"
     Utils = "com.blankj:utilcodex:1.31.0"
-
 }
