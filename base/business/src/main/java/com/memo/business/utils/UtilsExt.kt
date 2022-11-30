@@ -1,7 +1,7 @@
 package com.memo.business.utils
 
+import android.view.Gravity
 import com.blankj.utilcode.util.ToastUtils
-import com.kongzue.dialogx.dialogs.TipDialog
 
 /**
  * title:简化调用
@@ -15,7 +15,7 @@ import com.kongzue.dialogx.dialogs.TipDialog
  */
 fun toast(message: Any?) {
     message?.let {
-        ToastUtils.showShort(it.toString())
+        ToastUtils.getDefaultMaker().setGravity(Gravity.CENTER, 0, 0).setDurationIsLong(false).show(it.toString())
     }
 }
 

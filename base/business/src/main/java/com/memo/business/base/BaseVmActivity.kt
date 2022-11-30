@@ -30,6 +30,7 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
             }
         })
         if (showContent()) mPageState.showContentView() else mPageState.showLoadingView()
+
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
         mViewModel.loadEvent.observe(this) {
             if (it) showLoading() else hideLoading()

@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
  */
 open class BaseViewModel : ViewModel() {
     /*** 是否是第一次加载 ***/
-    private var isFirstLoad = true
+    var isFirstLoad = true
 
     /*** 页面状态 ***/
     val stateEvent: MutableLiveData<Int> = MutableLiveData()

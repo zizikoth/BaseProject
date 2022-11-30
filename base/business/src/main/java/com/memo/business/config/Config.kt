@@ -19,7 +19,7 @@ import rxhttp.wrapper.annotation.DefaultDomain
 enum class RunMode(val description: String, val url: String) {
     Release("线上地址", "https://www.wanandroid.com"),
     Debug("测试地址", "https://www.wanandroid.com"),
-    Local("本地地址", "https://www.wanandroid.com")
+    Local("本地地址", "http://192.168.31.80:9351")
 }
 
 object Config {

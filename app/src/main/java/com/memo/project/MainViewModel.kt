@@ -2,10 +2,9 @@ package com.memo.project
 
 import androidx.lifecycle.MutableLiveData
 import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.local.Zip2Null
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
+import com.memo.business.entity.local.Zip2
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapConcat
 
 /**
  * title:
@@ -21,21 +20,48 @@ class MainViewModel : BaseViewModel() {
 
     private val repository = MainRepository()
 
-    val dataLiveData = MutableLiveData<Zip2Null<ArrayList<Article>, ListEntity<Article>>>()
+    val dataLiveData = MutableLiveData<String>()
 
-    fun getArticles(page: Int) {
-        request(request = { repository.getArticles(page) }, onSuccess = {
-            dataLiveData.postValue(Zip2Null(null, it))
+    /**
+     * 单次请求
+     * @param page Int
+     */
+    fun getOnceRequest() {
+        request(request = { repository.getArticles(0) }, onSuccess = {
+            dataLiveData.postValue("单次请求\n文章标题:" + it.datas.first().title)
+        }, onError = {
+            dataLiveData.postValue("单次请求失败:$it")
         })
     }
 
-    fun getHomeData() {
+    /**
+     * 串行多次请求
+     */
+    fun getConcatRequest() {
+        showLoading()
+        val concat = repository.getBanner().flatMapConcat {
+            repository.getArticles(2)
+        }
+        request(request = { concat }, onSuccess = {
+            dataLiveData.postValue("串行请求\n文章标题:" + it.datas.first().title)
+        }, onError = {
+            dataLiveData.postValue("串行请求失败:$it")
+        })
+    }
+
+    /**
+     * 并行多次请求
+     */
+    fun getCombineRequest() {
         showLoading()
         val combine = combine(repository.getBanner(), repository.getArticles(0)) { banner, article ->
-            Zip2Null(banner, article)
+            Zip2(banner, article)
         }
         request(request = { combine }, onSuccess = {
-            dataLiveData.postValue(it)
+            dataLiveData.postValue(
+                "并行请求\n轮播图标题:" + it.first.first().title + "\n文章标题:" + it.second.datas.first().title)
+        }, onError = {
+            dataLiveData.postValue("并行请求失败:$it")
         })
     }
 }

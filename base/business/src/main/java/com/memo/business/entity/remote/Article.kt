@@ -2,7 +2,7 @@ package com.memo.business.entity.remote
 
 data class ListEntity<T>(
     val curPage: Int = 0,
-    val articles: List<T> = listOf(),
+    val datas: List<T> = listOf(),
     val offset: Int = 0,
     val over: Boolean = false,
     val pageCount: Int = 0,
