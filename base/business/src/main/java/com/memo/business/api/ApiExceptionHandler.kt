@@ -31,12 +31,11 @@ object ApiExceptionHandler {
             // 连接错误
             is SocketTimeoutException,
             is TimeoutCancellationException,
-            is ConnectException,
             is SocketException -> ApiException(ApiCode.ServerError, "服务器连接异常，请稍后重试")
             // 网络错误
             is UnknownHostException -> ApiException(ApiCode.NetError, "网络异常，请检查网络")
             // 未知错误
-            else -> ApiException(ApiCode.ServerError, "请求失败，请稍后重试")
+            else -> ApiException(ApiCode.ServerError, "请求数据失败，请稍后重试")
         }
     }
 }

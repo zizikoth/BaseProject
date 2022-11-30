@@ -29,7 +29,6 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
                 start()
             }
         })
-        if (showContent()) mPageState.showContentView() else mPageState.showLoadingView()
 
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
         mViewModel.loadEvent.observe(this) {
@@ -41,6 +40,14 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
                 ApiCode.ServerError -> mPageState.showErrorView()
                 ApiCode.Success -> mPageState.showContentView()
             }
+        }
+
+
+        if (showContent()) {
+            mViewModel.isFirstLoad = false
+            mPageState.showContentView()
+        } else {
+            mPageState.showLoadingView()
         }
     }
 

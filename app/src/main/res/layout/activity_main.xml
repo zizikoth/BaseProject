@@ -12,7 +12,7 @@
         android:id="@+id/mTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_right_text="当前测试接口"
+        app:title_right_text="运行环境"
         app:title_show_back="false"
         app:title_title_text="标题" />
 

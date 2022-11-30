@@ -8,11 +8,14 @@ import com.memo.business.config.RunMode
 import com.memo.business.manager.InitManager
 import com.memo.business.utils.toast
 import com.memo.core.utils.ClickHelper
+import com.memo.core.utils.DialogHelper
 import com.memo.core.utils.extra.onClick
 import com.memo.project.databinding.ActivityMainBinding
-import com.memo.web.WebActivity
 
 class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
+
+    private val envArray = arrayOf("正式环境", "测试环境", "本地环境")
+    private var envIndex = 0
 
     override fun doOnBefore() {
         InitManager.initInSplash()
@@ -29,14 +32,12 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     override fun initListener() {
         mBinding.run {
             mTitleBar.setOnRightClickListener {
-                if (Config.runMode == RunMode.Debug) Config.runMode = RunMode.Local else Config.runMode = RunMode.Debug
-                mTitleBar.setRightText(if (Config.runMode == RunMode.Debug) "当前测试接口" else "当前本地接口")
+                DialogHelper.bottom("运行环境", envArray, envIndex) {
+                    envIndex = it
+                    Config.runMode = if (it == 0) RunMode.Release else if (it == 1) RunMode.Debug else RunMode.Local
+                    mTitleBar.setRightText(envArray[it])
+                }
             }
-
-            mTvInfo.onClick {
-                WebActivity.start(mContext, "https://www.baidu.com", "百度")
-            }
-
             mBtnRequest.onClick { mViewModel.getOnceRequest() }
             mBtnConcat.onClick { mViewModel.getConcatRequest() }
             mBtnCombine.onClick { mViewModel.getCombineRequest() }
@@ -46,7 +47,6 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun start() {
-        mViewModel.getOnceRequest()
     }
 
 

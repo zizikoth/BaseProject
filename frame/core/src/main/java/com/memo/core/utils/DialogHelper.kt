@@ -39,8 +39,11 @@ object DialogHelper {
         PopTip.show(message).autoDismiss(1500)
     }
 
-    fun alert(message: String) {
-        MessageDialog.show("提示", message, "确定")
+    fun alert(message: String,onPositive: (() -> Unit)? = null) {
+        MessageDialog.show("提示", message, "确定").setOkButtonClickListener { _, _ ->
+            onPositive?.invoke()
+            false
+        }
     }
 
     fun confirm(title: String, message: String, onPositive: () -> Unit) {
