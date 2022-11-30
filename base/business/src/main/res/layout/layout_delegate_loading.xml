@@ -5,27 +5,15 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/mBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="30dp">
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:src="@mipmap/icon_arrow" />
-
-    </androidx.cardview.widget.CardView>
+    <com.memo.core.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_title_text="加载中" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginBottom="25dp"
         android:indeterminateTint="#3a9bff" />

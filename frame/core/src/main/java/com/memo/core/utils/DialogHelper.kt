@@ -1,7 +1,6 @@
 package com.memo.core.utils
 
 import androidx.annotation.FloatRange
-import com.kongzue.dialogx.DialogX
 import com.kongzue.dialogx.dialogs.*
 
 /**
@@ -20,12 +19,12 @@ object DialogHelper {
         WaitDialog.show(message)
     }
 
-    fun showLoadProgress(message: String, @FloatRange(from = 0.0, to = 1.0) progress: Float) {
-        WaitDialog.show(message, progress)
-    }
-
     fun hideLoad() {
         WaitDialog.dismiss()
+    }
+
+    fun progress(message: String, @FloatRange(from = 0.0, to = 1.0) progress: Float) {
+        WaitDialog.show(message, progress)
     }
 
     fun tipSuccess(message: String) {
@@ -36,19 +35,23 @@ object DialogHelper {
         TipDialog.show(message, WaitDialog.TYPE.ERROR)
     }
 
-    fun showAlertDialog(title: String, message: String, onPositive: () -> Unit) {
-        MessageDialog.show(title, message, "确定", "取消")
-            .setOkButtonClickListener { _, _ ->
+    fun popTip(message: String) {
+        PopTip.show(message).autoDismiss(1500)
+    }
+
+    fun alert(message: String) {
+        MessageDialog.show("提示", message, "确定")
+    }
+
+    fun confirm(title: String, message: String, onPositive: () -> Unit) {
+        MessageDialog.show(title, message, "确定", "取消").setOkButtonClickListener { _, _ ->
                 onPositive.invoke()
                 false
             }
     }
 
-    fun showBottomDialog(title: String, array: Array<String>, selectIndex: Int, listener: (position: Int) -> Unit) {
-        BottomMenu.show(array)
-            .setTitle(title)
-            .setSelection(selectIndex)
-            .setOnMenuItemClickListener { _, _, index ->
+    fun bottom(title: String, array: Array<String>, selectIndex: Int, listener: (position: Int) -> Unit) {
+        BottomMenu.show(array).setTitle(title).setSelection(selectIndex).setOnMenuItemClickListener { _, _, index ->
                 listener.invoke(index)
                 false
             }

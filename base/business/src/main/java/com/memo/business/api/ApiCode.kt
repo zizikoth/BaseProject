@@ -14,5 +14,5 @@ object ApiCode {
     const val Success = 0
     const val NetError = 404
     const val ServerError = 500
-    const val ReLogin_1001 = -1001
+    const val TokenError = -1001
 }

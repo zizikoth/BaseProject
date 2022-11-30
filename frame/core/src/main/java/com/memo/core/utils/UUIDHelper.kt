@@ -2,6 +2,7 @@ package com.frame.core.utils
 
 import android.os.Build
 import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.PhoneUtils
 import com.memo.core.utils.extra.md5
 
 /**
@@ -17,13 +18,9 @@ import com.memo.core.utils.extra.md5
 object UUIDHelper {
 
     private var uuid: String = ""
+    private var udid: String = ""
 
-    /**
-     * 通过刷机是可以改变数据的
-     * 恢复出厂设置AndroidId变化
-     * 只要不换手机就不一样
-     * id会重复
-     */
+
     fun getUUID(): String {
         if (uuid.isEmpty()) {
             uuid = StringBuilder()
@@ -41,15 +38,10 @@ object UUIDHelper {
         return uuid
     }
 
-
-    /**
-     * 应用只要不卸载那么这个值是保持唯一的 定义超长随机数
-     * id基本不会重复
-     */
     fun getUDID(): String {
-        if (uuid.isEmpty()) {
-            uuid = DeviceUtils.getUniqueDeviceId()
+        if (udid.isEmpty()) {
+            udid = DeviceUtils.getUniqueDeviceId()
         }
-        return uuid
+        return udid
     }
 }

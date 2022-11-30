@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="@dimen/dp45"
     android:background="?android:selectableItemBackground"
     android:orientation="vertical">
 
@@ -17,30 +17,30 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawablePadding="10dp"
+            android:drawablePadding="@dimen/dp10"
             android:gravity="center_vertical"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="@dimen/sp16"
             tools:drawableLeft="@mipmap/ic_launcher"
             tools:text="这个条目" />
 
         <TextView
             android:id="@+id/mBadge"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="@dimen/dp16"
+            android:layout_height="@dimen/dp16"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginEnd="@dimen/dp5"
             android:background="@color/color_red"
             android:gravity="center"
             android:includeFontPadding="false"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="@dimen/sp10"
             tools:ignore="SmallSp"
             tools:text="1" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
             android:rotation="180"
             android:src="@mipmap/icon_arrow"
             tools:ignore="ContentDescription" />
@@ -51,7 +51,7 @@
     <View
         android:id="@+id/mLine"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="@dimen/dp0_5"
         android:layout_gravity="bottom"
         android:background="#f5f5f5" />
 

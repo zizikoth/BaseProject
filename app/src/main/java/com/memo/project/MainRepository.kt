@@ -1,5 +1,7 @@
 package com.memo.project
 
+import com.memo.business.entity.remote.Article
+import com.memo.business.entity.remote.ListEntity
 import kotlinx.coroutines.flow.Flow
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toFlowResponse
@@ -21,7 +23,7 @@ class MainRepository {
             .toFlowResponse()
     }
 
-    fun getArticles(page: Int): Flow<ArticleListEntity> {
+    fun getArticles(page: Int): Flow<ListEntity<Article>> {
         return RxHttp.get("/article/list/%d/json", page)
             .toFlowResponse()
     }

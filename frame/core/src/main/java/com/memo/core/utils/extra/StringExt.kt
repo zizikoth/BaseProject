@@ -8,7 +8,6 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import com.blankj.utilcode.util.EncryptUtils
-import com.memo.core.utils.extra.toArrayList
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.util.*
@@ -21,8 +20,7 @@ import java.util.*
  * @date 2019-01-29 14:32
  */
 
-private const val httpRegex =
-    "(((https|http)?://)?([a-z0-9]+[.])|(www.))\\w+[.|/]([a-z0-9]*)?[[.]([a-z0-9]{0,})]+((/[\\S&&[^,;\u4E00-\u9FA5]]+)+)?([.][a-z0-9]{0,}+|/?)"
+private const val httpRegex = "(((https|http)?://)?([a-z0-9]+[.])|(www.))\\w+[.|/]([a-z0-9]*)?[[.]([a-z0-9]{0,})]+((/[\\S&&[^,;\u4E00-\u9FA5]]+)+)?([.][a-z0-9]{0,}+|/?)"
 private const val phoneRegex = "1\\d{10}$"
 private const val emailRegex = "\\w+@\\w+\\.[a-z]+(\\.[a-z]+)?"
 private const val idCardRegex = "[1-9]\\d{16}[a-zA-Z0-9]"
@@ -67,12 +65,11 @@ fun String?.isNull() = isNullOrEmpty() || this.trim().toLowerCase(Locale.getDefa
 /**
  * Html格式化
  */
-fun String.fromHtml() =
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-        Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toString()
-    } else {
-        Html.fromHtml(this).toString()
-    }
+fun String.fromHtml() = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+    Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toString()
+} else {
+    Html.fromHtml(this).toString()
+}
 
 /**
  * 保留两位小数
@@ -99,5 +96,4 @@ fun String.firstLineIndent(): SpannableStringBuilder {
 /**
  * 字符串切割
  */
-fun String.convert2List(split: String = ",") =
-    if (this.isEmpty()) arrayListOf() else this.split(split).toArrayList()
+fun String.convert2List(split: String = ",") = if (this.isEmpty()) arrayListOf() else ArrayList(this.split(split))

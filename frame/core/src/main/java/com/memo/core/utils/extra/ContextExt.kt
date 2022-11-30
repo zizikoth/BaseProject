@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.memo.core.core.CoreApp
 
 /**
@@ -69,6 +70,12 @@ fun Context.getFirstFromClipboard(): String {
         clipData.getItemAt(0).text.toString()
     } else {
         ""
+    }
+}
+
+fun toast(message: Any?) {
+    message?.let {
+        ToastUtils.showShort(it.toString())
     }
 }
 

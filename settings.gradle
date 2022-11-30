@@ -16,7 +16,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BaseProject"
 include ':app'
+include ':module:main'
+include ':base:web'
 include ':base:business'
 include ':frame:core'
 include ':frame:proguard'
-include ':base:web'

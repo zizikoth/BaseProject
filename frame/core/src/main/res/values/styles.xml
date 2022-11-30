@@ -5,7 +5,7 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="colorAccent">@color/color_666666</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/sp14</item>
         <item name="android:textColor">@color/color_666666</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:windowBackground">@android:color/white</item>

@@ -2,7 +2,9 @@ package com.memo.business.base
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.chad.library.adapter.base.loadmore.LoadMoreStatus
 import com.dylanc.loadingstateview.LoadingStateView
+import com.dylanc.loadingstateview.OnReloadListener
 import com.memo.business.api.ApiCode
 
 /**
@@ -22,20 +24,22 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
     private lateinit var mPageState: LoadingStateView
 
     override fun doOnBefore() {
-        mPageState = LoadingStateView(mBinding.root).apply {
-            setOnReloadListener {
-                showLoadingView()
+        mPageState = LoadingStateView(mBinding.root, object : OnReloadListener {
+            override fun onReload() {
+                mPageState.showLoadingView()
                 start()
             }
-            showLoadingView()
-        }
+        })
+        mPageState.showLoadingView()
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
-        mViewModel.loadingEvent.observe(this) { if (it) showLoading() else hideLoading() }
+        mViewModel.loadEvent.observe(this) {
+            if (it) showLoading() else hideLoading()
+        }
         mViewModel.stateEvent.observe(this) {
-            when {
-                it.code == ApiCode.NetError && it.isFirstLoad -> mPageState.showEmptyView()
-                it.code == ApiCode.ServerError && it.isFirstLoad -> mPageState.showErrorView()
-                it.code == ApiCode.Success && !it.isFirstLoad -> mPageState.showContentView()
+            when (it) {
+                ApiCode.NetError -> mPageState.showEmptyView()
+                ApiCode.ServerError -> mPageState.showErrorView()
+                ApiCode.Success -> mPageState.showContentView()
             }
         }
     }

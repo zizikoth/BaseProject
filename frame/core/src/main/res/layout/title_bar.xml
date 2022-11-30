@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="45dp"
+    android:layout_height="@dimen/dp45"
     android:background="#ffffff">
 
     <TextView
@@ -12,10 +12,10 @@
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackgroundBorderless"
         android:drawableStart="@mipmap/icon_arrow"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp5"
         android:gravity="center"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,13 +23,13 @@
         android:id="@+id/mTvTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="@dimen/dp45"
+        android:layout_marginEnd="@dimen/dp45"
         android:ellipsize="marquee"
         android:gravity="center"
         android:singleLine="true"
         android:textColor="#333333"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp18"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/mTvSubTitle"
         app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackgroundBorderless"
-        android:drawablePadding="5dp"
+        android:drawablePadding="@dimen/dp5"
         android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"

@@ -26,7 +26,6 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     api rootProject.ext.AppCompat
-    api rootProject.ext.AutoSize
     api rootProject.ext.BaseRecyclerViewAdapterHelper
     api rootProject.ext.Coroutines
     api rootProject.ext.ConstraintLayout

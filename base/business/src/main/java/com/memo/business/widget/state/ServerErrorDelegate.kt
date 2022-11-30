@@ -3,11 +3,13 @@ package com.memo.business.widget.state
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
+import com.blankj.utilcode.util.BarUtils
 import com.dylanc.loadingstateview.LoadingStateView
+import com.dylanc.loadingstateview.ViewType
 import com.memo.business.R
 import com.memo.core.utils.extra.onClick
+import com.memo.core.widget.TitleBar
 
 /**
  * title: 页面服务器异常状态
@@ -19,23 +21,17 @@ import com.memo.core.utils.extra.onClick
  *
  * Talk is cheap, Show me the code.
  */
-class ServerErrorDelegate : LoadingStateView.ViewDelegate<LoadingStateView.ViewHolder>() {
+class ServerErrorDelegate : LoadingStateView.ViewDelegate(ViewType.ERROR) {
 
-    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): LoadingStateView.ViewHolder {
-        return LoadingStateView.ViewHolder(inflater.inflate(R.layout.layout_delegate_error, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: LoadingStateView.ViewHolder) {
-        holder.rootView.findViewById<View>(R.id.mBack).onClick {
-            if (holder.rootView.context is AppCompatActivity) {
-                (holder.rootView.context as AppCompatActivity).finish()
-            }
+    override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup): View {
+        val root = inflater.inflate(R.layout.layout_delegate_error, parent, false)
+        root.findViewById<TitleBar>(R.id.mTitleBar).setTitle("服务器异常")
+        root.findViewById<AppCompatTextView>(R.id.mContent).run {
+            onClick { onReloadListener?.onReload() }
+            setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.mipmap.icon_status_net_error, 0, 0)
+            text = "服务器异常，请稍后重试"
         }
-
-        holder.rootView.findViewById<TextView>(R.id.mContent).run {
-            onClick { holder.onReloadListener?.onReload() }
-            setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.mipmap.icon_status_server_error, 0, 0)
-            text = "网络异常，请稍后重试"
-        }
+        root.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
+        return root
     }
 }

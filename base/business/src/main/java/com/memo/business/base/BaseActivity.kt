@@ -3,6 +3,7 @@ package com.memo.business.base
 import android.graphics.Color
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.memo.core.core.CoreActivity
 import com.memo.core.utils.DialogHelper
 
@@ -18,12 +19,14 @@ import com.memo.core.utils.DialogHelper
  */
 abstract class BaseActivity<VB : ViewBinding> : CoreActivity<VB>() {
 
+    /*** 是否透明状态栏 ***/
+    protected open fun transparentStatusBar(): Boolean = false
+
     override fun init() {
         // 设置状态栏
-        BarUtils.setStatusBarColor(this, Color.WHITE, false)
+        BarUtils.setStatusBarColor(this, Color.TRANSPARENT, false)
         BarUtils.setStatusBarLightMode(this, true)
-        mBinding.root.fitsSystemWindows = true
-
+        mBinding.root.fitsSystemWindows = !transparentStatusBar()
         doOnBefore()
         initialize()
     }

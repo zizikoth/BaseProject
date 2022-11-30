@@ -1,6 +1,7 @@
 package com.memo.business.utils
 
 import com.blankj.utilcode.util.ToastUtils
+import com.kongzue.dialogx.dialogs.TipDialog
 
 /**
  * title:简化调用
@@ -17,3 +18,4 @@ fun toast(message: Any?) {
         ToastUtils.showShort(it.toString())
     }
 }
+

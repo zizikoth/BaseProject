@@ -32,7 +32,7 @@ fun Long.toTime(format: String = "yyyy-MM-dd HH:mm:ss"): String =
 /**
  * 转为中文描述
  */
-fun String.toTimeChinese(): String {
+fun String.toTimeCHN(): String {
     return try {
         this.toMills().toTime("yyyy年MM月dd日")
     } catch (e: Exception) {
@@ -45,7 +45,7 @@ fun String.toTimeChinese(): String {
  * @receiver Long
  * @return String
  */
-fun Long.toTimeChinese() = this.toTime("yyyy年MM月dd日")
+fun Long.toTimeCHN() = this.toTime("yyyy年MM月dd日")
 
 /**
  * yyyy-MM-dd HH:mm:ss 到 yyyy-MM-dd HH:mm

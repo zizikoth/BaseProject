@@ -3,10 +3,10 @@ package com.memo.business.widget.state
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.BarUtils
 import com.dylanc.loadingstateview.LoadingStateView
+import com.dylanc.loadingstateview.ViewType
 import com.memo.business.R
-import com.memo.core.utils.extra.onClick
 
 /**
  * title: 页面加载状态
@@ -18,17 +18,11 @@ import com.memo.core.utils.extra.onClick
  *
  * Talk is cheap, Show me the code.
  */
-class LoadingDelegate : LoadingStateView.ViewDelegate<LoadingStateView.ViewHolder>() {
+class LoadingDelegate : LoadingStateView.ViewDelegate(ViewType.LOADING) {
 
-    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): LoadingStateView.ViewHolder {
-        return LoadingStateView.ViewHolder(inflater.inflate(R.layout.layout_delegate_loading, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: LoadingStateView.ViewHolder) {
-        holder.rootView.findViewById<View>(R.id.mBack).onClick {
-            if (holder.rootView.context is AppCompatActivity) {
-                (holder.rootView.context as AppCompatActivity).finish()
-            }
-        }
+    override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup): View {
+        val root = inflater.inflate(R.layout.layout_delegate_loading, parent, false)
+        root.setPadding(0,BarUtils.getStatusBarHeight(),0,0)
+        return root
     }
 }

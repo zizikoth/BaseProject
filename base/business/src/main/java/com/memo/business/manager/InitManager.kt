@@ -5,7 +5,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
 import com.dylanc.loadingstateview.LoadingStateView
-import com.dylanc.loadingstateview.ViewType
 import com.frame.core.utils.OOMHelper
 import com.kongzue.dialogx.DialogX
 import com.memo.business.config.Config
@@ -15,6 +14,8 @@ import com.memo.business.widget.state.ServerErrorDelegate
 import com.memo.core.utils.GsonHelper
 import rxhttp.RxHttpPlugins
 import rxhttp.wrapper.converter.GsonConverter
+import rxhttp.wrapper.cookie.CookieStore
+import java.io.File
 
 
 /**
@@ -28,22 +29,23 @@ import rxhttp.wrapper.converter.GsonConverter
  * Talk is cheap, Show me the code.
  */
 object InitManager {
-    fun initFirst(app: Application) {
+    fun initInApp(app: Application) {
         if (ProcessUtils.isMainProcess()) {
             // 工具类
             Utils.init(app)
             LogUtils.getConfig().isLogSwitch = Config.debug
 
             // RxHttp
-            RxHttpPlugins.init(RxHttpPlugins.getOkHttpClient())
+            val client = RxHttpPlugins.getOkHttpClient().newBuilder()
+                .cookieJar(CookieStore(File(app.externalCacheDir, "HttpCookie")))
+                .build()
+            RxHttpPlugins.init(client)
                 .setConverter(GsonConverter.create(GsonHelper.getGson()))
-                .setDebug(Config.debug,true)
-
-
+                .setDebug(Config.debug, true)
         }
     }
 
-    fun initLater() {
+    fun initInSplash() {
         // oom检测
         OOMHelper.startMonitorLowMemory()
         // Dialog
@@ -51,9 +53,7 @@ object InitManager {
         DialogX.init(Utils.getApp())
         // LoadingStateView
         LoadingStateView.setViewDelegatePool {
-            this.register(ViewType.LOADING, LoadingDelegate())
-            this.register(ViewType.EMPTY, NetErrorDelegate())
-            this.register(ViewType.ERROR, ServerErrorDelegate())
+            this.register(LoadingDelegate(), NetErrorDelegate(), ServerErrorDelegate())
         }
     }
 }

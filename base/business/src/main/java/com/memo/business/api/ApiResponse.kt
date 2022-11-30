@@ -15,5 +15,5 @@ import androidx.annotation.Keep
 @Keep
 data class ApiResponse<T>(var data: T, var errorCode: Int = ApiCode.Success, var errorMsg: String = "") {
     fun success() = errorCode == ApiCode.Success
-    fun needReLogin() = errorCode == ApiCode.ReLogin_1001
+    fun needReLogin() = errorCode == ApiCode.TokenError
 }

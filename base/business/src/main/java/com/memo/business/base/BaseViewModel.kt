@@ -3,11 +3,13 @@ package com.memo.business.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.LogUtils
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
-import com.memo.business.entity.local.UiStatus
 import com.memo.business.utils.toast
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -26,60 +28,51 @@ open class BaseViewModel : ViewModel() {
     /*** 是否是第一次加载 ***/
     private var isFirstLoad = true
 
-    /*** 请求加载框 ***/
-    val loadingEvent: MutableLiveData<Boolean> = MutableLiveData()
-
     /*** 页面状态 ***/
-    val stateEvent: MutableLiveData<UiStatus> = MutableLiveData()
+    val stateEvent: MutableLiveData<Int> = MutableLiveData()
+
+    /*** 加载状态 ***/
+    val loadEvent:MutableLiveData<Boolean> = MutableLiveData()
+
+    protected fun showLoading() {
+        loadEvent.postValue(true)
+    }
+
+    protected fun hideLoading() {
+        loadEvent.postValue(false)
+    }
 
     protected fun <T> request(
-        request: Flow<T>,
-        onSuccess: ((data: T) -> Unit),
-        onError: ((code: Int) -> Unit)? = null,
-        showLoading: Boolean = false
-    ) {
+        request: suspend (scope: CoroutineScope) -> Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)? = null) {
         viewModelScope.launch {
-            // 开始请求
-            if (showLoading) loadingEvent.postValue(true)
-            request.catch {
+            request.invoke(this).catch {
                 // 请求失败
+                hideLoading()
                 val error = ApiExceptionHandler.handleException(it)
+                if (isFirstLoad) stateEvent.postValue(error.code)
                 toast(error.message)
-                if (error.code == ApiCode.ReLogin_1001) {
-                    // 重新登录
-                    stateEvent.postValue(UiStatus(false, ApiCode.Success))
-                } else {
-                    onError?.invoke(error.code)
-                    stateEvent.postValue(UiStatus(isFirstLoad, error.code))
-                }
+                onError?.invoke(error.code)
             }.collect {
                 // 请求成功
-                onSuccess(it)
+                hideLoading()
+                onSuccess.invoke(it)
                 isFirstLoad = false
-                stateEvent.postValue(UiStatus(isFirstLoad, ApiCode.Success))
+                stateEvent.postValue(ApiCode.Success)
             }
-            // 结束请求
-            if (showLoading) loadingEvent.postValue(false)
         }
     }
+
 
     /**
      * 只进行请求，但是不对数据进行操作
      */
     protected fun <T> request(request: Flow<T>) {
-        viewModelScope.launch { request.catch { }.collect() }
+        viewModelScope.launch { request.collect() }
     }
 
-    /**
-     * 只进行请求，对获取到的数据进行操作，失败就不操作
-     */
-    protected fun <T> requestSuccess(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
-        viewModelScope.launch {
-            loadingEvent.postValue(true)
-            request.catch { }.collect { onSuccess(it) }
-            loadingEvent.postValue(false)
-        }
-    }
+
+
+
 
 
 }

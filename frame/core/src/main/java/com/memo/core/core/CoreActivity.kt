@@ -42,7 +42,7 @@ abstract class CoreActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // 打印最上方的Activity
-        LogUtils.iTag("TopPage", this::class.java.simpleName)
+        LogUtils.iTag("TopPage-Activity", this::class.java.simpleName)
     }
 
     override fun onDestroy() {

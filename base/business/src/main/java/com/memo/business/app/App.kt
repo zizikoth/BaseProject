@@ -16,7 +16,6 @@ import com.memo.core.core.CoreApp
 class App : CoreApp() {
     override fun onCreate() {
         super.onCreate()
-        InitManager.initFirst(this)
-        InitManager.initLater()
+        InitManager.initInApp(this)
     }
 }

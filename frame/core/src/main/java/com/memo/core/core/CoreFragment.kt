@@ -48,7 +48,7 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
     override fun onResume() {
         super.onResume()
         if (isPrepared) onVisibleToUser()
-        LogUtils.iTag("TopPage", this::class.java.simpleName)
+        LogUtils.iTag("TopPage-Fragment", this::class.java.simpleName)
     }
 
     protected abstract fun init()

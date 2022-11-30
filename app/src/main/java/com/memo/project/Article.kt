@@ -1,5 +1,7 @@
 package com.memo.project
 
+import com.memo.business.entity.remote.Article
+
 
 data class ArticleListEntity(
     val curPage: Int = 0,
@@ -40,7 +42,7 @@ data class Article(
     val shareUser: String = "",
     val superChapterId: Int = 0,
     val superChapterName: String = "",
-    val tags: List<Tag> = listOf(),
+    val tags: List<ArticleTag> = listOf(),
     val url:String = "",
     val title: String = "",
     val type: Int = 0,
@@ -49,7 +51,7 @@ data class Article(
     val zan: Int = 0
 )
 
-data class Tag(
+data class ArticleTag(
     val name: String = "",
     val url: String = ""
 )

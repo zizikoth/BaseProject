@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'com.android.application' version '7.2.1' apply false
-    id 'com.android.library' version '7.2.1' apply false
+    id 'com.android.application' version '7.3.1' apply false
+    id 'com.android.library' version '7.3.1' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
 }
 
@@ -10,11 +10,13 @@ task clean(type: Delete) {
 }
 
 ext {
+    moduleMainRunAlone = true
+
     applicationId = "com.memo.project"
-    compileSdk = 31
+    compileSdk = 32
     buildTools = "32.0.0"
     minSdk = 21
-    targetSdk = 31
+    targetSdk = 32
     versionCode = 1000
     versionName = "1.0.0"
 
@@ -23,25 +25,33 @@ ext {
     TestAndroidJunit = "androidx.test.ext:junit:1.1.3"
     TestAndroidEspresso = "androidx.test.espresso:espresso-core:3.4.0"
 
-    AppCompat = "androidx.appcompat:appcompat:1.3.1"
-    AutoSize = "com.github.JessYanCoding:AndroidAutoSize:v1.2.1"
-    BaseRecyclerViewAdapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7"
-    Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2"
-    ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
-    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.43"
-    Glide = "com.github.bumptech.glide:glide:4.13.2"
-    GlideCompiler = "com.github.bumptech.glide:compiler:4.13.2"
-    Gson = "com.google.code.gson:gson:2.9.0"
-    GsonFactory = "com.github.getActivity:GsonFactory:6.0"
+    AppCompat = "androidx.appcompat:appcompat:1.5.1"
+    BaseRecyclerViewAdapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10"
+    ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"
     LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
-    LifecycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
-    LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    LoadStateView = "com.github.DylanCaiCoding:LoadingStateView:3.0.1"
-    Material = "com.google.android.material:material:1.5.0"
-    OkHttp = "com.squareup.okhttp3:okhttp:4.9.1"
+    LoadStateView = "com.github.DylanCaiCoding:LoadingStateView:4.0.2"
+    Material = "com.google.android.material:material:1.7.0"
     RecycleView = "androidx.recyclerview:recyclerview:1.2.1"
-    RxHttp = "com.github.liujingxing.rxhttp:rxhttp:2.8.8"
-    RxHttpCompiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:2.8.8"
-    ShapeView = "com.github.getActivity:ShapeView:6.2"
-    Utils = "com.blankj:utilcodex:1.31.0"
+    Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    ShapeView = "com.github.getActivity:ShapeView:8.5"
+    Utils = "com.blankj:utilcodex:1.31.1"
+
+    // ------------------------------- Lifecycle版本需要相同 -------------------------------//
+    LifecycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    LifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    // ------------------------------- Glide版本需要相同 -------------------------------//
+    Glide = "com.github.bumptech.glide:glide:4.14.2"
+    GlideCompiler = "com.github.bumptech.glide:compiler:4.14.2"
+
+    // ------------------------------- 内部GSON版本需要相同 -------------------------------//
+    Gson = "com.google.code.gson:gson:2.9.1"
+    GsonFactory = "com.github.getActivity:GsonFactory:6.3"
+
+    // ------------------------------- 内部OkHttp版本需要相同 -------------------------------//
+    OkHttp = "com.squareup.okhttp3:okhttp:4.10.0"
+    RxHttp = "com.github.liujingxing.rxhttp:rxhttp:3.0.1"
+    RxHttpCompiler = "com.github.liujingxing.rxhttp:rxhttp-compiler:3.0.1"
+
 }
