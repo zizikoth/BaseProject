@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp30"
+    android:paddingTop="@dimen/dp30"
+    android:paddingRight="@dimen/dp30"
+    android:paddingBottom="@dimen/dp80"
+    app:shape_solidColor="@color/white"
+    app:shape_topLeftRadius="@dimen/dp25"
+    app:shape_topRightRadius="@dimen/dp25">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome back"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/sp30"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/mEtAccount"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@null"
+        android:hint="请输入账号" />
+
+    <com.hjq.shape.view.ShapeView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        app:shape_radius="@dimen/dp1"
+        app:shape_solidColor="@color/colorMain" />
+
+    <EditText
+        android:id="@+id/mEtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@null"
+        android:hint="请输入密码"
+        android:inputType="textPassword" />
+
+    <com.hjq.shape.view.ShapeView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        app:shape_radius="@dimen/dp1"
+        app:shape_solidColor="@color/colorMain"/>
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/mBtnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp40"
+        android:gravity="center"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textLarge"
+        app:shape_solidColor="@color/colorMain"
+        app:shape_radius="@dimen/dp45" />
+
+</com.hjq.shape.layout.ShapeLinearLayout>
