@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="textSuperLarge">@dimen/sp18</dimen>
     <dimen name="textLarge">@dimen/sp16</dimen>
     <dimen name="textNormal">@dimen/sp14</dimen>
     <dimen name="textSmall">@dimen/sp12</dimen>
-    <dimen name="textSuperSmall">@dimen/sp10</dimen>
-
     <color name="textDark">@color/color_333333</color>
     <color name="textNormal">@color/color_666666</color>
     <color name="textLight">@color/color_999999</color>
+    <dimen name="textSuperSmall">@dimen/sp10</dimen>
+    <dimen name="refresh_footer">@dimen/dp45</dimen>
+
+
+
     <color name="colorMain">#ff8056</color>
     <color name="colorMain33">#33ff8056</color>
+    <color name="colorMain55">#80ff8056</color>
+
+    <color name="banner_indicator_normal">#46485F</color>
+    <color name="banner_indicator_select">#ff8056</color>
+    <color name="tab_normal">#46485F</color>
+    <color name="tab_select">#ff8056</color>
+    <color name="refresh_footer">#666666</color>
+    <color name="color_delete_background">#ff4365</color>
+    <color name="color_edit_background">#49A2FF</color>
+    <color name="color_status_background">#fbcead</color>
 </resources>

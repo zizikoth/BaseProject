@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.home.HomeFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/mAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expanded="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                    <com.zhpan.bannerview.BannerViewPager
+                        android:id="@+id/mBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp210"
+                        app:bvp_indicator_checked_color="@color/banner_indicator_select"
+                        app:bvp_indicator_normal_color="@color/banner_indicator_normal"
+                        app:bvp_indicator_slide_mode="worm"
+                        app:bvp_indicator_style="round_rect"
+                        app:bvp_interval="4000"
+                        app:bvp_scroll_duration="800" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/mToolBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:contentInsetEnd="0dp"
+                        app:contentInsetStart="0dp"
+                        app:layout_collapseMode="pin">
+
+                        <com.memo.core.widget.TitleBar
+                            android:id="@+id/mTitleBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:title_show_back="false"
+                            app:title_title_text="首页" />
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mRvList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:itemCount="3"
+                tools:layout_manager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/layout_item_article_item"
+                tools:orientation="vertical" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <ImageView
+            android:id="@+id/mFlSearch"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_gravity="end"
+            android:padding="@dimen/dp13"
+            android:src="@drawable/ic_search" />
+
+    </FrameLayout>
+
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>

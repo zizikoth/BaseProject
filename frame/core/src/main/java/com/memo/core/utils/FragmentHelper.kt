@@ -1,4 +1,4 @@
-package com.frame.core.utils
+package com.memo.core.utils
 
 import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment

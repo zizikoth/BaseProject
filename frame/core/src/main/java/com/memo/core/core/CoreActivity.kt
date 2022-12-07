@@ -31,6 +31,7 @@ abstract class CoreActivity<VB : ViewBinding> : AppCompatActivity() {
         init()
     }
 
+
     protected abstract fun init()
 
     // 点击空白处隐藏软键盘

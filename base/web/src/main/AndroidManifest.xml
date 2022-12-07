@@ -6,10 +6,6 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/CoreTheme">
-        <activity
-            android:name=".WebActivity"
-            android:launchMode="singleTop"
-            android:process=":web" />
     </application>
 
 </manifest>

@@ -3,15 +3,12 @@ package com.memo.business.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
 import com.memo.business.utils.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -32,16 +29,28 @@ open class BaseViewModel : ViewModel() {
     val stateEvent: MutableLiveData<Int> = MutableLiveData()
 
     /*** 加载状态 ***/
-    val loadEvent:MutableLiveData<Boolean> = MutableLiveData()
+    val loadEvent: MutableLiveData<Boolean> = MutableLiveData()
 
+    /**
+     * 显示加载框
+     */
     protected fun showLoading() {
         loadEvent.postValue(true)
     }
 
+    /**
+     * 隐藏加载框
+     */
     protected fun hideLoading() {
         loadEvent.postValue(false)
     }
 
+    /**
+     * 开启请求
+     * @param request SuspendFunction1<[@kotlin.ParameterName] CoroutineScope, Flow<T>> 请求内容
+     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>                      成功回调
+     * @param onError Function1<[@kotlin.ParameterName] Int, Unit>?                     失败回调
+     */
     protected fun <T> request(
         request: suspend (scope: CoroutineScope) -> Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)? = null) {
         viewModelScope.launch {
@@ -64,15 +73,12 @@ open class BaseViewModel : ViewModel() {
 
 
     /**
-     * 只进行请求，但是不对数据进行操作
+     * 开启请求，无关结果
+     * @param request SuspendFunction1<[@kotlin.ParameterName] CoroutineScope, Flow<T>> 请求内容
      */
-    protected fun <T> request(request: Flow<T>) {
-        viewModelScope.launch { request.collect() }
+    protected fun <T> request(request: suspend (scope: CoroutineScope) -> Flow<T>) {
+        viewModelScope.launch {request.invoke(this)}
     }
-
-
-
-
 
 
 }

@@ -22,6 +22,9 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
 
     private lateinit var mPageState: LoadingStateView
 
+    /*** 是否进入页面直接显示内容 ***/
+    protected open fun showContent(): Boolean = false
+
     override fun doOnBefore() {
         mPageState = LoadingStateView(mBinding.root, object : OnReloadListener {
             override fun onReload() {
@@ -41,8 +44,7 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
                 ApiCode.Success -> mPageState.showContentView()
             }
         }
-
-
+        
         if (showContent()) {
             mViewModel.isFirstLoad = false
             mPageState.showContentView()
@@ -50,9 +52,7 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
             mPageState.showLoadingView()
         }
     }
-
-    protected open fun showContent(): Boolean = false
-
+    
     override fun initialize() {
         initData()
         initView()
@@ -60,8 +60,15 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
         start()
     }
 
+    /*** 初始化数据 ***/
     protected abstract fun initData()
+
+    /*** 初始化控件 ***/
     protected abstract fun initView()
+
+    /*** 初始化监听 ***/
     protected abstract fun initListener()
+
+    /*** 页面开始请求 ***/
     protected abstract fun start()
 }

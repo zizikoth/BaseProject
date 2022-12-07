@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp50"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/mTab1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?selectableItemBackgroundBorderless"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/mLottie1"
+            android:layout_width="@dimen/dp28"
+            android:layout_height="@dimen/dp28"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_gravity="center_horizontal"
+            app:lottie_rawRes="@raw/lottie_home" />
+
+        <com.hjq.shape.view.ShapeView
+            android:id="@+id/mDot1"
+            android:layout_width="@dimen/dp8"
+            android:layout_height="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/dp5"
+            app:shape_radius="@dimen/dp3"
+            app:shape_solidColor="@color/colorMain" />
+
+        <TextView
+            android:id="@+id/mTv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="首页"
+            android:textColor="@color/textDark"
+            android:textSize="@dimen/textNormal"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mTab2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?selectableItemBackgroundBorderless"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/mLottie2"
+            android:layout_width="@dimen/dp28"
+            android:layout_height="@dimen/dp28"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_gravity="center_horizontal"
+            app:lottie_rawRes="@raw/lottie_search" />
+
+        <com.hjq.shape.view.ShapeView
+            android:id="@+id/mDot2"
+            android:layout_width="@dimen/dp8"
+            android:layout_height="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/dp5"
+            app:shape_radius="@dimen/dp3"
+            android:visibility="gone"
+            app:shape_solidColor="@color/colorMain" />
+
+        <TextView
+            android:id="@+id/mTv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="搜索"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/textNormal"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mTab3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?selectableItemBackgroundBorderless"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/mLottie3"
+            android:layout_width="@dimen/dp28"
+            android:layout_height="@dimen/dp28"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_gravity="center_horizontal"
+            app:lottie_rawRes="@raw/lottie_circle" />
+
+        <com.hjq.shape.view.ShapeView
+            android:id="@+id/mDot3"
+            android:layout_width="@dimen/dp8"
+            android:layout_height="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/dp5"
+            app:shape_radius="@dimen/dp3"
+            android:visibility="gone"
+            app:shape_solidColor="@color/colorMain" />
+
+        <TextView
+            android:id="@+id/mTv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="圈子"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/textNormal"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/mTab4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?selectableItemBackgroundBorderless"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/mLottie4"
+            android:layout_width="@dimen/dp28"
+            android:layout_height="@dimen/dp28"
+            android:layout_marginTop="@dimen/dp3"
+            android:layout_gravity="center_horizontal"
+            app:lottie_rawRes="@raw/lottie_mine" />
+
+        <com.hjq.shape.view.ShapeView
+            android:id="@+id/mDot4"
+            android:layout_width="@dimen/dp8"
+            android:layout_height="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/dp5"
+            app:shape_radius="@dimen/dp3"
+            android:visibility="gone"
+            app:shape_solidColor="@color/colorMain" />
+
+        <TextView
+            android:id="@+id/mTv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="我的"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/textNormal"/>
+
+    </FrameLayout>
+
+</LinearLayout>

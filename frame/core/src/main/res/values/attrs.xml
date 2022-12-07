@@ -3,6 +3,7 @@
     <item name="waterMark" type="id" />
     <declare-styleable name="TitleBar">
         <attr name="title_title_text" format="string" />
+        <attr name="title_marquee" format="boolean"/>
         <attr name="title_subtitle_text" format="string" />
         <attr name="title_show_back" format="boolean" />
         <attr name="title_right_text" format="string" />

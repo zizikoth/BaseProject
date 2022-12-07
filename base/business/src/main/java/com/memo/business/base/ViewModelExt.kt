@@ -18,7 +18,3 @@ import java.lang.reflect.ParameterizedType
 fun <VM> getViewModelClass(clazz: Any): VM {
     return (clazz.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as VM
 }
-
-fun <T> LifecycleOwner.observe(liveData: LiveData<T>, observer: (t: T) -> Unit) {
-    liveData.observe(this, observer)
-}

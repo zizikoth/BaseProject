@@ -20,9 +20,14 @@ import java.net.UnknownHostException
  */
 object ApiExceptionHandler {
 
+    /**
+     * 对请求错误进行解析
+     * @param exception Throwable   请求错误
+     * @return ApiException         返回自定义的异常
+     */
     fun handleException(exception: Throwable): ApiException {
         //错误日志打印
-        LogUtils.eTag("HTTP", exception.toString())
+        LogUtils.eTag("HTTP-ERROR", exception.toString())
         return when (exception) {
             // 服务器返回的错误
             is ApiException -> exception

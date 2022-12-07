@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.dylanc.loadingstateview.LoadingStateView
 import com.dylanc.loadingstateview.ViewType
 import com.memo.business.R
-import com.memo.core.utils.extra.onClick
+import com.memo.core.utils.ext.onClick
 import com.memo.core.widget.TitleBar
 
 /**

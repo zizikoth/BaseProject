@@ -23,6 +23,9 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
 
     private lateinit var mPageState: LoadingStateView
 
+    /*** 是否进入页面直接显示内容 ***/
+    protected open fun showContent(): Boolean = false
+
     override fun doOnBefore() {
         mPageState = LoadingStateView(mBinding.root, object : OnReloadListener {
             override fun onReload() {
@@ -30,7 +33,6 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
                 start()
             }
         })
-        mPageState.showLoadingView()
         mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
         mViewModel.loadEvent.observe(this) {
             if (it) showLoading() else hideLoading()
@@ -42,6 +44,13 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
                 ApiCode.Success -> mPageState.showContentView()
             }
         }
+
+        if (showContent()) {
+            mViewModel.isFirstLoad = false
+            mPageState.showContentView()
+        } else {
+            mPageState.showLoadingView()
+        }
     }
 
     override fun initialize() {
@@ -51,9 +60,16 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
         start()
     }
 
+    /*** 初始化数据 ***/
     protected abstract fun initData()
+
+    /*** 初始化控件 ***/
     protected abstract fun initView()
+
+    /*** 初始化监听 ***/
     protected abstract fun initListener()
+
+    /*** 页面开始请求 ***/
     protected abstract fun start()
 
 }

@@ -19,15 +19,20 @@ abstract class BaseFragment<VB : ViewBinding> : CoreFragment<VB>() {
         initialize()
     }
 
+    /*** 在初始化之前做一些操作 ***/
     protected open fun doOnBefore() {}
+
+    /*** 初始化 ***/
     protected abstract fun initialize()
 
+    /*** 显示加载框 ***/
     protected fun showLoading() {
         if (mActivity is BaseActivity<*>) {
             (mActivity as BaseActivity<*>).showLoading()
         }
     }
 
+    /*** 隐藏加载框 ***/
     protected fun hideLoading() {
         if (mActivity is BaseActivity<*>) {
             (mActivity as BaseActivity<*>).hideLoading()

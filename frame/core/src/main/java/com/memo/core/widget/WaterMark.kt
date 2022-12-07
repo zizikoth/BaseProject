@@ -8,8 +8,8 @@ import android.graphics.drawable.Drawable
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.memo.core.R
-import com.memo.core.utils.extra.color
-import com.memo.core.utils.extra.sp2px
+import com.memo.core.utils.ext.color
+import com.memo.core.utils.ext.sp2px
 import kotlin.math.sqrt
 
 /**

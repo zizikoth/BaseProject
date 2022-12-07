@@ -1,10 +1,10 @@
-package com.frame.core.utils
+package com.memo.core.utils
 
 import android.os.Handler
 import android.os.HandlerThread
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.LogUtils
-import com.memo.core.utils.extra.clearGlideMemoryCache
+import com.memo.core.utils.ext.clearGlideMemoryCache
 
 
 /**

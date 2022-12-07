@@ -5,26 +5,22 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <com.memo.core.widget.TitleBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title_title_text="加载中" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp200"
         android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:layout_marginBottom="25dp"
-        android:indeterminateTint="#3a9bff" />
+        app:lottie_rawRes="@raw/lottie_load" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/dp40"
         android:text="加载中"
-        android:textColor="#333333"
-        android:textSize="16sp" />
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge" />
 
 </FrameLayout>

@@ -1,9 +1,8 @@
-package com.frame.core.utils
+package com.memo.core.utils
 
 import android.os.Build
 import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.PhoneUtils
-import com.memo.core.utils.extra.md5
+import com.memo.core.utils.ext.md5
 
 /**
  * title:获取应用uuid

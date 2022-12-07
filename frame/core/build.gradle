@@ -26,12 +26,17 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     api rootProject.ext.AppCompat
-    api rootProject.ext.BaseRecyclerViewAdapterHelper
+    api rootProject.ext.ARouter
+    api rootProject.ext.banner
+    api rootProject.ext.Brvah
+    api rootProject.ext.BrvahKtx
     api rootProject.ext.Coroutines
     api rootProject.ext.ConstraintLayout
     api rootProject.ext.Dialog
     api rootProject.ext.Gson
     api rootProject.ext.GsonFactory
+    api rootProject.ext.Indicator
+    api rootProject.ext.Lottie
     api rootProject.ext.LifecycleRunTime
     api rootProject.ext.LifecycleViewModel
     api rootProject.ext.LoadStateView
@@ -40,9 +45,13 @@ dependencies {
     api rootProject.ext.RecycleView
     api rootProject.ext.RxHttp
     api rootProject.ext.ShapeView
+    api rootProject.ext.SmartRefreshLayout
+    api rootProject.ext.SmartRefreshHeader
+    api rootProject.ext.SmartRefreshFooter
     api rootProject.ext.Utils
+    api rootProject.ext.SwipeLayout
 
-    implementation rootProject.ext.Glide
+    api rootProject.ext.Glide
     kapt rootProject.ext.GlideCompiler
 
     debugApi rootProject.ext.LeakCanary

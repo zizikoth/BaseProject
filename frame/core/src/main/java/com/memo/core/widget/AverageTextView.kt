@@ -8,7 +8,7 @@ import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 import com.memo.core.R
-import com.memo.core.utils.extra.sp2px
+import com.memo.core.utils.ext.sp2px
 
 /**
  * title:内容平均分布的文本控件

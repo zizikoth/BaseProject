@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/mSwipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:clickToClose="true"
+        app:drag_edge="right"
+        app:show_mode="lay_down">
+
+        <FrameLayout
+            android:id="@+id/mItemDelete"
+            android:layout_width="@dimen/dp100"
+            android:layout_height="match_parent"
+            android:background="@color/color_delete_background">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_delete" />
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mItemArticle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="@dimen/dp15">
+
+
+            <ImageView
+                android:id="@+id/mIvPic"
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp90"
+                android:src="@drawable/image_holder"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/mIvIcon"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/image_holder"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/mIvPic" />
+
+            <TextView
+                android:id="@+id/mTvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:text="作者：faith-hb"
+                android:textSize="@dimen/textNormal"
+                android:textColor="@color/textNormal"
+                app:layout_constraintBottom_toBottomOf="@id/mIvIcon"
+                app:layout_constraintLeft_toRightOf="@id/mIvIcon"
+                app:layout_constraintTop_toTopOf="@id/mIvIcon" />
+
+            <TextView
+                android:id="@+id/mTvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp15"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="@dimen/textLarge"
+                android:textColor="@color/textDark"
+                app:layout_constraintBottom_toTopOf="@id/mTvDesc"
+                app:layout_constraintLeft_toLeftOf="@id/mIvIcon"
+                app:layout_constraintRight_toLeftOf="@id/mIvPic"
+                app:layout_constraintTop_toBottomOf="@id/mIvIcon"
+                app:layout_goneMarginRight="0dp"
+                tools:text="自定义控件通用库 WidgetCase" />
+
+            <TextView
+                android:id="@+id/mTvDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:ellipsize="end"
+                android:lines="2"
+                android:maxLines="2"
+                android:textColor="@color/textNormal"
+                android:textSize="@dimen/textNormal"
+                app:layout_constraintLeft_toLeftOf="@id/mTvTitle"
+                app:layout_constraintRight_toRightOf="@id/mTvTitle"
+                app:layout_constraintTop_toBottomOf="@id/mTvTitle"
+                app:layout_goneMarginTop="0dp"
+                tools:text="自定义控件通用库：拿来就用，API文档详细，持续集成，长期维护" />
+
+
+            <TextView
+                android:id="@+id/mTvChapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:textSize="@dimen/textSmall"
+                android:textColor="@color/textLight"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mTvDesc"
+                app:layout_goneMarginLeft="0dp"
+                tools:text="开源项目主Tab · 跨平台应用" />
+
+            <TextView
+                android:id="@+id/mTvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSmall"
+                android:textColor="@color/textLight"
+                app:layout_constraintBottom_toBottomOf="@id/mTvChapter"
+                app:layout_constraintRight_toRightOf="@id/mIvPic"
+                tools:text="15分钟前" />
+
+            <TextView
+                android:id="@+id/mTvTimeDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:textSize="@dimen/textSmall"
+                android:textColor="@color/textLight"
+                app:layout_constraintLeft_toLeftOf="@id/mTvChapter"
+                app:layout_constraintTop_toBottomOf="@id/mTvChapter"
+                tools:text="3天前" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.daimajia.swipe.SwipeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"
+        android:background="@color/color_F5F5F5" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

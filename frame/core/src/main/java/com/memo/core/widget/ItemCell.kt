@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.memo.core.R
 import com.memo.core.databinding.ItemCellBinding
-import com.memo.core.utils.extra.dp2px
+import com.memo.core.utils.ext.dp2px
 
 /**
  * title:条目空间

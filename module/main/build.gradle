@@ -40,7 +40,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':base:business')
+    api project(path: ':base:business')
+    api project(path: ':base:web')
     testImplementation rootProject.ext.TestJunit
     androidTestImplementation rootProject.ext.TestAndroidJunit
     androidTestImplementation rootProject.ext.TestAndroidEspresso

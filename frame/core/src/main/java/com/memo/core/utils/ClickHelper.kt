@@ -34,24 +34,6 @@ object ClickHelper {
 
 
     /**
-     * 是否过快长按
-     *
-     * @return true 可以执行  false 不可执行
-     */
-    @JvmStatic
-    val isNotFastLongClick: Boolean
-        get() {
-            var flag = false
-            val curClickTime = System.currentTimeMillis()
-            if (curClickTime - lastClickTime >= 1200) {
-                flag = true
-            }
-            lastClickTime = curClickTime
-            return flag
-        }
-
-
-    /**
      * 判断是否双击返回键进行退出
      *
      *  override fun onBackPressed() {

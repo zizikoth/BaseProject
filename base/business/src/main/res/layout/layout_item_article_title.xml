@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dp15">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp15"
+        android:gravity="center"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge"
+        android:textStyle="bold"
+        tools:text="最新项目" />
+
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/mTvMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginRight="@dimen/dp15"
+        android:paddingLeft="@dimen/dp8"
+        android:paddingTop="@dimen/dp3"
+        android:paddingRight="@dimen/dp8"
+        android:paddingBottom="@dimen/dp3"
+        android:text="更多"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textNormal"
+        app:shape_radius="@dimen/dp5"
+        app:shape_solidColor="@color/colorMain" />
+
+</FrameLayout>

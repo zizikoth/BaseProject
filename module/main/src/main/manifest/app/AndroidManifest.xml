@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/CoreTheme">
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name=".ui.activity.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeSplash">
@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.activity.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.account.AccountActivity"
+            android:name=".ui.activity.account.AccountActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

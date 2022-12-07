@@ -1,112 +1,94 @@
 package com.memo.web
 
-import android.app.Activity
-import android.content.Context
+import android.annotation.SuppressLint
 import android.os.Build
-import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.ValueCallback
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.FrameLayout
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import com.blankj.utilcode.util.Utils
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.AgentWebConfig
+import com.memo.web.BlockWebClient
 
 /**
  * title:
  * describe:
  *
- * @author memo
- * @date 2022-05-31 13:55
- * @email zhou_android@163.com
- *
- * Talk is cheap, Show me the code.
+ * @author zhou
+ * @date 2019-08-08 14:10
  */
+class WebHelper : LifecycleObserver {
 
-object WebHelper {
+    var agentWeb: AgentWeb? = null
 
-    fun init(activity: Activity, container: ViewGroup, url: String): AgentWeb {
-        val agentWeb = AgentWeb.with(activity)
+    @SuppressLint("SetJavaScriptEnabled", "ObsoleteSdkInt")
+    fun init(activity: AppCompatActivity, container: ViewGroup, @LayoutRes errorLayoutRes: Int, url: String?) {
+        // 生命周期配置
+        activity.lifecycle.addObserver(this)
+
+        //如果是空白网址 设置一个错误的地址
+        val httpUrl = url ?: ""
+        agentWeb = AgentWeb.with(activity)
             .setAgentWebParent(container, FrameLayout.LayoutParams(-1, -1))
             .useDefaultIndicator()
+            .setWebViewClient(BlockWebClient())
+            .setMainFrameErrorView(errorLayoutRes, -1)
             .createAgentWeb()
             .ready()
-            .go(url)
+            .go(httpUrl)
 
-        val webView = agentWeb.webCreator.webView
+        val webView = agentWeb!!.webCreator.webView
         val settings = webView.settings
+        //去除过度拉伸效果
+        webView.overScrollMode = WebView.OVER_SCROLL_NEVER
+        //允许缓存
+        settings.cacheMode = WebSettings.LOAD_DEFAULT
+        settings.domStorageEnabled = true
         //适应屏幕
         settings.loadWithOverviewMode = true
+        settings.useWideViewPort = true
+        //允许js交互
+        settings.javaScriptEnabled = true
         //启动双指放大
         settings.setSupportZoom(true)
         settings.builtInZoomControls = true
         settings.displayZoomControls = false
+        //先网页后图片
+        settings.blockNetworkImage = false
+
         //适配5.0不允许http和https混合使用情况
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             webView.setLayerType(View.LAYER_TYPE_HARDWARE, null)
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         }
-
-        return agentWeb
-    }
-
-
-    /**
-     * 点击返回 充血onKeyDown
-     */
-    fun onKeyDown(mAgentWeb: AgentWeb?, keyCode: Int, event: KeyEvent?): Boolean {
-        return if (mAgentWeb == null || event == null) {
-            false
-        } else {
-            mAgentWeb.handleKeyEvent(keyCode, event)
-        }
-    }
-
-
-    /**
-     * 生命周期 onPause
-     */
-    fun onPause(agentWeb: AgentWeb?) {
-        agentWeb?.webLifeCycle?.onPause()
-    }
-
-    /**
-     * 生命周期 onResume
-     */
-    fun onResume(agentWeb: AgentWeb?) {
-        agentWeb?.webLifeCycle?.onResume()
-    }
-
-    /**
-     * 生命周期 onDestroy
-     */
-    fun onDestroy(agentWeb: AgentWeb?) {
-        agentWeb?.webLifeCycle?.onDestroy()
     }
 
     /**
      * 清除本地缓存
      */
-    fun clearCache(context: Context) {
-        AgentWebConfig.clearDiskCache(context)
+    fun clearCache() {
+        AgentWebConfig.clearDiskCache(Utils.getApp())
     }
 
     /**
      * android调用网页js方法
-     * @param agentWeb AgentWeb
      * @param method 方法名
      * @param callback 方法回调
      * @param params 传参
      */
-    fun callJs(
-        agentWeb: AgentWeb?,
-        method: String,
-        callback: ValueCallback<String>? = null,
-        vararg params: String
-    ) {
+    fun callJs(method: String, callback: ValueCallback<String>? = null, vararg params: String) {
         agentWeb?.jsAccessEntrace?.quickCallJs(method, callback, *params)
     }
 
@@ -116,14 +98,42 @@ object WebHelper {
      * className = android
      * method类 必须有showToast(message:String)方法 并且方法添加@JavascriptInterface注解
      *
-     * @param agentWeb AgentWeb
      * @param className 方法名
      * @param methodClazz Any
      *
      */
-    fun respondJs(agentWeb: AgentWeb?, className: String, methodClazz: Any) {
+    fun respondJs(className: String, methodClazz: Any) {
         agentWeb?.jsInterfaceHolder?.addJavaObject(className, methodClazz)
     }
 
+    /**
+     * 判断网页是否可以返回
+     * @return Boolean
+     */
+    fun onBackPress(): Boolean = agentWeb?.back() ?: false
+
+    /**
+     * 生命周期 onResume
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    private fun onResume() {
+        agentWeb?.webLifeCycle?.onResume()
+    }
+
+    /**
+     * 生命周期 onPause
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    private fun onPause() {
+        agentWeb?.webLifeCycle?.onPause()
+    }
+
+    /**
+     * 生命周期 onDestroy
+     */
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    private fun onDestroy() {
+        agentWeb?.webLifeCycle?.onDestroy()
+    }
 
 }

@@ -2,53 +2,58 @@ package com.memo.business.entity.remote
 
 data class ListEntity<T>(
     val curPage: Int = 0,
-    val datas: List<T> = listOf(),
+    val datas: ArrayList<T> = arrayListOf(),
     val offset: Int = 0,
     val over: Boolean = false,
     val pageCount: Int = 0,
     val size: Int = 0,
-    val total: Int = 0
-)
+    val total: Int = 0) {
+    fun hasMore() = !over
+    fun isEmpty() = datas.isEmpty()
+}
+
+const val ARTICLE_TYPE_CHAPTER = 0
+const val ARTICLE_TYPE_TITLE = 1
+const val ARTICLE_TYPE_PROJECT = 2
+const val ARTICLE_TYPE_ARTICLE = 3
 
 data class Article(
-    val apkLink: String = "",
-    val audit: Int = 0,
     val author: String = "",
-    val canEdit: Boolean = false,
-    val chapterId: Int = 0,
-    val chapterName: String = "",
-    val collect: Boolean = false,
-    val courseId: Int = 0,
-    val desc: String = "",
-    val descMd: String = "",
-    val envelopePic: String = "",
-    val fresh: Boolean = false,
-    val host: String = "",
-    val id: Int = 0,
-    val imagePath: String = "",
-    val link: String = "",
-    val niceDate: String = "",
-    val niceShareDate: String = "",
-    val origin: String = "",
-    val prefix: String = "",
-    val projectLink: String = "",
-    val publishTime: Long = 0,
-    val realSuperChapterId: Int = 0,
-    val selfVisible: Int = 0,
-    val shareDate: Long = 0,
     val shareUser: String = "",
-    val superChapterId: Int = 0,
+    val chapterName: String = "",
     val superChapterName: String = "",
-    val tags: List<Tag> = listOf(),
-    val url: String = "",
-    val title: String = "",
-    val type: Int = 0,
+    val desc: String = "",
+    val envelopePic: String = "",
+    val id: Int = 0,
+    val link: String = "",
+    val niceShareDate: String = "",
+    val projectLink: String = "",
+    var title: String = "",
     val userId: Int = 0,
-    val visible: Int = 0,
-    val zan: Int = 0
-)
+    val zan: Int = 0,
+    val collect: Boolean = false,
+    // 轮播图使用
+    val url: String = "",
+    val imagePath: String = "",
+    // 自加属性 列表类型
+    var multiItemType: Int = ARTICLE_TYPE_ARTICLE,
+    // 公众号
+    var chapters: ArrayList<Chapter> = arrayListOf(),
+    // 自加属性 显示更多
+    var showMore: Boolean = false,
+    // 自加属性 最新文章列表
+    var projects: ArrayList<Article> = arrayListOf()) {
+    fun showAuthor() = when {
+        author.isNotEmpty() -> {
+            "作者：${author}"
+        }
+        shareUser.isNotEmpty() -> {
+            "分享者：${shareUser}"
+        }
+        else -> {
+            "匿名"
+        }
+    }
+}
 
-data class Tag(
-    val name: String = "",
-    val url: String = ""
-)
+data class Chapter(val name: String = "", val id: Int = 0)

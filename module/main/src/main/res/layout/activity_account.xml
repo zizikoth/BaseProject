@@ -4,58 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/account"
-    tools:context=".ui.account.AccountActivity">
+    android:background="#EFF6FA"
+    tools:context=".ui.activity.account.AccountActivity">
 
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/mLottie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/lottie_login" />
+
+    <com.hjq.shape.layout.ShapeFrameLayout
+        app:layout_constraintLeft_toLeftOf="@id/mBox"
+        app:layout_constraintBottom_toTopOf="@id/mBox"
+        android:layout_marginBottom="@dimen/dp30"
+        app:shape_solidColor="@color/white60"
+        app:shape_radius="@dimen/dp10"
+        android:paddingLeft="@dimen/dp7_5"
+        android:paddingRight="@dimen/dp7_5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp40"
-        android:lineSpacingMultiplier="1.2"
-        android:shadowColor="@color/colorMain33"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="0.1"
-        android:text="Enjoy the trip\nwith me"
-        android:textColor="@color/colorMain"
-        android:textSize="@dimen/sp30"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="@dimen/dp45">
 
-    <com.hjq.shape.view.ShapeButton
-        android:id="@+id/mBtnSignUp"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp45"
-        android:layout_marginLeft="@dimen/dp65"
-        android:layout_marginRight="@dimen/dp65"
-        android:layout_marginBottom="@dimen/dp200"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="SIGN UP"
-        android:textColor="@color/textDark"
-        android:textSize="@dimen/textLarge"
-        app:shape_solidColor="@color/white"
-        app:shape_radius="@dimen/dp45"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/mIndicator"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp30"/>
+    </com.hjq.shape.layout.ShapeFrameLayout>
 
-
-    <com.hjq.shape.view.ShapeButton
-        android:id="@+id/mBtnSignIn"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp45"
-        android:layout_marginLeft="@dimen/dp65"
-        android:layout_marginTop="@dimen/dp30"
-        android:layout_marginRight="@dimen/dp65"
-        android:gravity="center"
-        android:text="SIGN IN"
-        android:textColor="@color/white"
-        android:textSize="@dimen/textLarge"
-        app:shape_solidColor="@color/colorMain"
-        app:shape_radius="@dimen/dp45"
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:id="@+id/mBox"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mBtnSignUp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="@dimen/dp275"
+        android:layout_height="@dimen/dp310"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:shape_solidColor="@color/white60"
+        app:shape="rectangle"
+        app:shape_radius="@dimen/dp10">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/mViewPager"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

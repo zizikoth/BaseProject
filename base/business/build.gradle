@@ -25,5 +25,6 @@ android {
 
 dependencies {
     api project(path: ':frame:core')
+    api project(path: ':base:web')
     kapt rootProject.ext.RxHttpCompiler
 }

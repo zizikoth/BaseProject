@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/dp25"
+    tools:context=".ui.fragment.account.LoginFragment">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/mEtUserName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:background="@null"
+        android:hint="@string/hint_username"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/colorMain33" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/mEtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/colorMain33" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/mEtRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@null"
+        android:inputType="textPassword"
+        android:hint="@string/hint_rePassword"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/colorMain33" />
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/mBtnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginTop="@dimen/dp30"
+        android:gravity="center"
+        android:text="@string/text_register"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textLarge"
+        app:shape_radius="@dimen/dp45"
+        app:shape_solidColor="@color/colorMain" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -2,6 +2,7 @@ package com.memo.core.widget
 
 import android.content.Context
 import android.graphics.Color
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import com.memo.core.R
 import com.memo.core.databinding.TitleBarBinding
-import com.memo.core.utils.extra.dp2px
-import com.memo.core.utils.extra.onClick
-import com.memo.core.utils.extra.setVisible
-import com.memo.core.utils.extra.visible
+import com.memo.core.utils.ext.dp2px
+import com.memo.core.utils.ext.onClick
+import com.memo.core.utils.ext.setVisible
+import com.memo.core.utils.ext.visible
 
 /**
  * title:
@@ -28,12 +29,12 @@ import com.memo.core.utils.extra.visible
  * Talk is cheap, Show me the code.
  */
 class TitleBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context, attrs) {
+    context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
     private var mBinding: TitleBarBinding
 
     private var titleText: String = ""
+    private var marquee: Boolean = false
     private var subtitleText: String = ""
     private var showBack: Boolean = true
     private var rightText: String = ""
@@ -42,6 +43,7 @@ class TitleBar @JvmOverloads constructor(
     init {
         val attr = context.obtainStyledAttributes(attrs, R.styleable.TitleBar)
         titleText = attr.getString(R.styleable.TitleBar_title_title_text) ?: titleText
+        marquee = attr.getBoolean(R.styleable.TitleBar_title_marquee, marquee)
         subtitleText = attr.getString(R.styleable.TitleBar_title_subtitle_text) ?: subtitleText
         showBack = attr.getBoolean(R.styleable.TitleBar_title_show_back, showBack)
         rightText = attr.getString(R.styleable.TitleBar_title_right_text) ?: rightText
@@ -51,6 +53,13 @@ class TitleBar @JvmOverloads constructor(
         mBinding.run {
             // 主标题
             mTvTitle.text = titleText
+            if (marquee) {
+                mTvTitle.ellipsize = TextUtils.TruncateAt.MARQUEE
+                mTvTitle.setSingleLine()
+                mTvTitle.isSelected = true
+                mTvTitle.isFocusable = true
+                mTvTitle.isFocusableInTouchMode = true
+            }
             // 副标题
             mTvSubTitle.text = subtitleText
             mTvSubTitle.setVisible(subtitleText != "")
@@ -122,11 +131,27 @@ class TitleBar @JvmOverloads constructor(
     }
 
     /**
+     * 设置标题点击事件
+     * @param action Function1<View, Unit>
+     */
+    fun setOnTitleClickListener(action: (View) -> Unit) {
+        mBinding.mTvTitle.onClick(action)
+    }
+
+    /**
+     * 设置左侧点击事件
+     * @param action Function1<View, Unit>
+     */
+    fun setOnLeftClickListener(action: (View) -> Unit) {
+        mBinding.mTvLeft.onClick(action)
+    }
+
+    /**
      * 设置右侧点击事件
-     * @param action Function0<Unit> 点击事件
+     * @param action Function1<View, Unit>
      */
     fun setOnRightClickListener(action: (View) -> Unit) {
-        mBinding.mTvRight.onClick { action.invoke(it) }
+        mBinding.mTvRight.onClick(action)
     }
 
 }

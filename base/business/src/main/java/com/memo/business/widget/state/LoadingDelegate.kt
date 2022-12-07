@@ -25,4 +25,6 @@ class LoadingDelegate : LoadingStateView.ViewDelegate(ViewType.LOADING) {
         root.setPadding(0,BarUtils.getStatusBarHeight(),0,0)
         return root
     }
+
+
 }
