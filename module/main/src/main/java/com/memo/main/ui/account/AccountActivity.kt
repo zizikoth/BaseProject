@@ -14,17 +14,13 @@ import com.memo.main.databinding.ActivityAccountBinding
 class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>() {
 
     private val mLoginDialog by lazy {
-        CustomDialog.build()
-            .setAlign(CustomDialog.ALIGN.BOTTOM)
-            .setCustomView(object : OnBindView<CustomDialog>(R.layout.dialog_login) {
+        CustomDialog.build().setAlign(CustomDialog.ALIGN.BOTTOM).setCustomView(object : OnBindView<CustomDialog>(R.layout.dialog_login) {
                 override fun onBind(dialog: CustomDialog, parent: View) {
                     val btn = parent.findViewById<TextView>(R.id.mBtnLogin)
-                    val accountEt = parent.findViewById<EditText>(R.id.mEtAccount)
-                    val passwordEt = parent.findViewById<EditText>(R.id.mEtPassword)
+                    val mEtAccount = parent.findViewById<EditText>(R.id.mEtAccount)
+                    val mEtPassword = parent.findViewById<EditText>(R.id.mEtPassword)
                     btn.onClick {
-                        val account = accountEt.value
-                        val password = passwordEt.value
-                        mViewModel.login(account, password)
+                        mViewModel.login(mEtAccount.value, mEtPassword.value)
                     }
                 }
             })

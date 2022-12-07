@@ -3,6 +3,8 @@
 .DS_Store
 build
 captures
+app/release
+app/debug
 ### Android template
 # Built application files
 *.apk

@@ -24,14 +24,13 @@ class MainViewModel : BaseViewModel() {
 
     /**
      * 单次请求
-     * @param page Int
      */
     fun getOnceRequest() {
-        request(request = { repository.getArticles(0) }, onSuccess = {
-            dataLiveData.postValue("单次请求\n文章标题:" + it.datas.first().title)
-        }, onError = {
-            dataLiveData.postValue("单次请求失败:$it")
-        })
+        showLoading()
+        request(
+            request = { repository.getArticles(0) },
+            onSuccess = { dataLiveData.postValue("单次请求\n文章标题:" + it.datas.first().title) },
+            onError = { dataLiveData.postValue("单次请求失败:$it") })
     }
 
     /**
@@ -40,13 +39,12 @@ class MainViewModel : BaseViewModel() {
     fun getConcatRequest() {
         showLoading()
         val concat = repository.getBanner().flatMapConcat {
-            repository.getArticles(2)
+            repository.getArticles(it.size)
         }
-        request(request = { concat }, onSuccess = {
-            dataLiveData.postValue("串行请求\n文章标题:" + it.datas.first().title)
-        }, onError = {
-            dataLiveData.postValue("串行请求失败:$it")
-        })
+        request(
+            request = { concat },
+            onSuccess = { dataLiveData.postValue("串行请求\n文章标题:${it.datas.first().title}") },
+            onError = { dataLiveData.postValue("串行请求失败:$it") })
     }
 
     /**
@@ -57,11 +55,11 @@ class MainViewModel : BaseViewModel() {
         val combine = combine(repository.getBanner(), repository.getArticles(0)) { banner, article ->
             Zip2(banner, article)
         }
-        request(request = { combine }, onSuccess = {
-            dataLiveData.postValue(
-                "并行请求\n轮播图标题:" + it.first.first().title + "\n文章标题:" + it.second.datas.first().title)
-        }, onError = {
-            dataLiveData.postValue("并行请求失败:$it")
-        })
+        request(
+            request = { combine },
+            onSuccess = {
+                dataLiveData.postValue("并行请求\n轮播图标题:${it.first.first().title}\n文章标题:${it.second.datas.first().title}")
+            },
+            onError = { dataLiveData.postValue("并行请求失败:$it") })
     }
 }
