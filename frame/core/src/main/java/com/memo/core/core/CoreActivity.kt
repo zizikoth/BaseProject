@@ -27,10 +27,12 @@ abstract class CoreActivity<VB : ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = inflateBindingWithGeneric(layoutInflater)
         setContentView(mBinding.root)
+        doOnBefore()
         // 初始化
         init()
     }
 
+    protected open fun doOnBefore() {}
 
     protected abstract fun init()
 

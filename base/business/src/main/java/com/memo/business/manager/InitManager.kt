@@ -7,6 +7,7 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
 import com.dylanc.loadingstateview.LoadingStateView
 import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.style.MIUIStyle
 import com.memo.business.BuildConfig
 import com.memo.business.R
 import com.memo.business.config.Config
@@ -49,7 +50,7 @@ object InitManager {
             RxHttpPlugins.init(client).setConverter(GsonConverter.create(GsonHelper.getGson())).setDebug(Config.debug, true)
 
             // ARouter
-            if (BuildConfig.DEBUG) {
+            if (Config.debug) {
                 ARouter.openLog()
                 ARouter.openDebug()
             }
@@ -62,6 +63,7 @@ object InitManager {
         OOMHelper.startMonitorLowMemory()
         // Dialog
         DialogX.DEBUGMODE = Config.debug
+        DialogX.globalStyle = MIUIStyle()
         DialogX.init(Utils.getApp())
         // LoadingStateView
         LoadingStateView.setViewDelegatePool {

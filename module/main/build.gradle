@@ -1,4 +1,4 @@
-def app = rootProject.ext.moduleMainRunAlone
+def app = rootProject.ext.runApp
 if (app) {
     apply plugin: 'com.android.application'
 } else {
@@ -39,9 +39,17 @@ android {
     buildFeatures { viewBinding true }
 }
 
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 dependencies {
     api project(path: ':base:business')
     api project(path: ':base:web')
+    kapt rootProject.ext.ARouterCompiler
     testImplementation rootProject.ext.TestJunit
     androidTestImplementation rootProject.ext.TestAndroidJunit
     androidTestImplementation rootProject.ext.TestAndroidEspresso

@@ -1,5 +1,8 @@
 package com.memo.business.entity.remote
 
+import com.chad.library.adapter.base.entity.node.BaseExpandNode
+import com.chad.library.adapter.base.entity.node.BaseNode
+
 data class ListEntity<T>(
     val curPage: Int = 0,
     val datas: ArrayList<T> = arrayListOf(),
@@ -25,6 +28,7 @@ data class Article(
     val desc: String = "",
     val envelopePic: String = "",
     val id: Int = 0,
+    val originId:Int = 0,
     val link: String = "",
     val niceShareDate: String = "",
     val projectLink: String = "",
@@ -35,6 +39,8 @@ data class Article(
     // 轮播图使用
     val url: String = "",
     val imagePath: String = "",
+    // 自加属性 是否置顶
+    var top: Boolean = false,
     // 自加属性 列表类型
     var multiItemType: Int = ARTICLE_TYPE_ARTICLE,
     // 公众号
@@ -57,3 +63,21 @@ data class Article(
 }
 
 data class Chapter(val name: String = "", val id: Int = 0)
+
+data class HotKey(val name: String = "")
+
+data class Category(val name: String = "", val id: Int = 0, val children: ArrayList<Chapter>)
+
+data class Navi(val name: String = "", val articles: ArrayList<Article> = arrayListOf())
+
+data class NodeItem(val title: String, override val childNode: MutableList<BaseNode>) : BaseExpandNode() {
+    init {
+        isExpanded = false
+    }
+}
+
+data class NodeItemChild(val title: String, val id: Int, val link: String) : BaseNode() {
+    override val childNode: MutableList<BaseNode>? = null
+}
+
+data class CoinInfo(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0)

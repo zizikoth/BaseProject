@@ -2,6 +2,7 @@ package com.memo.business.base
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.loadmore.LoadMoreStatus
 import com.dylanc.loadingstateview.LoadingStateView
 import com.dylanc.loadingstateview.OnReloadListener
@@ -21,12 +22,13 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
 
     protected lateinit var mViewModel: VM
 
-    private lateinit var mPageState: LoadingStateView
+    protected lateinit var mPageState: LoadingStateView
 
     /*** 是否进入页面直接显示内容 ***/
     protected open fun showContent(): Boolean = false
 
     override fun doOnBefore() {
+        super.doOnBefore()
         mPageState = LoadingStateView(mBinding.root, object : OnReloadListener {
             override fun onReload() {
                 mPageState.showLoadingView()
@@ -44,7 +46,6 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewBinding> : BaseFragme
                 ApiCode.Success -> mPageState.showContentView()
             }
         }
-
         if (showContent()) {
             mViewModel.isFirstLoad = false
             mPageState.showContentView()

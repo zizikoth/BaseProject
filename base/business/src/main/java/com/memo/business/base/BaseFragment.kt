@@ -14,6 +14,7 @@ import com.memo.core.core.CoreFragment
  * Talk is cheap, Show me the code.
  */
 abstract class BaseFragment<VB : ViewBinding> : CoreFragment<VB>() {
+
     override fun init() {
         doOnBefore()
         initialize()

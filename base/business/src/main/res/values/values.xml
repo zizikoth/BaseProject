@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <dimen name="textSuperLarge">@dimen/sp18</dimen>
     <dimen name="textLarge">@dimen/sp16</dimen>
     <dimen name="textNormal">@dimen/sp14</dimen>
@@ -11,10 +11,10 @@
     <dimen name="refresh_footer">@dimen/dp45</dimen>
 
 
-
     <color name="colorMain">#ff8056</color>
     <color name="colorMain33">#33ff8056</color>
-    <color name="colorMain55">#80ff8056</color>
+    <color name="colorMain50">#80ff8056</color>
+    <color name="colorMainShadow">#ffd5c7</color>
 
     <color name="banner_indicator_normal">#46485F</color>
     <color name="banner_indicator_select">#ff8056</color>

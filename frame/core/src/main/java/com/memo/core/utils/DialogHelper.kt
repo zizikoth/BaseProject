@@ -46,8 +46,8 @@ object DialogHelper {
         }
     }
 
-    fun confirm(title: String, message: String, onPositive: () -> Unit) {
-        MessageDialog.show(title, message, "确定", "取消").setOkButtonClickListener { _, _ ->
+    fun confirm(message: String, onPositive: () -> Unit) {
+        MessageDialog.show("提示", message, "确定", "取消").setOkButtonClickListener { _, _ ->
                 onPositive.invoke()
                 false
             }

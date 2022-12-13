@@ -19,6 +19,8 @@ import com.memo.main.ui.activity.account.AccountActivity
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun initialize() {
         mBinding.run {
+            mEtUserName.value = "Mr.Memo"
+            mEtPassword.value = "zhx931024"
             mBtnLogin.onClick {
                 if (mActivity is AccountActivity) {
                     (mActivity as AccountActivity).login(mEtUserName.value, mEtPassword.value)

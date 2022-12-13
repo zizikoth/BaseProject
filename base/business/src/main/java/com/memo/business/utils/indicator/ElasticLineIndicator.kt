@@ -38,7 +38,6 @@ class ElasticLineIndicator(context: Context) : CommonNavigator(context) {
                 return ColorFlipPagerTitleView(context).apply {
                     text = titles[index]
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, dimen(R.dimen.textNormal))
-                    paint.isFakeBoldText = true
                     normalColor = color(R.color.tab_normal)
                     selectedColor = color(R.color.tab_select)
                     setOnClickListener { onTabClick.invoke(index) }

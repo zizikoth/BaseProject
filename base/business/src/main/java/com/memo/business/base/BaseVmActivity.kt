@@ -20,7 +20,7 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
 
     protected lateinit var mViewModel: VM
 
-    private lateinit var mPageState: LoadingStateView
+    protected lateinit var mPageState: LoadingStateView
 
     /*** 是否进入页面直接显示内容 ***/
     protected open fun showContent(): Boolean = false

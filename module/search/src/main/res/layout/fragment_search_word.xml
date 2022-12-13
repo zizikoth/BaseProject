@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.SearchWordFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/mLlHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp15"
+                android:text="搜索历史"
+                android:textColor="@color/textDark"
+                android:textSize="@dimen/textLarge"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mIvClear"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="@dimen/dp10"
+                android:padding="@dimen/dp7"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_delete"
+                android:tint="@color/color_999999" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRvHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp7_5"
+            android:layout_marginRight="@dimen/dp7_5"
+            android:overScrollMode="never"
+            tools:itemCount="8"
+            tools:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            tools:listitem="@layout/layout_item_serach"
+            tools:orientation="horizontal" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <TextView
+        android:id="@+id/mTvHot"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp15"
+        android:text="搜索热词"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRvHot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp7_5"
+        android:layout_marginRight="@dimen/dp7_5"
+        android:overScrollMode="never"
+        tools:itemCount="8"
+        tools:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+        tools:listitem="@layout/layout_item_serach"
+        tools:orientation="horizontal" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

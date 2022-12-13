@@ -8,6 +8,7 @@ import android.os.Build
 import android.view.*
 import androidx.annotation.ColorInt
 import androidx.annotation.RequiresApi
+import androidx.core.view.ViewCompat
 import com.blankj.utilcode.util.ImageUtils
 import com.memo.core.utils.ClickHelper
 import kotlin.math.min
@@ -35,6 +36,17 @@ fun View.onClick(method: (View) -> Unit) {
     }
 }
 
+/**
+ * 给组件设置阴影
+ * @receiver ViewGroup
+ */
+fun ViewGroup.addElevation(){
+    // 底部阴影 这四行是必须的才会有阴影效果
+    setBackgroundColor(Color.WHITE)
+    this.outlineProvider = ViewOutlineProvider.BOUNDS
+    ViewCompat.setElevation(this, 2.dp2px.toFloat())
+    this.clipToPadding = false
+}
 
 /**
  * 设置View的宽度和高度

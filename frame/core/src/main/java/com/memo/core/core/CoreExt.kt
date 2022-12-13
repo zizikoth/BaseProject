@@ -21,13 +21,13 @@ import java.lang.reflect.ParameterizedType
 
 @Suppress("UNCHECKED_CAST")
 @JvmName("inflateWithGeneric")
-fun <VB : ViewBinding> Any.inflateBindingWithGeneric(layoutInflater: LayoutInflater): VB = withGenericBindingClass<VB>(this) { clazz ->
+fun <VB : ViewBinding> Any.inflateBindingWithGeneric(layoutInflater: LayoutInflater): VB = withGenericBindingClass(this) { clazz ->
     clazz.getMethod("inflate", LayoutInflater::class.java).invoke(null, layoutInflater) as VB
 }
 
 @Suppress("UNCHECKED_CAST")
 @JvmName("inflateWithGeneric")
-fun <VB : ViewBinding> Any.inflateBindingWithGeneric(layoutInflater: LayoutInflater, parent: ViewGroup?, attachToParent: Boolean): VB = withGenericBindingClass<VB>(this) { clazz ->
+fun <VB : ViewBinding> Any.inflateBindingWithGeneric(layoutInflater: LayoutInflater, parent: ViewGroup?, attachToParent: Boolean): VB = withGenericBindingClass(this) { clazz ->
     clazz.getMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java).invoke(null, layoutInflater, parent, attachToParent) as VB
 }
 
@@ -45,8 +45,8 @@ private fun <VB : ViewBinding> withGenericBindingClass(any: Any, block: (Class<V
             genericSuperclass.actualTypeArguments.forEach {
                 try {
                     return block.invoke(it as Class<VB>)
-                } catch (e: NoSuchMethodException) {
-                } catch (e: ClassCastException) {
+                } catch (_: NoSuchMethodException) {
+                } catch (_: ClassCastException) {
                 } catch (e: InvocationTargetException) {
                     throw e.targetException
                 }

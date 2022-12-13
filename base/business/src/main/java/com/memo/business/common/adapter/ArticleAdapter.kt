@@ -50,6 +50,7 @@ class ArticleAdapter(val enableSwipe: Boolean = false) : BaseProviderMultiAdapte
         addItemProvider(TitleProvider())
         addItemProvider(ProjectProvider())
         addItemProvider(ArticleProvider())
+        addChildClickViewIds(R.id.mItemDelete, R.id.mIvIcon)
     }
 
     /**
@@ -132,9 +133,11 @@ class ArticleProvider : BaseItemProvider<Article>() {
     override val layoutId: Int = R.layout.layout_item_article_item
     override fun convert(helper: BaseViewHolder, item: Article) {
         helper.run {
+            setGone(R.id.mLabel, !item.top)
+
             getView<SwipeLayout>(R.id.mSwipeLayout).isSwipeEnabled = (getAdapter() as ArticleAdapter).enableSwipe
 
-            setImageResource(R.id.mIvIcon,chapterAvatars[item.id] ?: chapterAvatars[0]!!)
+            setImageResource(R.id.mIvIcon, chapterAvatars[item.id] ?: chapterAvatars[0]!!)
 
             setText(R.id.mTvName, item.showAuthor())
 

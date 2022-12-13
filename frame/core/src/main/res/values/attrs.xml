@@ -1,33 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="waterMark" type="id" />
-    <declare-styleable name="TitleBar">
-        <attr name="title_title_text" format="string" />
-        <attr name="title_marquee" format="boolean"/>
-        <attr name="title_subtitle_text" format="string" />
-        <attr name="title_show_back" format="boolean" />
-        <attr name="title_right_text" format="string" />
-        <attr name="title_right_drawable" format="reference" />
-    </declare-styleable>
-
     <declare-styleable name="AverageTextView">
         <attr name="average_text" format="string" />
         <attr name="average_text_size" format="dimension" />
         <attr name="average_text_color" format="color" />
     </declare-styleable>
-
-    <declare-styleable name="ItemCell">
-        <attr name="item_cell_title" format="string" />
-        <attr name="item_cell_content" format="string" />
-        <attr name="item_cell_width" format="dimension" />
-    </declare-styleable>
-
-    <declare-styleable name="IconItemCell">
-        <attr name="icon_item_cell_drawable" format="reference" />
-        <attr name="icon_item_cell_title" format="string" />
-        <attr name="icon_item_cell_badge_num" format="integer" />
-        <attr name="icon_item_cell_show_badge" format="boolean" />
-        <attr name="icon_item_cell_show_dot" format="boolean" />
-    </declare-styleable>
-
 </resources>

@@ -19,7 +19,7 @@
             android:layout_height="@dimen/dp28"
             android:layout_marginTop="@dimen/dp3"
             android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/lottie_home" />
+            app:lottie_rawRes="@raw/lottie_tab_home" />
 
         <com.hjq.shape.view.ShapeView
             android:id="@+id/mDot1"
@@ -54,10 +54,10 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/mLottie2"
             android:layout_width="@dimen/dp28"
-            android:layout_height="@dimen/dp28"
-            android:layout_marginTop="@dimen/dp3"
+            android:layout_height="@dimen/dp26"
+            android:layout_marginTop="@dimen/dp4"
             android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/lottie_search" />
+            app:lottie_rawRes="@raw/lottie_tab_project" />
 
         <com.hjq.shape.view.ShapeView
             android:id="@+id/mDot2"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp3"
             android:layout_gravity="center_horizontal|bottom"
-            android:text="搜索"
+            android:text="项目"
             android:textColor="@color/textLight"
             android:textSize="@dimen/textNormal"/>
 
@@ -95,7 +95,7 @@
             android:layout_height="@dimen/dp28"
             android:layout_marginTop="@dimen/dp3"
             android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/lottie_circle" />
+            app:lottie_rawRes="@raw/lottie_tab_system" />
 
         <com.hjq.shape.view.ShapeView
             android:id="@+id/mDot3"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp3"
             android:layout_gravity="center_horizontal|bottom"
-            android:text="圈子"
+            android:text="体系"
             android:textColor="@color/textLight"
             android:textSize="@dimen/textNormal"/>
 
@@ -133,7 +133,7 @@
             android:layout_height="@dimen/dp28"
             android:layout_marginTop="@dimen/dp3"
             android:layout_gravity="center_horizontal"
-            app:lottie_rawRes="@raw/lottie_mine" />
+            app:lottie_rawRes="@raw/lottie_tab_mine" />
 
         <com.hjq.shape.view.ShapeView
             android:id="@+id/mDot4"

@@ -10,10 +10,10 @@ task clean(type: Delete) {
 }
 
 ext {
-    moduleMainRunAlone = false
-    moduleChapterRunAlone = false
+    // 是否将模块单独作为app运行
+    runApp = true
 
-    applicationId = "com.memo.project"
+    applicationId = "com.memo.wan"
     compileSdk = 32
     buildTools = "32.0.0"
     minSdk = 21
@@ -28,9 +28,7 @@ ext {
 
     AppCompat = "androidx.appcompat:appcompat:1.5.1"
     Brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10"
-    BrvahKtx = "com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-brvah:2.1.0"
     ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
-    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"
     Indicator = "com.github.hackware1993:MagicIndicator:1.7.0"
     Lottie = "com.airbnb.android:lottie:5.2.0"
     LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
@@ -41,7 +39,12 @@ ext {
     ShapeView = "com.github.getActivity:ShapeView:8.5"
     Utils = "com.blankj:utilcodex:1.31.1"
     SwipeLayout = "com.daimajia.swipelayout:library:1.2.0@aar"
-    banner = "com.github.zhpanvip:bannerviewpager:3.5.8"
+    Banner = "com.github.zhpanvip:bannerviewpager:3.5.8"
+    FlexBox = "com.google.android.flexbox:flexbox:3.0.0"
+
+    // ------------------------------- Dialog版本必须相同 -------------------------------//
+    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"
+    DialogTheme = "com.github.kongzue.DialogX:DialogXMIUIStyle:0.0.46"
 
     // ------------------------------- Router版本必须相同 -------------------------------//
     ARouter = "com.alibaba:arouter-api:1.5.2"

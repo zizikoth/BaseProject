@@ -1,10 +1,11 @@
 package com.memo.main.ui.activity.main
 
 import com.blankj.utilcode.util.AppUtils
-import com.memo.core.utils.FragmentHelper
 import com.memo.business.base.BaseActivity
+import com.memo.business.manager.RouteManager
 import com.memo.business.utils.toast
 import com.memo.core.utils.ClickHelper
+import com.memo.core.utils.FragmentHelper
 import com.memo.main.R
 import com.memo.main.databinding.ActivityMainBinding
 import com.memo.main.ui.fragment.home.HomeFragment
@@ -26,7 +27,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initialize() {
         mBinding.run {
             val fragmentHelper = FragmentHelper(mContext, R.id.mContainer, supportFragmentManager)
-            fragmentHelper.add(HomeFragment(),HomeFragment(),HomeFragment(),HomeFragment())
+                .add(
+                    HomeFragment(),
+                    RouteManager.getProjectFragment(),
+                    RouteManager.getSystemFragment(),
+                    RouteManager.getMineFragment())
                 .show()
 
             mLottieBar.setOnItemChangeListener {

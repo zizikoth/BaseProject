@@ -46,7 +46,7 @@
                         app:contentInsetStart="0dp"
                         app:layout_collapseMode="pin">
 
-                        <com.memo.core.widget.TitleBar
+                        <com.memo.business.widget.TitleBar
                             android:id="@+id/mTitleBar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -72,11 +72,11 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <ImageView
-            android:id="@+id/mFlSearch"
+            android:id="@+id/mIvSearch"
             android:layout_width="@dimen/dp45"
             android:layout_height="@dimen/dp45"
             android:layout_gravity="end"
-            android:padding="@dimen/dp13"
+            android:padding="@dimen/dp14"
             android:src="@drawable/ic_search" />
 
     </FrameLayout>

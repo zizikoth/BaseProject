@@ -35,13 +35,13 @@ class HomeViewModel : BaseViewModel() {
             repository.getArticles(0)) { bannerRes, chapterRes, topArticleRes, projectRes, articleRes ->
             Zip5Null(bannerRes, chapterRes, topArticleRes, projectRes, articleRes)
         }
-        request({ combine }, onSuccess = liveData::postValue)
+        request(combine, onSuccess = liveData::postValue)
     }
 
-    fun getArticles(page: Int) {
+    fun getArticles(pageNum: Int) {
         showLoading()
-        request({ repository.getArticles(page) }, onSuccess = {
+        request(repository.getArticles(pageNum)) {
             liveData.postValue(Zip5Null(null, null, null, null, it))
-        })
+        }
     }
 }

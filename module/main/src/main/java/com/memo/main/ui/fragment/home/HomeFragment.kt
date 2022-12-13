@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.memo.business.base.BaseVmFragment
-import com.memo.business.common.activity.ArticleActivity
+import com.memo.business.common.activity.WebActivity
 import com.memo.business.common.adapter.ArticleAdapter
 import com.memo.business.entity.local.Zip5Null
 import com.memo.business.entity.remote.*
@@ -13,8 +13,8 @@ import com.memo.business.manager.RouteManager
 import com.memo.business.utils.finish
 import com.memo.business.utils.onItemClick
 import com.memo.business.utils.showEmpty
-import com.memo.business.utils.toast
 import com.memo.core.utils.ext.margin
+import com.memo.core.utils.ext.onClick
 import com.memo.main.databinding.FragmentHomeBinding
 import com.memo.main.ui.adapter.BannerAdapter
 import com.memo.main.viewmodel.HomeViewModel
@@ -32,7 +32,7 @@ import kotlin.math.abs
  */
 class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
 
-    private var pageNum = 0
+    private var pageNum: Int = 0
 
     private val mAdapter by lazy { ArticleAdapter() }
 
@@ -45,7 +45,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
         mBinding.run {
             // 设置沉浸式偏移
             mToolBar.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
-            mFlSearch.margin(0, BarUtils.getStatusBarHeight(), 0, 0)
+            mIvSearch.margin(0, BarUtils.getStatusBarHeight(), 0, 0)
             // 轮播图
             mBanner.registerLifecycleObserver(lifecycle).setAdapter(BannerAdapter()).create()
             // 文章列表
@@ -66,8 +66,9 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
             mAppBar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBar, offset ->
                 mToolBar.alpha = abs(offset).toFloat() / appBar.totalScrollRange
             })
-            // 标题栏点击 滑动到顶部
+            // 标题栏点击
             mTitleBar.setOnTitleClickListener {
+                // 点击标题 滑动到顶部
                 if (mToolBar.alpha >= 1f) {
                     val behavior = (mAppBar.layoutParams as CoordinatorLayout.LayoutParams).behavior
                     if (behavior is AppBarLayout.Behavior) {
@@ -76,6 +77,8 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
                     mRvList.scrollToPosition(0)
                 }
             }
+            // 搜索点击
+            mIvSearch.onClick { RouteManager.startSearchActivity() }
             // 刷新加载
             mRefreshLayout.setOnRefreshListener {
                 pageNum = 0
@@ -87,17 +90,17 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
             // 轮播图
             mBanner.setOnPageClickListener { _, position ->
                 val data = mBanner.data[position] as Article
-                ArticleActivity.start(mActivity, data.url, data.title)
+                WebActivity.start(mActivity, data.url, data.title)
             }
             // 列表点击
             mAdapter.onItemClick {
                 when (it.multiItemType) {
-                    ARTICLE_TYPE_CHAPTER -> RouteManager.startChapterActivity(it.id)
-                    ARTICLE_TYPE_TITLE -> if (it.showMore) toast(it.title)
-                    ARTICLE_TYPE_ARTICLE -> ArticleActivity.start(mActivity, it.link, it.id, it.title)
+                    ARTICLE_TYPE_CHAPTER -> RouteManager.startBlogActivity(it.id)
+                    ARTICLE_TYPE_TITLE -> if (it.showMore) RouteManager.startNewProjectActivity()
+                    ARTICLE_TYPE_ARTICLE -> WebActivity.start(mActivity, it.link, it.id, it.title)
                 }
             }
-            mAdapter.onProjectClick = { toast(it.title) }
+            mAdapter.onProjectClick = { WebActivity.start(mActivity, it.link, it.id, it.title) }
         }
 
         mViewModel.liveData.observe(this, this::onDataResponse)
@@ -133,6 +136,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
             // 置顶文章
             if (!data.third.isNullOrEmpty()) {
                 list.add(Article(title = "置顶文章", showMore = false, multiItemType = ARTICLE_TYPE_TITLE))
+                data.third!!.forEach { it.top = true }
                 list.addAll(data.third!!)
             }
             // 最新项目

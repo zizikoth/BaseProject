@@ -32,11 +32,11 @@ class HomeRepository {
     }
 
     fun getNewProject(): Flow<ListEntity<Article>> {
-        return RxHttp.get("article/listproject/0/json").toFlowResponse()
+        return RxHttp.get("/article/listproject/0/json").toFlowResponse()
     }
 
-    fun getArticles(page: Int): Flow<ListEntity<Article>> {
-        return RxHttp.get("/article/list/%d/json", page)
+    fun getArticles(pageNum: Int): Flow<ListEntity<Article>> {
+        return RxHttp.get("/article/list/%d/json", pageNum)
             .add("page_size", 40)
             .toFlowResponse()
     }

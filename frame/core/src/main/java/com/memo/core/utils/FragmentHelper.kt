@@ -63,8 +63,8 @@ class FragmentHelper constructor(
     /**
      * 改变Fragment
      */
-    fun show(index: Int = 0) {
-        if (index < 0 || index >= mStack.size) return
+    fun show(index: Int = 0): FragmentHelper {
+        if (index < 0 || index >= mStack.size) return this
         val beginTransaction = fragmentManager.beginTransaction()
         mStack.forEachIndexed { position, fragment ->
             if (position == index) {
@@ -77,6 +77,7 @@ class FragmentHelper constructor(
             }
         }
         beginTransaction.commitAllowingStateLoss()
+        return this
     }
 
 }

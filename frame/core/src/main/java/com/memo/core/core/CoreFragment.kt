@@ -24,8 +24,11 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
 
     protected lateinit var mBinding: VB
 
+    /*** 标识 标识当前界面是否创建 ***/
+    protected var isViewCreated: Boolean = false
+
     /*** 标识 标识是否界面准备完毕 ***/
-    private var isPrepared: Boolean = false
+    protected var isPrepared: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = inflateBindingWithGeneric(layoutInflater, container, false)
@@ -34,20 +37,20 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        isPrepared = true
+        isViewCreated = true
         onVisibleToUser()
     }
 
     private fun onVisibleToUser() {
-        if (isPrepared && isResumed) {
-            isPrepared = false
+        if (isViewCreated && !isPrepared && isResumed) {
+            isPrepared = true
             init()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isPrepared) onVisibleToUser()
+        if (isViewCreated) onVisibleToUser()
         LogUtils.iTag("TopPage-Fragment", this::class.java.simpleName)
     }
 

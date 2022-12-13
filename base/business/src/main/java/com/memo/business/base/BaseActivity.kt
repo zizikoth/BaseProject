@@ -27,12 +27,8 @@ abstract class BaseActivity<VB : ViewBinding> : CoreActivity<VB>() {
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT, false)
         BarUtils.setStatusBarLightMode(this, true)
         mBinding.root.fitsSystemWindows = !transparentStatusBar()
-        doOnBefore()
         initialize()
     }
-
-    /*** 在初始化之前做一些操作 ***/
-    protected open fun doOnBefore() {}
 
     /*** 初始化 ***/
     protected abstract fun initialize()

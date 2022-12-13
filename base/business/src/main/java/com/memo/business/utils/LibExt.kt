@@ -1,10 +1,18 @@
 package com.memo.business.utils
 
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
+import androidx.viewbinding.ViewBinding
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.memo.business.R
 import com.memo.business.widget.EmptyView
 import com.memo.core.utils.ClickHelper
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.constant.RefreshState
+import java.io.Console
 
 /**
  * title:第三方框架的拓展
@@ -33,8 +41,22 @@ fun SmartRefreshLayout.finish(hasMore: Boolean = true) {
 }
 
 /**
+ * 移除RecyclerView的动画
+ */
+var RecyclerView.supportsChangeAnimations: Boolean
+    get() = (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations
+    set(value) {
+        (this.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = value
+    }
+
+/**
  * BaseQuickAdapter 的快捷方法
  */
+@Suppress("UNCHECKED_CAST")
+fun <VB : ViewBinding> BaseViewHolder.getBinding(bind: (View) -> VB): VB =
+    itemView.getTag(R.id.tagAdapterViewHolder) as? VB ?: bind(itemView).also { itemView.setTag(R.id.tagAdapterViewHolder, it) }
+
+
 fun BaseQuickAdapter<*, *>.showEmpty(isEmpty: Boolean, tip: String = "暂无数据") {
     if (!this.hasEmptyView() && isEmpty) {
         this.setEmptyView(EmptyView(this.context).setTip(tip))

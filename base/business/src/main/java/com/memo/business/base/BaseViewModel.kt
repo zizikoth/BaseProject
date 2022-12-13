@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
 import com.memo.business.utils.toast
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -47,20 +46,20 @@ open class BaseViewModel : ViewModel() {
 
     /**
      * 开启请求
-     * @param request SuspendFunction1<[@kotlin.ParameterName] CoroutineScope, Flow<T>> 请求内容
-     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>                      成功回调
-     * @param onError Function1<[@kotlin.ParameterName] Int, Unit>?                     失败回调
+     * @param request Flow<T>                                       请求内容
+     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>  成功回调
+     * @param onError Function1<[@kotlin.ParameterName] Int, Unit>? 失败回调
      */
     protected fun <T> request(
-        request: suspend (scope: CoroutineScope) -> Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)? = null) {
+        request: Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)) {
         viewModelScope.launch {
-            request.invoke(this).catch {
+            request.catch {
                 // 请求失败
                 hideLoading()
                 val error = ApiExceptionHandler.handleException(it)
                 if (isFirstLoad) stateEvent.postValue(error.code)
                 toast(error.message)
-                onError?.invoke(error.code)
+                onError.invoke(error.code)
             }.collect {
                 // 请求成功
                 hideLoading()
@@ -71,13 +70,23 @@ open class BaseViewModel : ViewModel() {
         }
     }
 
+    /**
+     * 开启请求，只处理成功
+     * @param request Flow<T>                                       请求内容
+     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>  成功回调
+     */
+    protected fun <T> request(request: Flow<T>,onSuccess:((data:T)->Unit)) {
+        request(request, onSuccess) {}
+    }
+
+
 
     /**
      * 开启请求，无关结果
-     * @param request SuspendFunction1<[@kotlin.ParameterName] CoroutineScope, Flow<T>> 请求内容
+     * @param request Flow<T> 请求内容
      */
-    protected fun <T> request(request: suspend (scope: CoroutineScope) -> Flow<T>) {
-        viewModelScope.launch {request.invoke(this)}
+    protected fun <T> request(request: Flow<T>) {
+        request(request, {}, {})
     }
 
 

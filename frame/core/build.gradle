@@ -27,12 +27,13 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     api rootProject.ext.AppCompat
     api rootProject.ext.ARouter
-    api rootProject.ext.banner
+    api rootProject.ext.Banner
     api rootProject.ext.Brvah
-    api rootProject.ext.BrvahKtx
     api rootProject.ext.Coroutines
     api rootProject.ext.ConstraintLayout
     api rootProject.ext.Dialog
+    api rootProject.ext.DialogTheme
+    api rootProject.ext.FlexBox
     api rootProject.ext.Gson
     api rootProject.ext.GsonFactory
     api rootProject.ext.Indicator
@@ -48,8 +49,8 @@ dependencies {
     api rootProject.ext.SmartRefreshLayout
     api rootProject.ext.SmartRefreshHeader
     api rootProject.ext.SmartRefreshFooter
-    api rootProject.ext.Utils
     api rootProject.ext.SwipeLayout
+    api rootProject.ext.Utils
 
     api rootProject.ext.Glide
     kapt rootProject.ext.GlideCompiler

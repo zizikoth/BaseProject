@@ -1,12 +1,11 @@
 package com.memo.business.widget
 
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
+import androidx.core.widget.addTextChangedListener
 import com.memo.business.databinding.LayoutSerachBarBinding
 import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.value
@@ -22,7 +21,7 @@ import com.memo.core.utils.ext.value
  * Talk is cheap, Show me the code.
  */
 class SearchBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
+    context: Context, attrs: AttributeSet? = null, keyword: String) : FrameLayout(context, attrs) {
 
     private var mBinding: LayoutSerachBarBinding
 
@@ -30,17 +29,43 @@ class SearchBar @JvmOverloads constructor(
         mBinding = LayoutSerachBarBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
-    fun getValue() = mBinding.mEtSearch.value
+    var keyword: String = "请输入搜索内容"
+        get() = mBinding.mEtSearch.value
+        set(value) {
+            mBinding.mEtSearch.value = value
+            field = value
+        }
 
+    var hint: String = ""
+        get() = mBinding.mEtSearch.hint.toString()
+        set(value) {
+            mBinding.mEtSearch.hint = value
+            field = value
+        }
+
+    /**
+     * 搜索文字切换监听
+     * @param action Function1<String, Unit>
+     */
+    fun setOnTextChangeListener(action: (String) -> Unit) {
+        mBinding.mEtSearch.addTextChangedListener {
+            action.invoke(keyword)
+        }
+    }
+
+    /**
+     * 搜索监听
+     * @param action Function1<String, Unit>
+     */
     fun setOnSearchListener(action: (String) -> Unit) {
         mBinding.mEtSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                action.invoke(mBinding.mEtSearch.value)
+                action.invoke(keyword)
             }
             false
         }
         mBinding.mIvSearch.onClick {
-            action.invoke(mBinding.mEtSearch.value)
+            action.invoke(keyword)
         }
     }
 

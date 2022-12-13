@@ -1,12 +1,10 @@
 package com.memo.business.utils.indicator
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import com.memo.business.R
 import com.memo.core.utils.ext.color
 import com.memo.core.utils.ext.dimen
-import com.memo.core.utils.ext.dp2px
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -24,18 +22,28 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPa
  *
  * Talk is cheap, Show me the code.
  */
-class RoundCoverIndicator(context: Context) : CommonNavigator(context) {
-    private val titles = arrayListOf<String>()
+class RoundCoverIndicator(
+    context: Context) :
+    CommonNavigator(context) {
+
+    private var naviHeight:Float = dimen(com.memo.core.R.dimen.dp30)
+    private var naviRadius:Float = dimen(com.memo.core.R.dimen.dp30)
+    private var naviPadding:Int = dimen(com.memo.core.R.dimen.dp20).toInt()
+    private var naviTextSize:Float = dimen(R.dimen.textNormal)
+    private val naviTitles:ArrayList<String> = arrayListOf()
+
     private var onTabClick: (index: Int) -> Unit = {}
 
     override fun onAttachToMagicIndicator() {
         super.onAttachToMagicIndicator()
         adapter = object : CommonNavigatorAdapter() {
-            override fun getCount(): Int = titles.size
+            override fun getCount(): Int = naviTitles.size
 
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 return ClipPagerTitleView(context).apply {
-                    text = titles[index]
+                    setPadding(naviPadding, 0, naviPadding, 0)
+                    text = naviTitles[index]
+                    textSize = naviTextSize
                     textColor = color(R.color.tab_normal)
                     clipColor = Color.WHITE
                     setOnClickListener { onTabClick.invoke(index) }
@@ -44,11 +52,8 @@ class RoundCoverIndicator(context: Context) : CommonNavigator(context) {
 
             override fun getIndicator(context: Context): IPagerIndicator {
                 return LinePagerIndicator(context).apply {
-                    val navigationHeight = dimen(com.memo.core.R.dimen.dp45)
-                    val borderWidth = dimen(com.memo.core.R.dimen.dp1)
-                    lineHeight = navigationHeight - 2 * borderWidth
-                    roundRadius = dimen(com.memo.core.R.dimen.dp10)
-                    yOffset = borderWidth
+                    lineHeight = naviHeight
+                    roundRadius = naviRadius
                     setColors(color(R.color.tab_select))
                 }
             }
@@ -61,10 +66,29 @@ class RoundCoverIndicator(context: Context) : CommonNavigator(context) {
         return this
     }
 
-    fun setTitles(titles: List<String>): RoundCoverIndicator {
-        this.titles.clear()
-        this.titles.addAll(titles)
-        notifyDataSetChanged()
+    fun setNaviHeight(height:Float): RoundCoverIndicator {
+        this.naviHeight = height
+        return this
+    }
+
+    fun setNaviRadius(radius:Float): RoundCoverIndicator {
+        this.naviRadius = radius
+        return this
+    }
+
+    fun setNaviPadding(padding:Int): RoundCoverIndicator {
+        this.naviPadding = padding
+        return this
+    }
+
+    fun setNaviTextSize(textSize:Float): RoundCoverIndicator {
+        this.naviTextSize = textSize
+        return this
+    }
+
+    fun setNaviTitles(titles: List<String>): RoundCoverIndicator {
+        this.naviTitles.clear()
+        this.naviTitles.addAll(titles)
         return this
     }
 

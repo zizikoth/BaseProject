@@ -1,19 +1,34 @@
 package com.memo.main.ui.activity.account
 
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.business.base.BaseVmActivity
 import com.memo.business.entity.remote.UserInfo
 import com.memo.business.manager.BusManager
-import com.memo.business.manager.UserManager
+import com.memo.business.manager.DataManager
+import com.memo.business.manager.RouteManager
 import com.memo.business.utils.indicator.RoundCoverIndicator
 import com.memo.business.utils.indicator.init
 import com.memo.business.utils.toast
-import com.memo.core.adapter.BaseFragmentAdapter
+import com.memo.core.R
+import com.memo.core.adapter.BaseFragmentPager2Adapter
 import com.memo.core.utils.ext.dimen
 import com.memo.main.databinding.ActivityAccountBinding
 import com.memo.main.ui.fragment.account.LoginFragment
 import com.memo.main.ui.fragment.account.RegisterFragment
 import com.memo.main.viewmodel.AccountViewModel
+import kotlinx.coroutines.FlowPreview
 
+/**
+ * title:账号界面
+ * describe:
+ *
+ * @author memo
+ * @date 2022-12-13 11:38
+ * @email zhou_android@163.com
+ *
+ * Talk is cheap, Show me the code.
+ */
+@Route(path = RouteManager.AccountActivity)
 class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>() {
 
     override fun showContent(): Boolean = true
@@ -25,12 +40,12 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
     override fun initView() {
         mBinding.run {
             val indicator = RoundCoverIndicator(mContext)
-            indicator.setTitles(listOf("登 录", "注 册"))
+            indicator.setNaviTitles(listOf("登  录", "注  册"))
             mIndicator.init(mViewPager, indicator)
             mViewPager.run {
                 isUserInputEnabled = false
                 offscreenPageLimit = 2
-                adapter = BaseFragmentAdapter(mContext, arrayListOf(LoginFragment(), RegisterFragment()))
+                adapter = BaseFragmentPager2Adapter(mContext).apply { setData(listOf(LoginFragment(), RegisterFragment())) }
             }
         }
     }
@@ -59,6 +74,7 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
      * @param password String   密码
      * @param rePassword String 重复密码
      */
+    @FlowPreview
     fun register(username: String, password: String, rePassword: String) {
         if (username.isEmpty()) toast("请输入用户名")
         else if (password.isEmpty()) toast("请输入密码")
@@ -71,7 +87,7 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
      * @param userInfo UserInfo 用户信息
      */
     private fun onLoginSuccess(userInfo: UserInfo) {
-        UserManager.setUser(userInfo)
+        DataManager.setUser(userInfo)
         BusManager.userLiveData.post(userInfo)
         finish()
     }
