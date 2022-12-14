@@ -14,23 +14,45 @@
         app:drag_edge="right"
         app:show_mode="lay_down">
 
-        <FrameLayout
-            android:id="@+id/mItemDelete"
-            android:layout_width="@dimen/dp100"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/color_delete_background">
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_delete" />
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/mItemEdit"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_edit_background">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_edit" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/mItemDelete"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_delete_background">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_delete" />
+            </FrameLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <FrameLayout
-            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mItemArticle"

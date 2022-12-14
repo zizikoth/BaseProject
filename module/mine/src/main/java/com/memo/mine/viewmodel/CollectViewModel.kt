@@ -21,13 +21,13 @@ class CollectViewModel : BaseViewModel() {
     val articleLiveData = MutableLiveData<ListEntity<Article>>()
     val collectLiveData = MutableLiveData<Int>()
 
-    fun getArticles(pageNum: Int) {
-        request(repository.getInnerCollectArticles(pageNum), articleLiveData::postValue)
+    fun getCollectArticles(pageNum: Int) {
+        request(repository.getCollectArticles(pageNum), articleLiveData::postValue)
     }
 
-    fun unCollectArticle(articleId: Int, originId: Int) {
+    fun unCollectArticleInCollect(articleId: Int, originId: Int) {
         showLoading()
-        request(repository.removeInnerCollectArticle(articleId, originId)) {
+        request(repository.unCollectArticleInCollect(articleId, originId)) {
             collectLiveData.postValue(articleId)
         }
     }

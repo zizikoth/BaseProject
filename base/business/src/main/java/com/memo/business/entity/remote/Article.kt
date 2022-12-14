@@ -28,9 +28,9 @@ data class Article(
     val desc: String = "",
     val envelopePic: String = "",
     val id: Int = 0,
-    val originId:Int = 0,
+    val originId: Int = 0,
     val link: String = "",
-    val niceShareDate: String = "",
+    val niceDate: String = "",
     val projectLink: String = "",
     var title: String = "",
     val userId: Int = 0,
@@ -81,3 +81,9 @@ data class NodeItemChild(val title: String, val id: Int, val link: String) : Bas
 }
 
 data class CoinInfo(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0)
+
+data class CoinRecord(val coinCount: Int = 0, val desc: String = "")
+
+data class RankRecord(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0, val username: String = "")
+
+data class WebSite(val id: Int = 0, val link: String = "", val name: String = "")

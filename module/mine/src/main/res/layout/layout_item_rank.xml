@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp45">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvRank"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="99999999" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mIvRank"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/icon_first" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvName"
+        android:layout_width="@dimen/dp160"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dp90"
+        android:gravity="center_vertical"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textNormal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="用户名" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/colorMain"
+        android:textSize="@dimen/textSmall"
+        app:layout_constraintLeft_toRightOf="@id/mTvName"
+        tools:text="Lv.999" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvCoin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/dp15"
+        android:gravity="center"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="999" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/color_F5F5F5"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

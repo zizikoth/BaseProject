@@ -3,8 +3,9 @@ package com.memo.mine.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.memo.business.base.BaseViewModel
 import com.memo.business.entity.local.Zip4
-import com.memo.business.utils.toast
-import com.memo.mine.repository.CollectRepository
+import com.memo.business.entity.remote.CoinRecord
+import com.memo.business.entity.remote.ListEntity
+import com.memo.business.entity.remote.RankRecord
 import com.memo.mine.repository.MineRepository
 import kotlinx.coroutines.flow.combine
 
@@ -21,15 +22,26 @@ import kotlinx.coroutines.flow.combine
 class MineViewModel : BaseViewModel() {
 
     private val repository = MineRepository()
-    private val r = CollectRepository()
 
     val infoLiveData = MutableLiveData<Zip4<Int, Int, Int, Int>>()
 
-    fun getCoinInfo() {
+    val coinLiveData = MutableLiveData<ListEntity<CoinRecord>>()
+
+    val rankLiveData = MutableLiveData<ListEntity<RankRecord>>()
+
+    fun getMineInfo() {
         request(repository.getCoinInfo())
         val combine = combine(repository.getCollectSize(), repository.getCoinInfo()) { collectSize, coinInfo ->
             Zip4(coinInfo.level, collectSize, coinInfo.coinCount, coinInfo.rank)
         }
         request(combine, infoLiveData::postValue)
+    }
+
+    fun getCoinList(pageNum: Int) {
+        request(repository.getCoinList(pageNum), coinLiveData::postValue)
+    }
+
+    fun getRankList(pageNum: Int) {
+        request(repository.getRankList(pageNum), rankLiveData::postValue)
     }
 }

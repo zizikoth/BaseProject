@@ -10,7 +10,6 @@ import com.memo.business.entity.remote.ListEntity
 import com.memo.business.manager.DataManager
 import com.memo.business.utils.finish
 import com.memo.business.utils.onItemChildClick
-import com.memo.business.utils.onItemClick
 import com.memo.business.utils.showEmpty
 import com.memo.core.utils.DialogHelper
 import com.memo.mine.databinding.ActivitySquareBinding
@@ -57,8 +56,10 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
             mViewModel.getSquareArticles(pageNum)
         }
 
-        mAdapter.onItemChildClick { id, data -> if (id == R.id.mIvIcon) ShareActivity.start(mContext, data.userId) }
-        mAdapter.onItemClick { WebActivity.start(mContext, it.link, it.title) }
+        mAdapter.onItemChildClick { id, data ->
+            if (id == R.id.mIvIcon) ShareActivity.start(mContext, data.userId)
+            else if (id == R.id.mItemArticle) WebActivity.start(mContext, data.link, data.title)
+        }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
     }

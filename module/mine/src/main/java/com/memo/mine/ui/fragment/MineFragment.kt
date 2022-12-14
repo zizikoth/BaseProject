@@ -77,7 +77,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
 
     /*** 页面开始请求 ***/
     override fun start() {
-        mViewModel.getCoinInfo()
+        mViewModel.getMineInfo()
     }
 
     /**

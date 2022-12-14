@@ -50,7 +50,7 @@ class ArticleAdapter(val enableSwipe: Boolean = false) : BaseProviderMultiAdapte
         addItemProvider(TitleProvider())
         addItemProvider(ProjectProvider())
         addItemProvider(ArticleProvider())
-        addChildClickViewIds(R.id.mItemDelete, R.id.mIvIcon)
+        addChildClickViewIds(R.id.mItemDelete, R.id.mItemEdit, R.id.mItemArticle, R.id.mIvIcon)
     }
 
     /**
@@ -133,6 +133,8 @@ class ArticleProvider : BaseItemProvider<Article>() {
     override val layoutId: Int = R.layout.layout_item_article_item
     override fun convert(helper: BaseViewHolder, item: Article) {
         helper.run {
+            setGone(R.id.mItemEdit, item.originId != -1)
+
             setGone(R.id.mLabel, !item.top)
 
             getView<SwipeLayout>(R.id.mSwipeLayout).isSwipeEnabled = (getAdapter() as ArticleAdapter).enableSwipe
@@ -168,8 +170,8 @@ class ArticleProvider : BaseItemProvider<Article>() {
             val showRightTime = (hasDesc || !hasPic) && hasChapter
             setGone(R.id.mTvTime, !showRightTime)
             setGone(R.id.mTvTimeDesc, showRightTime)
-            setText(R.id.mTvTime, item.niceShareDate)
-            setText(R.id.mTvTimeDesc, item.niceShareDate)
+            setText(R.id.mTvTime, item.niceDate)
+            setText(R.id.mTvTimeDesc, item.niceDate)
         }
     }
 }

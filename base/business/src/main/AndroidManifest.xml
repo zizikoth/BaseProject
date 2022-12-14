@@ -8,6 +8,13 @@
 
     <application>
         <activity
+            android:name=".SuccessActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".common.activity.WebActivity"
             android:exported="false"
             android:launchMode="singleTop"

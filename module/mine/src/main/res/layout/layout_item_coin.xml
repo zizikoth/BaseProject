@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvCoin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/dp45"
+        android:textColor="@color/textNormal"
+        android:textSize="@dimen/textNormal"
+        tools:text="2022-06-23 23:34:37 签到 , 积分：12 + 16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:background="@color/color_F5F5F5" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
