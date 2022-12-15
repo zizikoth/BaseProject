@@ -24,7 +24,7 @@
         android:paddingEnd="@dimen/dp35"
         android:textColor="@color/textDark"
         android:textColorHint="@color/textLight"
-        android:textCursorDrawable="@drawable/shape_search_cursor"
+        android:textCursorDrawable="@drawable/edit_cursor"
         android:textSize="@dimen/textNormal" />
 
     <androidx.appcompat.widget.AppCompatImageView

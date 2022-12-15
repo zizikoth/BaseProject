@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.collect.InnerCollectActivity"
+            android:name=".ui.activity.collect.ArticleCollectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.collect.OuterCollectActivity"
+            android:name=".ui.activity.collect.WebsiteCollectActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.coin.CoinActivity"

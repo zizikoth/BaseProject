@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/mSwipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:clickToClose="true"
+        app:drag_edge="right"
+        app:show_mode="lay_down">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mIvEdit"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_edit_background"
+                android:padding="@dimen/dp30"
+                android:src="@drawable/ic_edit" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mIvDelete"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_delete_background"
+                android:padding="@dimen/dp30"
+                android:src="@drawable/ic_delete" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/mItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/dp15">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mTvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="百度" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mTvLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                tools:text="https://www.baidu.com/" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.daimajia.swipe.SwipeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:layout_gravity="bottom"
+        android:background="@color/color_F5F5F5" />
+</FrameLayout>

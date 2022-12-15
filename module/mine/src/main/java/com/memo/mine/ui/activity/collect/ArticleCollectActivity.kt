@@ -7,8 +7,11 @@ import com.memo.business.common.activity.WebActivity
 import com.memo.business.common.adapter.ArticleAdapter
 import com.memo.business.entity.remote.Article
 import com.memo.business.entity.remote.ListEntity
-import com.memo.business.utils.*
-import com.memo.mine.databinding.ActivityInnerCollectBinding
+import com.memo.business.utils.finish
+import com.memo.business.utils.onItemChildClick
+import com.memo.business.utils.showEmpty
+import com.memo.business.utils.toast
+import com.memo.mine.databinding.ActivityArticleCollectBinding
 import com.memo.mine.viewmodel.CollectViewModel
 
 /**
@@ -21,7 +24,7 @@ import com.memo.mine.viewmodel.CollectViewModel
  *
  * Talk is cheap, Show me the code.
  */
-class InnerCollectActivity : BaseVmActivity<CollectViewModel, ActivityInnerCollectBinding>() {
+class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleCollectBinding>() {
 
     private var pageNum: Int = 0
 
@@ -59,8 +62,8 @@ class InnerCollectActivity : BaseVmActivity<CollectViewModel, ActivityInnerColle
             }
         }
 
-        mViewModel.articleLiveData.observe(this, this::onArticleResponse)
-        mViewModel.collectLiveData.observe(this, this::onUnCollectArticle)
+        mViewModel.articleListLiveData.observe(this, this::onArticleResponse)
+        mViewModel.deleteLiveData.observe(this, this::onUnCollectArticle)
     }
 
     /*** 页面开始请求 ***/

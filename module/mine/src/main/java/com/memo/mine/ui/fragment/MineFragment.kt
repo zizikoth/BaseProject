@@ -12,8 +12,8 @@ import com.memo.core.utils.ext.startActivity
 import com.memo.core.utils.ext.visible
 import com.memo.mine.databinding.FragmentMineBinding
 import com.memo.mine.ui.activity.coin.CoinActivity
-import com.memo.mine.ui.activity.collect.InnerCollectActivity
-import com.memo.mine.ui.activity.collect.OuterCollectActivity
+import com.memo.mine.ui.activity.collect.ArticleCollectActivity
+import com.memo.mine.ui.activity.collect.WebsiteCollectActivity
 import com.memo.mine.ui.activity.rank.RankActivity
 import com.memo.mine.ui.activity.share.ShareActivity
 import com.memo.mine.ui.activity.square.SquareActivity
@@ -50,7 +50,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
     override fun initListener() {
         mBinding.run {
             mLlCollect.onClick {
-                if (checkLogin()) startActivity<InnerCollectActivity>()
+                if (checkLogin()) startActivity<ArticleCollectActivity>()
             }
             mLlCoin.onClick {
                 if (checkLogin()) startActivity<CoinActivity>()
@@ -62,7 +62,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
                 if (checkLogin()) RouteManager.startTodoActivity()
             }
             mItemCollect.onClick {
-                if (checkLogin()) startActivity<OuterCollectActivity>()
+                if (checkLogin()) startActivity<WebsiteCollectActivity>()
             }
             mItemShare.onClick {
                 if (checkLogin()) ShareActivity.start(mActivity,DataManager.getUser()?.id?:0)

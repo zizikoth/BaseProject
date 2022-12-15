@@ -73,5 +73,6 @@ object KeyboardHelper {
     fun onDestroy(activity: Activity) {
         KeyboardUtils.hideSoftInput(activity)
         KeyboardUtils.fixSoftInputLeaks(activity)
+        KeyboardUtils.fixAndroidBug5497(activity)
     }
 }

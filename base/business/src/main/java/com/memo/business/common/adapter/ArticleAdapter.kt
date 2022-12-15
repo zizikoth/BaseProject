@@ -133,6 +133,8 @@ class ArticleProvider : BaseItemProvider<Article>() {
     override val layoutId: Int = R.layout.layout_item_article_item
     override fun convert(helper: BaseViewHolder, item: Article) {
         helper.run {
+            if ((getAdapter() as ArticleAdapter).enableSwipe) getView<SwipeLayout>(R.id.mSwipeLayout).close(true)
+
             setGone(R.id.mItemEdit, item.originId != -1)
 
             setGone(R.id.mLabel, !item.top)
