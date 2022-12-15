@@ -3,13 +3,15 @@ package com.memo.business.widget.state
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.LinearLayoutCompat
 import com.blankj.utilcode.util.BarUtils
 import com.dylanc.loadingstateview.LoadingStateView
 import com.dylanc.loadingstateview.ViewType
 import com.memo.business.R
-import com.memo.core.utils.ext.onClick
 import com.memo.business.widget.TitleBar
+import com.memo.core.utils.ext.onClick
 
 /**
  * title: 页面服务器异常状态
@@ -26,11 +28,9 @@ class ServerErrorDelegate : LoadingStateView.ViewDelegate(ViewType.ERROR) {
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup): View {
         val root = inflater.inflate(R.layout.layout_delegate_error, parent, false)
         root.findViewById<TitleBar>(R.id.mTitleBar).setTitle("服务器异常")
-        root.findViewById<AppCompatTextView>(R.id.mContent).run {
-            onClick { onReloadListener?.onReload() }
-            setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.mipmap.icon_status_net_error, 0, 0)
-            text = "服务器异常，请稍后重试"
-        }
+        root.findViewById<AppCompatImageView>(R.id.mIvError).setImageResource(R.mipmap.icon_status_server_error)
+        root.findViewById<AppCompatTextView>(R.id.mTvError).text = "服务器异常，请稍后尝试"
+        root.findViewById<LinearLayoutCompat>(R.id.mLlReload).onClick { super.onReloadListener?.onReload() }
         root.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
         return root
     }

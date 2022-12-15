@@ -26,5 +26,4 @@ class LoadingDelegate : LoadingStateView.ViewDelegate(ViewType.LOADING) {
         return root
     }
 
-
 }

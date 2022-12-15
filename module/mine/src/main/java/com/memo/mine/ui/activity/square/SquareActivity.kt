@@ -50,10 +50,10 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
     override fun initListener() {
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 0
-            mViewModel.getSquareArticles(pageNum)
+            mViewModel.getSquareShareArticles(pageNum)
         }
         mBinding.mRefreshLayout.setOnLoadMoreListener {
-            mViewModel.getSquareArticles(pageNum)
+            mViewModel.getSquareShareArticles(pageNum)
         }
 
         mAdapter.onItemChildClick { id, data ->
@@ -66,7 +66,7 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
 
     /*** 页面开始请求 ***/
     override fun start() {
-        mViewModel.getSquareArticles(pageNum)
+        mViewModel.getSquareShareArticles(pageNum)
     }
 
     /**

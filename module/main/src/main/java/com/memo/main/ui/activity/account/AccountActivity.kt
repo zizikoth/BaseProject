@@ -28,6 +28,7 @@ import kotlinx.coroutines.FlowPreview
  *
  * Talk is cheap, Show me the code.
  */
+@FlowPreview
 @Route(path = RouteManager.AccountActivity)
 class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>() {
 
@@ -74,7 +75,6 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
      * @param password String   密码
      * @param rePassword String 重复密码
      */
-    @FlowPreview
     fun register(username: String, password: String, rePassword: String) {
         if (username.isEmpty()) toast("请输入用户名")
         else if (password.isEmpty()) toast("请输入密码")

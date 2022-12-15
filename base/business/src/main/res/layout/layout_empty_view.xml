@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/dp179"
+        android:layout_height="@dimen/dp126"
+        android:src="@mipmap/icon_status_data_empty" />
+
+    <TextView
         android:id="@+id/mTvEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="#FFF"
-        android:drawableTop="@mipmap/icon_status_data_empty"
-        android:drawablePadding="@dimen/dp15"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp20"
         android:text="暂无数据"
-        android:textColor="@color/textNormal"
-        android:textSize="@dimen/textSuperLarge" />
-</FrameLayout>
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

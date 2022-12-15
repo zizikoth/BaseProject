@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mIvAvatar"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
+        android:layout_marginTop="@dimen/dp15"
+        android:src="@drawable/avatar_android"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textSuperLarge"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mIvAvatar"
+        tools:text="张三" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvCoin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/mTvLevel"
+        app:layout_constraintTop_toTopOf="@id/mTvLevel"
+        tools:text="100\n积分" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvLevel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp20"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/mTvCoin"
+        app:layout_constraintRight_toLeftOf="@id/mTvRank"
+        app:layout_constraintTop_toBottomOf="@id/mTvName"
+        tools:text="100\n等级" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvRank"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        app:layout_constraintLeft_toRightOf="@id/mTvLevel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/mTvLevel"
+        tools:text="100\n排名" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"
+        android:background="@color/color_F5F5F5"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.memo.mine.repository
 
 import com.memo.business.entity.remote.Article
 import com.memo.business.entity.remote.ListEntity
+import com.memo.business.entity.remote.UserShareRecord
 import kotlinx.coroutines.flow.Flow
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toFlowResponse
@@ -18,11 +19,11 @@ import rxhttp.wrapper.param.toFlowResponse
  */
 class ShareRepository {
 
-    fun getSquareArticles(pageNum: Int): Flow<ListEntity<Article>> {
+    fun getSquareShareArticles(pageNum: Int): Flow<ListEntity<Article>> {
         return RxHttp.get("/user_article/list/%d/json", pageNum).add("page_size", 40).toFlowResponse()
     }
 
-    fun getUserSquareArticles(userId: Int, pageNum: Int): Flow<ListEntity<Article>> {
+    fun getUserShareArticles(userId: Int, pageNum: Int): Flow<UserShareRecord> {
         return RxHttp.get("/user/%d/share_articles/%d/json", userId, pageNum).add("page_size", 40).toFlowResponse()
     }
 }

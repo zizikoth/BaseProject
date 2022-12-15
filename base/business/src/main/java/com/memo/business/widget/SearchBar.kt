@@ -21,7 +21,7 @@ import com.memo.core.utils.ext.value
  * Talk is cheap, Show me the code.
  */
 class SearchBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, keyword: String) : FrameLayout(context, attrs) {
+    context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
     private var mBinding: LayoutSerachBarBinding
 

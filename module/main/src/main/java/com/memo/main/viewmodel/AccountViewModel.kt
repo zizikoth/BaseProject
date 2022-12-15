@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.flatMapConcat
  *
  * Talk is cheap, Show me the code.
  */
+@FlowPreview
 class AccountViewModel : BaseViewModel() {
 
     private val repository = AccountRepository()
@@ -27,7 +28,6 @@ class AccountViewModel : BaseViewModel() {
         request(repository.login(username, password), onSuccess = liveData::postValue)
     }
 
-    @FlowPreview
     fun register(username: String, password: String) {
         val concat = repository.register(username, password).flatMapConcat {
             repository.login(username, password)

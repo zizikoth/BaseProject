@@ -80,10 +80,15 @@ data class NodeItemChild(val title: String, val id: Int, val link: String) : Bas
     override val childNode: MutableList<BaseNode>? = null
 }
 
-data class CoinInfo(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0)
+data class CoinInfo(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0, val nickname: String = "", val username: String = "")
 
 data class CoinRecord(val coinCount: Int = 0, val desc: String = "")
 
 data class RankRecord(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0, val username: String = "")
 
 data class WebSite(val id: Int = 0, val link: String = "", val name: String = "")
+
+data class UserShareRecord(
+    val coinInfo: CoinInfo = CoinInfo(),
+    val shareArticles:ListEntity<Article> = ListEntity()
+)
