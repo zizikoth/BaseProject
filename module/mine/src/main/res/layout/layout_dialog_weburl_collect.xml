@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    app:shape_topLeftRadius="@dimen/dp10"
-    app:shape_topRightRadius="@dimen/dp10"
-    app:shape_solidColor="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:clipChildren="true"
+    android:orientation="vertical"
+    app:shape_solidColor="@color/white"
+    app:shape_topLeftRadius="@dimen/dp10"
+    app:shape_topRightRadius="@dimen/dp10">
 
-    <com.memo.business.widget.TitleBar
-        android:id="@+id/mTitleBar"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTvTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title_show_back="false"
-        app:title_title_text="添加收藏" />
+        android:layout_height="@dimen/dp45"
+        android:gravity="center"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textSuperLarge"
+        android:textStyle="bold"
+        tools:text="收藏" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -26,7 +31,7 @@
         android:textStyle="bold" />
 
     <com.hjq.shape.view.ShapeEditText
-        android:id="@+id/mTvName"
+        android:id="@+id/mEtName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
         android:layout_marginLeft="@dimen/dp15"
@@ -35,6 +40,7 @@
         android:background="@null"
         android:gravity="center_vertical"
         android:hint="请输入网址标题"
+        android:maxLines="1"
         android:paddingLeft="@dimen/dp10"
         android:paddingRight="@dimen/dp10"
         android:textCursorDrawable="@drawable/edit_cursor"
@@ -53,7 +59,7 @@
         android:textStyle="bold" />
 
     <com.hjq.shape.view.ShapeEditText
-        android:id="@+id/mTvLink"
+        android:id="@+id/mEtLink"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
         android:layout_marginLeft="@dimen/dp15"
@@ -62,6 +68,7 @@
         android:background="@null"
         android:gravity="center_vertical"
         android:hint="请输入网址地址"
+        android:maxLines="1"
         android:paddingLeft="@dimen/dp10"
         android:paddingRight="@dimen/dp10"
         android:textCursorDrawable="@drawable/edit_cursor"

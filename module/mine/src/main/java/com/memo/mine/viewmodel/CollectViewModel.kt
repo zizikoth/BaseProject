@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.memo.business.base.BaseViewModel
 import com.memo.business.entity.remote.Article
 import com.memo.business.entity.remote.ListEntity
-import com.memo.business.entity.remote.WebSite
 import com.memo.mine.repository.CollectRepository
 
 /**
@@ -19,42 +18,31 @@ import com.memo.mine.repository.CollectRepository
  */
 class CollectViewModel : BaseViewModel() {
     private val repository = CollectRepository()
-    val articleListLiveData = MutableLiveData<ListEntity<Article>>()
+    val listLiveData = MutableLiveData<ListEntity<Article>>()
+    val addLiveData = MutableLiveData<Article>()
+    val editLiveData = MutableLiveData<Article>()
     val deleteLiveData = MutableLiveData<Int>()
 
-    val websiteListLiveData = MutableLiveData<ArrayList<WebSite>>()
-    val editLiveData = MutableLiveData<WebSite>()
-
-    fun getCollectArticles(pageNum: Int) {
-        request(repository.getCollectArticles(pageNum), articleListLiveData::postValue)
+    fun getArticleCollectList(pageNum: Int) {
+        request(repository.getArticleCollectList(pageNum), listLiveData::postValue)
     }
 
-    fun unCollectArticleInCollect(articleId: Int, originId: Int) {
+    fun addOuterArticleCollect(title: String, author: String, link: String) {
         showLoading()
-        request(repository.unCollectArticleInCollect(articleId, originId)) {
+        request(repository.addOuterArticleCollect(title, author, link), addLiveData::postValue)
+    }
+
+    fun editOuterArticleCollect(id: Int, title: String, author: String, link: String) {
+        showLoading()
+        request(repository.editOuterArticleCollect(id, title, author, link)) {
+            editLiveData.postValue(Article(id = id, title = title, author = author, link = link))
+        }
+    }
+
+    fun deleteArticleCollect(articleId: Int, originId: Int) {
+        showLoading()
+        request(repository.deleteArticleCollect(articleId, originId)) {
             deleteLiveData.postValue(articleId)
         }
     }
-
-    fun getWebSiteCollectList() {
-        request(repository.getWebSiteCollectList(), websiteListLiveData::postValue)
-    }
-
-    fun addWebSiteCollect(name: String, link: String) {
-        showLoading()
-        request(repository.collectWebSite(name, link), editLiveData::postValue)
-    }
-
-    fun editWebSiteCollect(id: Int, name: String, link: String) {
-        showLoading()
-        request(repository.editWebSiteCollect(id, name, link), editLiveData::postValue)
-    }
-
-    fun deleteWebSiteCollect(id: Int) {
-        showLoading()
-        request(repository.unCollectWebSite(id)) {
-            deleteLiveData.postValue(id)
-        }
-    }
-
 }

@@ -8,8 +8,10 @@
     tools:context=".ui.activity.collect.ArticleCollectActivity">
 
     <com.memo.business.widget.TitleBar
+        android:id="@+id/mTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:title_right_drawable="@drawable/ic_collect_add"
         app:title_title_text="我的收藏" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout

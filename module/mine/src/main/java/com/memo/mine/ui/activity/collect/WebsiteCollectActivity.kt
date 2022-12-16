@@ -1,23 +1,18 @@
 package com.memo.mine.ui.activity.collect
 
-import android.view.View
-import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ClipboardUtils
-import com.kongzue.dialogx.dialogs.FullScreenDialog
-import com.kongzue.dialogx.interfaces.OnBindView
 import com.memo.business.base.BaseVmActivity
-import com.memo.business.entity.remote.WebSite
+import com.memo.business.entity.remote.WebUrl
 import com.memo.business.utils.finish
 import com.memo.business.utils.onItemChildClick
 import com.memo.business.utils.showEmpty
 import com.memo.business.utils.toast
-import com.memo.core.utils.ext.onClick
-import com.memo.core.utils.ext.value
 import com.memo.mine.R
 import com.memo.mine.databinding.ActivityWebsiteCollectBinding
 import com.memo.mine.ui.adapter.WebsiteAdapter
-import com.memo.mine.viewmodel.CollectViewModel
+import com.memo.mine.utils.DialogUtils
+import com.memo.mine.viewmodel.WebsiteViewModel
 
 /**
  * title:网址收藏
@@ -29,7 +24,7 @@ import com.memo.mine.viewmodel.CollectViewModel
  *
  * Talk is cheap, Show me the code.
  */
-class WebsiteCollectActivity : BaseVmActivity<CollectViewModel, ActivityWebsiteCollectBinding>() {
+class WebsiteCollectActivity : BaseVmActivity<WebsiteViewModel, ActivityWebsiteCollectBinding>() {
 
     private val mAdapter = WebsiteAdapter()
 
@@ -49,16 +44,20 @@ class WebsiteCollectActivity : BaseVmActivity<CollectViewModel, ActivityWebsiteC
     /*** 初始化监听 ***/
     override fun initListener() {
         mBinding.mTitleBar.setOnRightClickListener {
-            showWebSiteDialog(null)
+            DialogUtils.showAddWebUrlDialog { name, link ->
+                mViewModel.addWebsiteCollect(name, link)
+            }
         }
         mBinding.mRefreshLayout.setOnRefreshListener {
-            mViewModel.getWebSiteCollectList()
+            mViewModel.getWebsiteCollectList()
         }
 
         mAdapter.onItemChildClick { viewId, data ->
             when (viewId) {
-                R.id.mIvEdit -> showWebSiteDialog(data)
-                R.id.mIvDelete -> mViewModel.deleteWebSiteCollect(data.id)
+                R.id.mIvEdit -> DialogUtils.showEditWebUrlDialog(data) { id, name, link ->
+                    mViewModel.editWebsiteCollect(id, name, link)
+                }
+                R.id.mIvDelete -> mViewModel.deleteWebsiteCollect(data.id)
                 R.id.mItem -> {
                     ClipboardUtils.copyText(data.link)
                     toast("网址已复制到剪切板")
@@ -66,7 +65,8 @@ class WebsiteCollectActivity : BaseVmActivity<CollectViewModel, ActivityWebsiteC
             }
         }
 
-        mViewModel.websiteListLiveData.observe(this, this::onListResponse)
+        mViewModel.listLiveData.observe(this, this::onListResponse)
+        mViewModel.addLiveData.observe(this, this::onAddResponse)
         mViewModel.editLiveData.observe(this, this::onEditResponse)
         mViewModel.deleteLiveData.observe(this, this::onDeleteResponse)
     }
@@ -74,68 +74,33 @@ class WebsiteCollectActivity : BaseVmActivity<CollectViewModel, ActivityWebsiteC
 
     /*** 页面开始请求 ***/
     override fun start() {
-        mViewModel.getWebSiteCollectList()
-    }
-
-    /**
-     * 显示网址弹窗
-     * @param data WebSite?
-     */
-    private fun showWebSiteDialog(data: WebSite?) {
-        FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_dialog_website_collect) {
-            override fun onBind(dialog: FullScreenDialog, v: View) {
-                val mEtName = v.findViewById<EditText>(R.id.mTvName)
-                val mEtLink = v.findViewById<EditText>(R.id.mTvLink)
-                data?.let {
-                    mEtName.value = it.name
-                    mEtLink.value = it.link
-                }
-                v.findViewById<View>(R.id.mBtnSubmit).onClick {
-                    val name = mEtName.value
-                    val link = mEtLink.value
-                    if(name.isEmpty()){
-                        toast("请输入收藏网址名称")
-                    }else if(link.isEmpty()){
-                        toast("请输入收藏网址地址")
-                    }else{
-                        if (data == null) {
-                            // 新增
-                            mViewModel.addWebSiteCollect(mEtName.value, mEtLink.value)
-                        } else {
-                            // 修改
-                            mViewModel.editWebSiteCollect(data.id, mEtName.value, mEtLink.value)
-                        }
-                        dialog.dismiss()
-                    }
-
-                }
-            }
-        })
+        mViewModel.getWebsiteCollectList()
     }
 
     /**
      * 获取收藏列表
      * @param data ArrayList<WebSite>
      */
-    private fun onListResponse(data: ArrayList<WebSite>) {
+    private fun onListResponse(data: ArrayList<WebUrl>) {
         mAdapter.showEmpty(data.isEmpty())
         mAdapter.setList(data)
         mBinding.mRefreshLayout.finish(data.isNotEmpty())
     }
 
     /**
-     * 新增 修改 收藏
+     * 新增收藏
+     * @param data Website
+     */
+    private fun onAddResponse(data: WebUrl) {
+        mAdapter.addData(data)
+    }
+
+    /**
+     * 修改收藏
      * @param data WebSite
      */
-    private fun onEditResponse(data: WebSite) {
-        val index = mAdapter.data.indexOfFirst { it.id == data.id }
-        if (index == -1) {
-            // 新增数据
-            mAdapter.addData(data)
-        } else {
-            // 更新数据
-            mAdapter.setData(index, data)
-        }
+    private fun onEditResponse(data: WebUrl) {
+        mAdapter.setData(mAdapter.data.indexOfFirst { it.id == data.id }, data)
     }
 
     /**
@@ -145,6 +110,5 @@ class WebsiteCollectActivity : BaseVmActivity<CollectViewModel, ActivityWebsiteC
     private fun onDeleteResponse(id: Int) {
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
     }
-
 
 }

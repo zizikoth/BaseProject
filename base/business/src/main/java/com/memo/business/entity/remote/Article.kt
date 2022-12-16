@@ -21,7 +21,7 @@ const val ARTICLE_TYPE_PROJECT = 2
 const val ARTICLE_TYPE_ARTICLE = 3
 
 data class Article(
-    val author: String = "",
+    var author: String = "",
     val shareUser: String = "",
     val chapterName: String = "",
     val superChapterName: String = "",
@@ -29,7 +29,7 @@ data class Article(
     val envelopePic: String = "",
     val id: Int = 0,
     val originId: Int = 0,
-    val link: String = "",
+    var link: String = "",
     val niceDate: String = "",
     val projectLink: String = "",
     var title: String = "",
@@ -86,7 +86,7 @@ data class CoinRecord(val coinCount: Int = 0, val desc: String = "")
 
 data class RankRecord(val coinCount: Int = 0, val level: Int = 0, val rank: Int = 0, val username: String = "")
 
-data class WebSite(val id: Int = 0, val link: String = "", val name: String = "")
+data class WebUrl(val id: Int = 0, val link: String = "", val name: String = "")
 
 data class UserShareRecord(
     val coinInfo: CoinInfo = CoinInfo(),
