@@ -33,7 +33,7 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
         // 延迟进入首页
         this.lifecycleScope.launch {
             delay(1000L)
-            startActivity<AccountActivity>()
+            startActivity<MainActivity>()
             finish()
         }
     }

@@ -58,7 +58,7 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
 
         mAdapter.onItemChildClick { id, data ->
             if (id == R.id.mIvIcon) ShareActivity.start(mContext, data.userId)
-            else if (id == R.id.mItemArticle) WebActivity.start(mContext, data.link, data.title)
+            else if (id == R.id.mItemArticle) WebActivity.startFromList(mContext, data.link, data.id, data.title)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

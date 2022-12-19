@@ -28,15 +28,6 @@ class CollectRepository {
     }
 
     /**
-     * 收藏站内文章
-     * @param id Int 文章id
-     * @return Flow<Any?>
-     */
-    fun addArticleCollect(id: Int): Flow<Any?> {
-        return RxHttp.postForm("/lg/collect/%d/json", id).toFlowResponse()
-    }
-
-    /**
      * 取消收藏 在收藏列表
      * @param id Int        收藏id
      * @param originId Int  原始文章id 收藏的外部文章为-1
@@ -44,15 +35,6 @@ class CollectRepository {
      */
     fun deleteArticleCollect(id: Int, originId: Int): Flow<Any?> {
         return RxHttp.postForm("/lg/uncollect/%d/json", id).add("originId", originId).toFlowResponse()
-    }
-
-    /**
-     * 取消收藏 在详情页面
-     * @param id Int    文章id
-     * @return Flow<Any?>
-     */
-    fun deleteArticleCollectInDetail(id: Int): Flow<Any?> {
-        return RxHttp.postForm("/lg/uncollect_originId/%d/json", id).toFlowResponse()
     }
 
     /**

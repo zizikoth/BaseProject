@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memo.business.api.ApiCode
 import com.memo.business.api.ApiExceptionHandler
+import com.memo.business.manager.RouteManager
 import com.memo.business.utils.toast
+import com.memo.core.utils.DialogHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -50,16 +52,24 @@ open class BaseViewModel : ViewModel() {
      * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>  成功回调
      * @param onError Function1<[@kotlin.ParameterName] Int, Unit>? 失败回调
      */
-    protected fun <T> request(
-        request: Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)) {
+    private fun <T> request(
+        checkError: Boolean, request: Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)) {
         viewModelScope.launch {
             request.catch {
                 // 请求失败
                 hideLoading()
-                val error = ApiExceptionHandler.handleException(it)
-                if (isFirstLoad) stateEvent.postValue(error.code)
-                toast(error.message)
-                onError.invoke(error.code)
+                if (checkError) {
+                    val error = ApiExceptionHandler.handleException(it)
+                    if (isFirstLoad) stateEvent.postValue(error.code)
+                    if (error.code == ApiCode.TokenError) {
+                        DialogHelper.confirm("登录后使用完整功能，是否立即登录？") {
+                            RouteManager.startAccountActivity()
+                        }
+                    } else {
+                        toast(error.message)
+                    }
+                    onError.invoke(error.code)
+                }
             }.collect {
                 // 请求成功
                 hideLoading()
@@ -71,12 +81,32 @@ open class BaseViewModel : ViewModel() {
     }
 
     /**
-     * 开启请求，只处理成功
+     * 开启请求
+     * @param request Flow<T>
+     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>
+     * @param onError Function1<[@kotlin.ParameterName] Int, Unit>
+     */
+    protected fun <T> request(request: Flow<T>, onSuccess: ((data: T) -> Unit), onError: ((code: Int) -> Unit)) {
+        request(true, request, onSuccess, onError)
+    }
+
+
+    /**
+     * 开启请求，只处理成功，通用处理失败
      * @param request Flow<T>                                       请求内容
      * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>  成功回调
      */
-    protected fun <T> request(request: Flow<T>,onSuccess:((data:T)->Unit)) {
-        request(request, onSuccess) {}
+    protected fun <T> request(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
+        request(true, request, onSuccess) {}
+    }
+
+    /**
+     * 开启请求，只处理成功，通用处理失败
+     * @param request Flow<T>                                       请求内容
+     * @param onSuccess Function1<[@kotlin.ParameterName] T, Unit>  成功回调
+     */
+    protected fun <T> requestWithoutError(request: Flow<T>, onSuccess: ((data: T) -> Unit)) {
+        request(false, request, onSuccess) {}
     }
 
 
@@ -85,8 +115,8 @@ open class BaseViewModel : ViewModel() {
      * 开启请求，无关结果
      * @param request Flow<T> 请求内容
      */
-    protected fun <T> request(request: Flow<T>) {
-        request(request, {}, {})
+    protected fun <T> requestWithNothing(request: Flow<T>) {
+        request(false, request, {}, {})
     }
 
 

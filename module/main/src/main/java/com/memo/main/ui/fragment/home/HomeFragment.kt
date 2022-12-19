@@ -90,17 +90,17 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
             // 轮播图
             mBanner.setOnPageClickListener { _, position ->
                 val data = mBanner.data[position] as Article
-                WebActivity.start(mActivity, data.url, data.title)
+                WebActivity.startFromList(mActivity, data.url, data.id, data.title)
             }
             // 列表点击
             mAdapter.onItemClick {
                 when (it.multiItemType) {
                     ARTICLE_TYPE_CHAPTER -> RouteManager.startBlogActivity(it.id)
                     ARTICLE_TYPE_TITLE -> if (it.showMore) RouteManager.startNewProjectActivity()
-                    ARTICLE_TYPE_ARTICLE -> WebActivity.start(mActivity, it.link, it.id, it.title)
+                    ARTICLE_TYPE_ARTICLE -> WebActivity.startFromList(mActivity, it.link, it.id, it.title)
                 }
             }
-            mAdapter.onProjectClick = { WebActivity.start(mActivity, it.link, it.id, it.title) }
+            mAdapter.onProjectClick = { WebActivity.startFromList(mActivity, it.link, it.id, it.title) }
         }
 
         mViewModel.liveData.observe(this, this::onDataResponse)

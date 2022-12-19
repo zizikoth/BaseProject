@@ -3,6 +3,24 @@
     package="com.memo.mine">
 
     <application>
+        <activity
+            android:name=".ui.activity.collect.ArticleCollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.collect.WebsiteCollectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.coin.CoinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.rank.RankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.share.ShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.square.SquareActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

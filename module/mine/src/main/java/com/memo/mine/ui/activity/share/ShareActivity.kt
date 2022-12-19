@@ -65,7 +65,7 @@ class ShareActivity : BaseVmActivity<ShareViewModel, ActivityShareBinding>() {
             mViewModel.getUserShareArticles(userId, pageNum)
         }
 
-        mAdapter.onItemClick { WebActivity.start(mContext, it.link, it.id, it.title) }
+        mAdapter.onItemClick { WebActivity.startFromList(mContext, it.link, it.id, it.title) }
 
         mViewModel.shareLiveData.observe(this, this::onShareResponse)
 

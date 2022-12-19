@@ -51,7 +51,7 @@ class ProjectItemFragment : BaseVmFragment<ProjectViewModel, FragmentProjectItem
     /*** 初始化监听 ***/
     override fun initListener() {
         mAdapter.onItemClick {
-            WebActivity.start(mActivity, it.link, it.id, it.title)
+            WebActivity.startFromList(mActivity, it.link, it.id, it.title)
         }
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 1

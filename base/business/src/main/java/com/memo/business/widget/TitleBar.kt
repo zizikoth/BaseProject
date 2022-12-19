@@ -60,16 +60,19 @@ class TitleBar @JvmOverloads constructor(
                 mTvTitle.isFocusable = true
                 mTvTitle.isFocusableInTouchMode = true
             }
+
             // 副标题
             mTvSubTitle.text = subtitleText
             mTvSubTitle.setVisible(subtitleText != "")
+
             // 左侧
             mTvLeft.setVisible(showBack)
             mTvLeft.onClick { if (context is AppCompatActivity) context.finish() }
+
             // 右侧
-            mTvRight.setVisible(rightText != "" || rightDrawable != 0)
             mTvRight.text = rightText
             mTvRight.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, rightDrawable, 0)
+
             // 底部阴影 这四行是必须的才会有阴影效果
             setBackgroundColor(Color.WHITE)
             this@TitleBar.outlineProvider = ViewOutlineProvider.BOUNDS
@@ -84,7 +87,7 @@ class TitleBar @JvmOverloads constructor(
      * @return TitleBar
      */
     fun setTitle(title: String?): TitleBar {
-        title?.let { mBinding.mTvTitle.text = it }
+        mBinding.mTvTitle.text = title
         return this
     }
 
@@ -109,12 +112,21 @@ class TitleBar @JvmOverloads constructor(
     }
 
     /**
+     * 设置右侧按钮是否显示
+     * @param show Boolean
+     * @return TitleBar
+     */
+    fun showRight(show:Boolean):TitleBar{
+        mBinding.mTvRight.setVisible(show)
+        return this
+    }
+
+    /**
      * 设置右侧文字
      * @param rightText String 右侧文字
      * @return TitleBar
      */
     fun setRightText(rightText: String): TitleBar {
-        mBinding.mTvRight.visible()
         mBinding.mTvRight.text = rightText
         return this
     }
@@ -125,7 +137,6 @@ class TitleBar @JvmOverloads constructor(
      * @return TitleBar
      */
     fun setRightDrawable(@DrawableRes drawableRes: Int): TitleBar {
-        mBinding.mTvRight.visible()
         mBinding.mTvRight.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, drawableRes, 0)
         return this
     }

@@ -53,7 +53,7 @@ class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArti
         }
 
         mAdapter.onItemClick {
-            WebActivity.start(mActivity, it.link, it.id, it.title)
+            WebActivity.startFromList(mActivity, it.link, it.id, it.title)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

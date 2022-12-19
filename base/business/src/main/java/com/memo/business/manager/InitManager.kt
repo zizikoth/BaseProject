@@ -7,8 +7,6 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.Utils
 import com.dylanc.loadingstateview.LoadingStateView
 import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.style.MIUIStyle
-import com.memo.business.BuildConfig
 import com.memo.business.R
 import com.memo.business.config.Config
 import com.memo.business.widget.state.LoadingDelegate
@@ -63,7 +61,6 @@ object InitManager {
         OOMHelper.startMonitorLowMemory()
         // Dialog
         DialogX.DEBUGMODE = Config.debug
-        DialogX.globalStyle = MIUIStyle()
         DialogX.init(Utils.getApp())
         // LoadingStateView
         LoadingStateView.setViewDelegatePool {
@@ -78,8 +75,8 @@ object InitManager {
         }
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
             BallPulseFooter(context).setNormalColor(color(R.color.refresh_footer)).setAnimatingColor(color(R.color.refresh_footer)).apply {
-                    minimumHeight = dimen(R.dimen.refresh_footer).toInt()
-                }
+                minimumHeight = dimen(R.dimen.refresh_footer).toInt()
+            }
         }
     }
 }

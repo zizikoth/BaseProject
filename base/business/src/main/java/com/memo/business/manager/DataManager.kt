@@ -1,5 +1,6 @@
 package com.memo.business.manager
 
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SPUtils
 import com.memo.business.config.Config
 import com.memo.business.entity.remote.UserInfo
@@ -87,7 +88,7 @@ object DataManager {
     fun isLogin(): Boolean {
         val cookieJar = RxHttpPlugins.getOkHttpClient().cookieJar as ICookieJar
         val loadCookie = cookieJar.loadCookie(Config.baseUrl.toHttpUrl())
-        return !loadCookie.isNullOrEmpty()
+        return !loadCookie.isNullOrEmpty() && getUser() != null
     }
 
     /**

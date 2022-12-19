@@ -11,7 +11,7 @@ task clean(type: Delete) {
 
 ext {
     // 是否将模块单独作为app运行
-    runApp = true
+    runApp = false
 
     applicationId = "com.memo.wan"
     compileSdk = 32
@@ -29,6 +29,7 @@ ext {
     AppCompat = "androidx.appcompat:appcompat:1.5.1"
     Brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10"
     ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"
     Indicator = "com.github.hackware1993:MagicIndicator:1.7.0"
     Lottie = "com.airbnb.android:lottie:5.2.0"
     LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
@@ -41,10 +42,6 @@ ext {
     SwipeLayout = "com.daimajia.swipelayout:library:1.2.0@aar"
     Banner = "com.github.zhpanvip:bannerviewpager:3.5.8"
     FlexBox = "com.google.android.flexbox:flexbox:3.0.0"
-
-    // ------------------------------- Dialog版本必须相同 -------------------------------//
-    Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"
-    DialogTheme = "com.github.kongzue.DialogX:DialogXMIUIStyle:0.0.46"
 
     // ------------------------------- Router版本必须相同 -------------------------------//
     ARouter = "com.alibaba:arouter-api:1.5.2"

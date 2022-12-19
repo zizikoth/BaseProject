@@ -54,7 +54,7 @@ class NewProjectActivity : BaseVmActivity<ProjectViewModel, ActivityNewProjectBi
             mViewModel.getNewProjectArticles(pageNum)
         }
         mAdapter.onItemClick {
-            WebActivity.start(mContext, it.link, it.id, it.title)
+            WebActivity.startFromList(mContext, it.link, it.id, it.title)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

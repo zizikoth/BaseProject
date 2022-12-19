@@ -7,6 +7,7 @@ import com.memo.business.common.activity.WebActivity
 import com.memo.business.common.adapter.ArticleAdapter
 import com.memo.business.entity.remote.Article
 import com.memo.business.entity.remote.ListEntity
+import com.memo.business.manager.BusManager
 import com.memo.business.utils.finish
 import com.memo.business.utils.onItemChildClick
 import com.memo.business.utils.showEmpty
@@ -65,7 +66,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
                 R.id.mItemEdit -> DialogUtils.showEditArticleDialog(data) { id, title, author, link ->
                     mViewModel.editOuterArticleCollect(id, title, author, link)
                 }
-                R.id.mItemArticle -> WebActivity.start(mContext, data.link, data.title)
+                R.id.mItemArticle -> WebActivity.startFromCollect(mContext, data.link, data.id, data.originId, data.title)
             }
         }
 
@@ -73,6 +74,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
         mViewModel.addLiveData.observe(this, this::onAddResponse)
         mViewModel.editLiveData.observe(this, this::onEditResponse)
         mViewModel.deleteLiveData.observe(this, this::onDeleteResponse)
+        BusManager.collectLiveData.observe(this, this::onRefreshEvent)
     }
 
     /*** 页面开始请求 ***/
@@ -109,7 +111,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
             it.title = data.title
             it.author = data.author
             it.link = data.link
-            mAdapter.setData(index,it)
+            mAdapter.setData(index, it)
         }
     }
 
@@ -119,5 +121,13 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      */
     private fun onDeleteResponse(id: Int) {
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
+    }
+
+    /**
+     * 更新收藏数据
+     * @param refresh Boolean
+     */
+    private fun onRefreshEvent(refresh:Boolean){
+        mBinding.mRefreshLayout.autoRefresh()
     }
 }

@@ -30,11 +30,10 @@ class MineViewModel : BaseViewModel() {
     val rankLiveData = MutableLiveData<ListEntity<RankRecord>>()
 
     fun getMineInfo() {
-        request(repository.getCoinInfo())
         val combine = combine(repository.getCollectSize(), repository.getCoinInfo()) { collectSize, coinInfo ->
             Zip4(coinInfo.level, collectSize, coinInfo.coinCount, coinInfo.rank)
         }
-        request(combine, infoLiveData::postValue)
+        requestWithoutError(combine, infoLiveData::postValue)
     }
 
     fun getCoinList(pageNum: Int) {

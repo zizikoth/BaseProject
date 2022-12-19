@@ -32,7 +32,6 @@ dependencies {
     api rootProject.ext.Coroutines
     api rootProject.ext.ConstraintLayout
     api rootProject.ext.Dialog
-    api rootProject.ext.DialogTheme
     api rootProject.ext.FlexBox
     api rootProject.ext.Gson
     api rootProject.ext.GsonFactory

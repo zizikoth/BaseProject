@@ -15,6 +15,14 @@ import com.memo.core.utils.livedata.ProtectedLiveData
  */
 object BusManager {
 
+    /**
+     * 用户信息更新
+     */
     val userLiveData by lazy { ProtectedLiveData<UserInfo>() }
+
+    /**
+     * 收藏数据更新
+     */
+    val collectLiveData by lazy { ProtectedLiveData<Boolean>() }
 
 }
