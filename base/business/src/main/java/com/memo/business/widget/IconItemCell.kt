@@ -24,13 +24,13 @@ import com.memo.core.utils.ext.visible
  * Talk is cheap, Show me the code.
  */
 class IconItemCell @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context, attrs) {
+    context: Context, attrs: AttributeSet? = null) : FrameLayout(context, attrs) {
 
     private var mBinding: IconItemCellBinding
 
     private var drawable: Int = 0
     private var title: String = ""
+    private var extra: String = ""
     private var badgeNum: Int = 0
     private var showBadge: Boolean = false
     private var showDot: Boolean = false
@@ -40,33 +40,38 @@ class IconItemCell @JvmOverloads constructor(
         val attr = context.obtainStyledAttributes(attrs, R.styleable.IconItemCell)
         drawable = attr.getResourceId(R.styleable.IconItemCell_icon_item_cell_drawable, drawable)
         title = attr.getString(R.styleable.IconItemCell_icon_item_cell_title) ?: title
+        extra = attr.getString(R.styleable.IconItemCell_icon_item_cell_extra) ?: extra
         badgeNum = attr.getInt(R.styleable.IconItemCell_icon_item_cell_badge_num, badgeNum)
         showBadge = attr.getBoolean(R.styleable.IconItemCell_icon_item_cell_show_badge, showBadge)
         showDot = attr.getBoolean(R.styleable.IconItemCell_icon_item_cell_show_dot, showDot)
-        showLine = attr.getBoolean(R.styleable.IconItemCell_icon_item_cell_show_line,showLine)
+        showLine = attr.getBoolean(R.styleable.IconItemCell_icon_item_cell_show_line, showLine)
         attr.recycle()
 
         mBinding = IconItemCellBinding.inflate(LayoutInflater.from(context), this, true)
         mBinding.mTvItem.setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, 0, 0, 0)
         mBinding.mTvItem.text = title
-        mBinding.mBadge.setVisible((showBadge && badgeNum > 0) || showDot)
+
+        mBinding.mTvExtra.setVisible(extra.isNotEmpty())
+        mBinding.mTvExtra.text = extra
+
+        mBinding.mTvBadge.setVisible((showBadge && badgeNum > 0) || showDot)
         if (showBadge) {
-            mBinding.mBadge.round(16.dp2px)
-            mBinding.mBadge.text = if (badgeNum > 99) "99+" else badgeNum.toString()
+            mBinding.mTvBadge.round(16.dp2px)
+            mBinding.mTvBadge.text = if (badgeNum > 99) "99+" else badgeNum.toString()
             if (badgeNum < 10) {
-                mBinding.mBadge.layoutParams.width = 12.dp2px
-                mBinding.mBadge.layoutParams.height = 12.dp2px
+                mBinding.mTvBadge.layoutParams.width = 12.dp2px
+                mBinding.mTvBadge.layoutParams.height = 12.dp2px
             } else {
-                mBinding.mBadge.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                mBinding.mBadge.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                mBinding.mBadge.setPadding(4.dp2px, 0, 4.dp2px, 0)
+                mBinding.mTvBadge.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                mBinding.mTvBadge.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                mBinding.mTvBadge.setPadding(4.dp2px, 0, 4.dp2px, 0)
             }
         }
         if (showDot) {
-            mBinding.mBadge.round(6.dp2px)
-            mBinding.mBadge.text = ""
-            mBinding.mBadge.layoutParams.width = 6.dp2px
-            mBinding.mBadge.layoutParams.height = 6.dp2px
+            mBinding.mTvBadge.round(6.dp2px)
+            mBinding.mTvBadge.text = ""
+            mBinding.mTvBadge.layoutParams.width = 6.dp2px
+            mBinding.mTvBadge.layoutParams.height = 6.dp2px
         }
         mBinding.mLine.setVisible(showLine)
     }
@@ -87,7 +92,18 @@ class IconItemCell @JvmOverloads constructor(
      * @return IconItemCell
      */
     fun setTitle(title: String?): IconItemCell {
-        title?.let { mBinding.mTvItem.text = it }
+        mBinding.mTvItem.text = title
+        return this
+    }
+
+    /**
+     * 设置额外文字
+     * @param extra String?
+     * @return IconItemCell
+     */
+    fun setExtra(extra: String?): IconItemCell {
+        mBinding.mTvExtra.text = extra
+        mBinding.mTvExtra.setVisible(!extra.isNullOrEmpty())
         return this
     }
 
@@ -97,15 +113,15 @@ class IconItemCell @JvmOverloads constructor(
      * @return IconItemCell
      */
     fun setBadgeNum(badgeNum: Int): IconItemCell {
-        mBinding.mBadge.visible()
-        mBinding.mBadge.text = if (badgeNum > 99) "99+" else badgeNum.toString()
+        mBinding.mTvBadge.visible()
+        mBinding.mTvBadge.text = if (badgeNum > 99) "99+" else badgeNum.toString()
         if (badgeNum < 10) {
-            mBinding.mBadge.layoutParams.width = 16.dp2px
-            mBinding.mBadge.layoutParams.height = 16.dp2px
+            mBinding.mTvBadge.layoutParams.width = 16.dp2px
+            mBinding.mTvBadge.layoutParams.height = 16.dp2px
         } else {
-            mBinding.mBadge.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
-            mBinding.mBadge.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-            mBinding.mBadge.setPadding(4.dp2px, 0, 4.dp2px, 0)
+            mBinding.mTvBadge.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+            mBinding.mTvBadge.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            mBinding.mTvBadge.setPadding(4.dp2px, 0, 4.dp2px, 0)
         }
         return this
     }
@@ -116,7 +132,7 @@ class IconItemCell @JvmOverloads constructor(
      * @return IconItemCell
      */
     fun showBadge(show: Boolean): IconItemCell {
-        mBinding.mBadge.setVisible(show)
+        mBinding.mTvBadge.setVisible(show)
         return this
     }
 
@@ -126,11 +142,11 @@ class IconItemCell @JvmOverloads constructor(
      * @return IconItemCell
      */
     fun showDot(show: Boolean): IconItemCell {
-        mBinding.mBadge.setVisible(show)
+        mBinding.mTvBadge.setVisible(show)
         if (show) {
-            mBinding.mBadge.text = ""
-            mBinding.mBadge.layoutParams.width = 6.dp2px
-            mBinding.mBadge.layoutParams.height = 6.dp2px
+            mBinding.mTvBadge.text = ""
+            mBinding.mTvBadge.layoutParams.width = 6.dp2px
+            mBinding.mTvBadge.layoutParams.height = 6.dp2px
         }
         return this
     }

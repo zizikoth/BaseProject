@@ -38,6 +38,10 @@
         <activity
             android:name=".ui.activity.square.SquareActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.setting.SettingActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

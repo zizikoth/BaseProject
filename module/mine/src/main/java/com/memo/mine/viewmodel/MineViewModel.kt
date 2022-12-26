@@ -6,6 +6,7 @@ import com.memo.business.entity.local.Zip4
 import com.memo.business.entity.remote.CoinRecord
 import com.memo.business.entity.remote.ListEntity
 import com.memo.business.entity.remote.RankRecord
+import com.memo.business.manager.DataManager
 import com.memo.mine.repository.MineRepository
 import kotlinx.coroutines.flow.combine
 
@@ -33,7 +34,7 @@ class MineViewModel : BaseViewModel() {
         val combine = combine(repository.getCollectSize(), repository.getCoinInfo()) { collectSize, coinInfo ->
             Zip4(coinInfo.level, collectSize, coinInfo.coinCount, coinInfo.rank)
         }
-        requestWithoutError(combine, infoLiveData::postValue)
+        requestOnly(combine, infoLiveData::postValue)
     }
 
     fun getCoinList(pageNum: Int) {
@@ -42,5 +43,10 @@ class MineViewModel : BaseViewModel() {
 
     fun getRankList(pageNum: Int) {
         request(repository.getRankList(pageNum), rankLiveData::postValue)
+    }
+
+    fun loginOut() {
+        DataManager.loginOut()
+        requestOnly(repository.loginOut()){}
     }
 }

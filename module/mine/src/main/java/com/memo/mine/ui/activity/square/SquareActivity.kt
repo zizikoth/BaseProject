@@ -1,6 +1,7 @@
 package com.memo.mine.ui.activity.square
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kongzue.dialogx.dialogs.GuideDialog
 import com.memo.business.R
 import com.memo.business.base.BaseVmActivity
 import com.memo.business.common.activity.WebActivity
@@ -11,7 +12,6 @@ import com.memo.business.manager.DataManager
 import com.memo.business.utils.finish
 import com.memo.business.utils.onItemChildClick
 import com.memo.business.utils.showEmpty
-import com.memo.core.utils.DialogHelper
 import com.memo.mine.databinding.ActivitySquareBinding
 import com.memo.mine.ui.activity.share.ShareActivity
 import com.memo.mine.viewmodel.ShareViewModel
@@ -74,12 +74,19 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
      * @param data ListEntity<Article>
      */
     private fun onArticleResponse(data: ListEntity<Article>) {
-        if (DataManager.showSquareTip()) {
-            DialogHelper.alert("点击头像查看更多用户分享文章")
-        }
         mAdapter.showEmpty(data.isEmpty())
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())
+
+        // 点击头像的图示
+        if(DataManager.showSquareTip()){
+            mBinding.mRvList.postDelayed({
+                mAdapter.getViewByPosition(0, R.id.mIvIcon)?.let {
+                    GuideDialog.show(it, com.memo.mine.R.drawable.icon_click_more)
+                }
+            },200)
+        }
+
     }
 }

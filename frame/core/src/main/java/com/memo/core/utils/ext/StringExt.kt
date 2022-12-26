@@ -92,8 +92,3 @@ fun String.firstLineIndent(): SpannableStringBuilder {
     span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
     return span
 }
-
-/**
- * 字符串切割
- */
-fun String.convert2List(split: String = ",") = if (this.isEmpty()) arrayListOf() else ArrayList(this.split(split))

@@ -136,7 +136,7 @@ object DataManager {
      */
     fun showSquareTip(): Boolean {
         val showTip = SP.getBoolean(SQUARE_TIP, true)
-        SP.put(SQUARE_TIP, false)
+        if(showTip) SP.put(SQUARE_TIP, false)
         return showTip
     }
 

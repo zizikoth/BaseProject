@@ -109,6 +109,7 @@ class WebsiteCollectActivity : BaseVmActivity<WebsiteViewModel, ActivityWebsiteC
      */
     private fun onDeleteResponse(id: Int) {
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
+        if (mAdapter.data.size == 0) mBinding.mRefreshLayout.autoRefresh()
     }
 
 }

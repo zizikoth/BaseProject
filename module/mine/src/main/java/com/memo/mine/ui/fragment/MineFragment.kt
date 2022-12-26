@@ -4,9 +4,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
 import com.memo.business.base.BaseVmFragment
 import com.memo.business.entity.local.Zip4
+import com.memo.business.manager.BusManager
 import com.memo.business.manager.DataManager
 import com.memo.business.manager.RouteManager
 import com.memo.business.utils.checkLogin
+import com.memo.core.utils.ext.gone
 import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.startActivity
 import com.memo.core.utils.ext.visible
@@ -15,6 +17,7 @@ import com.memo.mine.ui.activity.coin.CoinActivity
 import com.memo.mine.ui.activity.collect.ArticleCollectActivity
 import com.memo.mine.ui.activity.collect.WebsiteCollectActivity
 import com.memo.mine.ui.activity.rank.RankActivity
+import com.memo.mine.ui.activity.setting.SettingActivity
 import com.memo.mine.ui.activity.share.ShareActivity
 import com.memo.mine.ui.activity.square.SquareActivity
 import com.memo.mine.viewmodel.MineViewModel
@@ -49,6 +52,9 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
     /*** 初始化监听 ***/
     override fun initListener() {
         mBinding.run {
+            mIvSetting.onClick {
+                startActivity<SettingActivity>()
+            }
             mLlCollect.onClick {
                 if (checkLogin()) startActivity<ArticleCollectActivity>()
             }
@@ -65,7 +71,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
                 if (checkLogin()) startActivity<WebsiteCollectActivity>()
             }
             mItemShare.onClick {
-                if (checkLogin()) ShareActivity.start(mActivity,DataManager.getUser()?.id?:0)
+                if (checkLogin()) ShareActivity.start(mActivity, DataManager.getUser()?.id ?: 0)
             }
             mItemSquare.onClick {
                 startActivity<SquareActivity>()
@@ -73,6 +79,8 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
         }
 
         mViewModel.infoLiveData.observe(this, this::onInfoResponse)
+        BusManager.collectLiveData.observe(this, this::onCollectEvent)
+        BusManager.userLiveData.observe(this, this::onLoginEvent)
     }
 
     /*** 页面开始请求 ***/
@@ -91,6 +99,32 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
             mTvCollect.text = data.second.toString()
             mTvCoin.text = data.third.toString()
             mTvRank.text = data.forth.toString()
+        }
+    }
+
+    /**
+     * 通知：更新收藏数据
+     * @param refresh Boolean
+     */
+    private fun onCollectEvent(refresh: Boolean) {
+        mBinding.mTvCollect.text = DataManager.getUser()?.collectIds?.size.toString()
+    }
+
+    /**
+     * 通知：更新用户信息
+     * @param login Boolean
+     */
+    private fun onLoginEvent(login: Boolean) {
+        if (login) {
+            mViewModel.getMineInfo()
+        } else {
+            mBinding.run {
+                mTvName.text = "请登录"
+                mLlLevel.gone()
+                mTvCollect.text = "--"
+                mTvCoin.text = "--"
+                mTvRank.text = "--"
+            }
         }
     }
 

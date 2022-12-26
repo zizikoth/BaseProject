@@ -18,7 +18,7 @@ object BusManager {
     /**
      * 用户信息更新
      */
-    val userLiveData by lazy { ProtectedLiveData<UserInfo>() }
+    val userLiveData by lazy { ProtectedLiveData<Boolean>() }
 
     /**
      * 收藏数据更新

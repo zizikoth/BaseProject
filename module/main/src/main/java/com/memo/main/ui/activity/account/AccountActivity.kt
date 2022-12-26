@@ -88,7 +88,7 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
      */
     private fun onLoginSuccess(userInfo: UserInfo) {
         DataManager.setUser(userInfo)
-        BusManager.userLiveData.post(userInfo)
+        BusManager.userLiveData.post(true)
         finish()
     }
 

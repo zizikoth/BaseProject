@@ -70,11 +70,16 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
             }
         }
 
+        // 查
         mViewModel.listLiveData.observe(this, this::onListResponse)
+        // 增
         mViewModel.addLiveData.observe(this, this::onAddResponse)
+        // 改
         mViewModel.editLiveData.observe(this, this::onEditResponse)
+        // 删
         mViewModel.deleteLiveData.observe(this, this::onDeleteResponse)
-        BusManager.collectLiveData.observe(this, this::onRefreshEvent)
+        // 更新了收藏
+        BusManager.collectLiveData.observe(this, this::onCollectEvent)
     }
 
     /*** 页面开始请求 ***/
@@ -121,13 +126,14 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      */
     private fun onDeleteResponse(id: Int) {
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
+        if (mAdapter.data.size == 0) mBinding.mRefreshLayout.autoRefresh()
     }
 
     /**
      * 更新收藏数据
      * @param refresh Boolean
      */
-    private fun onRefreshEvent(refresh:Boolean){
+    private fun onCollectEvent(refresh:Boolean){
         mBinding.mRefreshLayout.autoRefresh()
     }
 }

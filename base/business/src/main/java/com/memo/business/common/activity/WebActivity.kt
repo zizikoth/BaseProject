@@ -138,16 +138,16 @@ class WebActivity : BaseVmActivity<ArticleViewModel, ActivityWebBinding>() {
         if (collected) DataManager.addCollected(articleId) else DataManager.removeCollected(articleId)
         // 如果是站外文章取消收藏后 按钮不再显示
         if (!collected && articleId == -1) mBinding.mTitleBar.showRight(false)
-        // 更新收藏按钮
+        // 更新收藏按钮a
         isArticleCollected = collected
         mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.ic_collected else R.drawable.ic_collect)
     }
 
     /**
      * 用户登录返回
-     * @param data UserInfo
+     * @param login Boolean
      */
-    private fun onLoginEvent(data: UserInfo) {
+    private fun onLoginEvent(login: Boolean) {
         isArticleCollected = DataManager.hasCollected(articleId)
         mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.ic_collected else R.drawable.ic_collect)
     }

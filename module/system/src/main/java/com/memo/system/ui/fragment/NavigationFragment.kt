@@ -64,7 +64,7 @@ class NavigationFragment : BaseVmFragment<SystemViewModel, FragmentNavigationBin
         }
         mAdapter.setList(list)
         // 第一个条目自动打开
-        mBinding.mRvList.post { mAdapter.autoClick(0) }
+        mBinding.mRvList.postDelayed({ mAdapter.autoClick(0) },200)
     }
 
 }

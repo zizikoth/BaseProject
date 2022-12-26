@@ -2,8 +2,10 @@ package com.memo.business.api
 
 import com.blankj.utilcode.util.LogUtils
 import com.google.gson.JsonParseException
+import com.memo.business.manager.RouteManager
+import com.memo.business.utils.toast
+import com.memo.core.utils.DialogHelper
 import kotlinx.coroutines.TimeoutCancellationException
-import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -18,7 +20,7 @@ import java.net.UnknownHostException
  *
  * Talk is cheap, Show me the code.
  */
-object ApiExceptionHandler {
+object ApiErrorHandler {
 
     /**
      * 对请求错误进行解析
@@ -41,6 +43,25 @@ object ApiExceptionHandler {
             is UnknownHostException -> ApiException(ApiCode.NetError, "网络异常，请检查网络")
             // 未知错误
             else -> ApiException(ApiCode.ServerError, "请求数据失败，请稍后重试")
+        }
+    }
+
+    /*** 踢出标识 ***/
+    private var tickOut = false
+
+    /**
+     * 对处理后的ApiException进行处理
+     * @param error ApiException
+     */
+    fun handleError(error: ApiException) {
+        if (error.code == ApiCode.TokenError && !tickOut) {
+            tickOut = true
+            DialogHelper.alert("您的登录信息失效，请重新登录！") {
+                tickOut = false
+                RouteManager.startAccountActivity()
+            }
+        }else{
+            toast(error.message)
         }
     }
 }

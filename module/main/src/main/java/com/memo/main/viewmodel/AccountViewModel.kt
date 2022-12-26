@@ -25,10 +25,12 @@ class AccountViewModel : BaseViewModel() {
     val liveData = MutableLiveData<UserInfo>()
 
     fun login(username: String, password: String) {
+        showLoading()
         request(repository.login(username, password), onSuccess = liveData::postValue)
     }
 
     fun register(username: String, password: String) {
+        showLoading()
         val concat = repository.register(username, password).flatMapConcat {
             repository.login(username, password)
         }

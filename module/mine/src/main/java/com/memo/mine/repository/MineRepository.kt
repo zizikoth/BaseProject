@@ -55,4 +55,12 @@ class MineRepository {
     fun getRankList(pageNum: Int): Flow<ListEntity<RankRecord>> {
         return RxHttp.get("/coin/rank/%d/json", pageNum).toFlowResponse()
     }
+
+    /**
+     * 退出登录
+     * @return Flow<Any?>
+     */
+    fun loginOut(): Flow<Any?> {
+        return RxHttp.get("/user/loginout/json").toFlowResponse()
+    }
 }

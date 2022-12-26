@@ -50,8 +50,7 @@ class SystemAdapter : BaseNodeAdapter() {
         val data = getItem(position)
         if (data is BaseExpandNode) {
             val anim = RotateAnimation(
-                if (data.isExpanded) -180f else 0f,
-                if (data.isExpanded) 0f else -180f,
+                0f, -180f,
                 Animation.RELATIVE_TO_SELF,
                 0.5f,
                 Animation.RELATIVE_TO_SELF,
