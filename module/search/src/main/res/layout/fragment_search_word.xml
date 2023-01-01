@@ -34,7 +34,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="@dimen/dp10"
                 android:padding="@dimen/dp7"
-                android:background="?selectableItemBackgroundBorderless"
+                android:background="?android:selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_delete"
                 android:tint="@color/color_999999" />
 

@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -48,7 +48,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -86,7 +86,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -124,7 +124,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?android:selectableItemBackgroundBorderless"
         android:orientation="vertical">
 
         <com.airbnb.lottie.LottieAnimationView

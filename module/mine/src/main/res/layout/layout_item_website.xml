@@ -64,5 +64,5 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp0_5"
         android:layout_gravity="bottom"
-        android:background="@color/color_F5F5F5" />
+        android:background="@color/color_EEEEEE" />
 </FrameLayout>
