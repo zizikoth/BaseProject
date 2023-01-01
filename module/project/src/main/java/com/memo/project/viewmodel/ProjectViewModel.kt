@@ -1,11 +1,11 @@
 package com.memo.project.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.Chapter
-import com.memo.business.entity.remote.ListEntity
-import com.memo.project.repository.ProjectRepository
+import com.memo.base.api.ApiRepository
+import com.memo.base.base.BaseViewModel
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.Chapter
+import com.memo.base.entity.remote.ListEntity
 
 /**
  * title:
@@ -18,19 +18,18 @@ import com.memo.project.repository.ProjectRepository
  * Talk is cheap, Show me the code.
  */
 class ProjectViewModel : BaseViewModel() {
-    private val repository = ProjectRepository()
     val chapterLiveData = MutableLiveData<ArrayList<Chapter>>()
     val articleLiveData = MutableLiveData<ListEntity<Article>>()
 
     fun getNewProjectArticles(pageNum: Int) {
-        request(repository.getNewProject(pageNum), articleLiveData::postValue)
+        request(ApiRepository.getNewProject(pageNum), articleLiveData::postValue)
     }
 
     fun getProjects() {
-        request(repository.getProjects(), chapterLiveData::postValue)
+        request(ApiRepository.getProjects(), chapterLiveData::postValue)
     }
 
     fun getProjectArticle(cid: Int, pageNum: Int) {
-        request(repository.getProjectArticles(cid, pageNum), articleLiveData::postValue)
+        request(ApiRepository.getProjectArticles(cid, pageNum), articleLiveData::postValue)
     }
 }

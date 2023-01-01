@@ -2,15 +2,15 @@ package com.memo.project.ui.activity
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.common.activity.WebActivity
-import com.memo.business.common.adapter.ArticleAdapter
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.finish
-import com.memo.business.utils.onItemClick
-import com.memo.business.utils.showEmpty
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.finish
+import com.memo.base.utils.onItemClick
+import com.memo.base.utils.showEmpty
 import com.memo.project.databinding.ActivityNewProjectBinding
 import com.memo.project.viewmodel.ProjectViewModel
 

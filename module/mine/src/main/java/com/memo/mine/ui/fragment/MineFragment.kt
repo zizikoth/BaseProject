@@ -2,20 +2,18 @@ package com.memo.mine.ui.fragment
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.entity.local.Zip4
-import com.memo.business.manager.BusManager
-import com.memo.business.manager.DataManager
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.checkLogin
-import com.memo.core.utils.ext.gone
-import com.memo.core.utils.ext.onClick
-import com.memo.core.utils.ext.startActivity
-import com.memo.core.utils.ext.visible
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.entity.local.Zip4
+import com.memo.base.manager.BusManager
+import com.memo.base.manager.DataManager
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.checkLogin
+import com.memo.core.utils.ext.*
 import com.memo.mine.databinding.FragmentMineBinding
 import com.memo.mine.ui.activity.coin.CoinActivity
 import com.memo.mine.ui.activity.collect.ArticleCollectActivity
 import com.memo.mine.ui.activity.collect.WebsiteCollectActivity
+import com.memo.mine.ui.activity.notify.NotifyActivity
 import com.memo.mine.ui.activity.rank.RankActivity
 import com.memo.mine.ui.activity.setting.SettingActivity
 import com.memo.mine.ui.activity.share.ShareActivity
@@ -55,6 +53,9 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
             mIvSetting.onClick {
                 startActivity<SettingActivity>()
             }
+            mIvNotify.onClick {
+                startActivity<NotifyActivity>()
+            }
             mLlCollect.onClick {
                 if (checkLogin()) startActivity<ArticleCollectActivity>()
             }
@@ -78,6 +79,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
             }
         }
 
+        mViewModel.dotLiveData.observe(this, this::onNotifyResponse)
         mViewModel.infoLiveData.observe(this, this::onInfoResponse)
         BusManager.collectLiveData.observe(this, this::onCollectEvent)
         BusManager.userLiveData.observe(this, this::onLoginEvent)
@@ -86,6 +88,20 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
     /*** 页面开始请求 ***/
     override fun start() {
         mViewModel.getMineInfo()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isPrepared) mViewModel.unReadMessageCount()
+    }
+
+    private fun onNotifyResponse(count: Int) {
+        mBinding.mTvNotify.run {
+            val width = if (count > 9) dimen(com.memo.core.R.dimen.dp24) else dimen(com.memo.core.R.dimen.dp14)
+            widthAndHeight(width.toInt(), layoutParams.height)
+            text = if (count > 99) "99+" else count.toString()
+            setVisible(count > 0)
+        }
     }
 
     /**

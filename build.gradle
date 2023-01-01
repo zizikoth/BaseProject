@@ -27,6 +27,7 @@ ext {
     TestAndroidEspresso = "androidx.test.espresso:espresso-core:3.4.0"
 
     AppCompat = "androidx.appcompat:appcompat:1.5.1"
+    AgentWeb = "com.github.Justson.AgentWeb:agentweb-core:v5.0.6-androidx"
     Brvah = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10"
     ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
     Dialog = "com.github.kongzue.DialogX:DialogX:0.0.46"

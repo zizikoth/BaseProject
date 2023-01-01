@@ -1,7 +1,7 @@
 package com.memo.main.ui.adapter
 
 import android.widget.ImageView
-import com.memo.business.entity.remote.Article
+import com.memo.base.entity.remote.Article
 import com.memo.core.utils.ext.load
 import com.memo.main.R
 import com.zhpan.bannerview.BaseBannerAdapter

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp45"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/mTvLeft"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:drawableStart="@mipmap/icon_arrow_left"
+        android:gravity="center"
+        android:padding="@dimen/dp7_5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mTvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp45"
+        android:layout_marginEnd="@dimen/dp45"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textSuperLarge"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/mTvSubTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/mTvSubTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="@dimen/textSmall"
+        android:textColor="@color/textLight"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/mTvTitle"
+        app:layout_constraintRight_toRightOf="@id/mTvTitle"
+        app:layout_constraintTop_toBottomOf="@id/mTvTitle" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mIvRight"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:padding="@dimen/dp7_5"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

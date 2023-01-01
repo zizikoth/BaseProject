@@ -4,11 +4,11 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.blog.databinding.ActivityBlogBinding
 import com.memo.blog.ui.adapter.BlogFragmentAdapter
 import com.memo.blog.viewmodel.BlogViewModel
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.entity.remote.Chapter
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.indicator.ElasticLineIndicator
-import com.memo.business.utils.indicator.init
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.entity.remote.Chapter
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.indicator.ElasticLineIndicator
+import com.memo.base.utils.indicator.init
 
 /**
  * title:公众号界面

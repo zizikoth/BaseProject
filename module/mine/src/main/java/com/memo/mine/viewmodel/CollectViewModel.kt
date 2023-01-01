@@ -1,10 +1,10 @@
 package com.memo.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.mine.repository.CollectRepository
+import com.memo.base.api.ApiRepository
+import com.memo.base.base.BaseViewModel
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
 
 /**
  * title:
@@ -17,31 +17,30 @@ import com.memo.mine.repository.CollectRepository
  * Talk is cheap, Show me the code.
  */
 class CollectViewModel : BaseViewModel() {
-    private val repository = CollectRepository()
     val listLiveData = MutableLiveData<ListEntity<Article>>()
     val addLiveData = MutableLiveData<Article>()
     val editLiveData = MutableLiveData<Article>()
     val deleteLiveData = MutableLiveData<Int>()
 
     fun getArticleCollectList(pageNum: Int) {
-        request(repository.getArticleCollectList(pageNum), listLiveData::postValue)
+        request(ApiRepository.getArticleCollectList(pageNum), listLiveData::postValue)
     }
 
     fun addOuterArticleCollect(title: String, author: String, link: String) {
         showLoading()
-        request(repository.addOuterArticleCollect(title, author, link), addLiveData::postValue)
+        request(ApiRepository.addOuterArticleCollect(title, author, link), addLiveData::postValue)
     }
 
     fun editOuterArticleCollect(id: Int, title: String, author: String, link: String) {
         showLoading()
-        request(repository.editOuterArticleCollect(id, title, author, link)) {
+        request(ApiRepository.editOuterArticleCollect(id, title, author, link)) {
             editLiveData.postValue(Article(id = id, title = title, author = author, link = link))
         }
     }
 
     fun deleteArticleCollect(articleId: Int, originId: Int) {
         showLoading()
-        request(repository.deleteArticleCollect(articleId, originId)) {
+        request(ApiRepository.deleteArticleCollect(articleId, originId)) {
             deleteLiveData.postValue(articleId)
         }
     }

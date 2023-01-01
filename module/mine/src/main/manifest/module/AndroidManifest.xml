@@ -4,10 +4,6 @@
 
     <application>
         <activity
-            android:name=".ui.activity.setting.SettingActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.collect.ArticleCollectActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -24,6 +20,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.square.SquareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.notify.NotifyActivity"
             android:screenOrientation="portrait" />
     </application>
 

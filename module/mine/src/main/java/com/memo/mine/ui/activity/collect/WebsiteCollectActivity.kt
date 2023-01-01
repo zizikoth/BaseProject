@@ -2,12 +2,12 @@ package com.memo.mine.ui.activity.collect
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ClipboardUtils
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.entity.remote.WebUrl
-import com.memo.business.utils.finish
-import com.memo.business.utils.onItemChildClick
-import com.memo.business.utils.showEmpty
-import com.memo.business.utils.toast
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.entity.remote.WebUrl
+import com.memo.base.utils.finish
+import com.memo.base.utils.onItemChildClick
+import com.memo.base.utils.showEmpty
+import com.memo.base.utils.toast
 import com.memo.mine.R
 import com.memo.mine.databinding.ActivityWebsiteCollectBinding
 import com.memo.mine.ui.adapter.WebsiteAdapter

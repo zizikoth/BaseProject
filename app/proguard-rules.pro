@@ -7,5 +7,5 @@
 
 
 # 保证Entity不被混淆
--keep class com.memo.business.entity.**{*;}
--keep class com.memo.business.api.ApiResponse{*;}
+-keep class com.memo.base.entity.**{*;}
+-keep class com.memo.base.api.ApiResponse{*;}

@@ -1,6 +1,6 @@
 package com.memo.todo.viewmodel
 
-import com.memo.business.base.BaseViewModel
+import com.memo.base.base.BaseViewModel
 
 /**
  * title:

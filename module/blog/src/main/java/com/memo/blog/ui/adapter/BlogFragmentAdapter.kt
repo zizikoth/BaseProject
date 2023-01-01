@@ -3,7 +3,7 @@ package com.memo.blog.ui.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.memo.business.entity.remote.Chapter
+import com.memo.base.entity.remote.Chapter
 import com.memo.blog.ui.fragment.BlogItemFragment
 
 /**

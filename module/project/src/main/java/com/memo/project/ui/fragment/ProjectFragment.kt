@@ -2,11 +2,11 @@ package com.memo.project.ui.fragment
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.entity.remote.Chapter
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.indicator.ElasticLineIndicator
-import com.memo.business.utils.indicator.init
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.entity.remote.Chapter
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.indicator.ElasticLineIndicator
+import com.memo.base.utils.indicator.init
 import com.memo.core.utils.ext.addElevation
 import com.memo.core.utils.ext.fromHtml
 import com.memo.project.databinding.FragmentProjectBinding

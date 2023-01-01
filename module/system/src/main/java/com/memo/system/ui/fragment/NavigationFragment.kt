@@ -1,12 +1,12 @@
 package com.memo.system.ui.fragment
 
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.common.activity.WebActivity
-import com.memo.business.entity.remote.Navi
-import com.memo.business.entity.remote.NodeItem
-import com.memo.business.entity.remote.NodeItemChild
-import com.memo.business.utils.supportsChangeAnimations
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.common.activity.WebActivity
+import com.memo.base.entity.remote.Navi
+import com.memo.base.entity.remote.NodeItem
+import com.memo.base.entity.remote.NodeItemChild
+import com.memo.base.utils.supportsChangeAnimations
 import com.memo.system.databinding.FragmentNavigationBinding
 import com.memo.system.ui.adapter.SystemAdapter
 import com.memo.system.viewmodel.SystemViewModel
@@ -64,7 +64,7 @@ class NavigationFragment : BaseVmFragment<SystemViewModel, FragmentNavigationBin
         }
         mAdapter.setList(list)
         // 第一个条目自动打开
-        mBinding.mRvList.postDelayed({ mAdapter.autoClick(0) },200)
+        mBinding.mRvList.postDelayed({ mAdapter.autoClick(0) }, 200)
     }
 
 }

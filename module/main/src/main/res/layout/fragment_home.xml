@@ -46,7 +46,7 @@
                         app:contentInsetStart="0dp"
                         app:layout_collapseMode="pin">
 
-                        <com.memo.business.widget.TitleBar
+                        <com.memo.base.widget.TitleBar
                             android:id="@+id/mTitleBar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

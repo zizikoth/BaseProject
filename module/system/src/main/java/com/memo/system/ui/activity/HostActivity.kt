@@ -1,7 +1,7 @@
 package com.memo.system.ui.activity
 
 import com.blankj.utilcode.util.FragmentUtils
-import com.memo.business.base.BaseActivity
+import com.memo.base.base.BaseActivity
 import com.memo.system.R
 import com.memo.system.databinding.ActivityHostBinding
 import com.memo.system.ui.fragment.SystemFragment

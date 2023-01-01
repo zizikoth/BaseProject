@@ -9,8 +9,8 @@ import com.chad.library.adapter.base.entity.node.BaseExpandNode
 import com.chad.library.adapter.base.entity.node.BaseNode
 import com.chad.library.adapter.base.provider.BaseNodeProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.memo.business.entity.remote.NodeItem
-import com.memo.business.entity.remote.NodeItemChild
+import com.memo.base.entity.remote.NodeItem
+import com.memo.base.entity.remote.NodeItemChild
 import com.memo.core.utils.ClickHelper
 import com.memo.system.R
 

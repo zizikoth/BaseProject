@@ -3,7 +3,7 @@
     package="com.memo.mine">
 
     <application
-        android:name="com.memo.business.app.App"
+        android:name="com.memo.base.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,8 +40,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.setting.SettingActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.notify.NotifyActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

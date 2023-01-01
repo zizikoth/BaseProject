@@ -18,7 +18,7 @@
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
-            android:padding="@dimen/dp25"
+            android:paddingBottom="@dimen/dp20"
             app:shape_radius="@dimen/dp10"
             app:shape_shadowColor="@color/colorMainShadow"
             app:shape_shadowSize="@dimen/dp5"
@@ -26,17 +26,47 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mIvSetting"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="@dimen/dp45"
+                android:layout_height="@dimen/dp45"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:padding="@dimen/dp7_5"
                 android:src="@drawable/icon_setting"
-                android:padding="@dimen/dp5"
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mIvNotify"
+                android:layout_width="@dimen/dp45"
+                android:layout_height="@dimen/dp45"
+                android:padding="@dimen/dp7_5"
+                android:src="@drawable/icon_notify"
+                app:layout_constraintRight_toLeftOf="@id/mIvSetting"
+                app:layout_constraintTop_toTopOf="@id/mIvSetting" />
+
+            <com.hjq.shape.view.ShapeTextView
+                android:id="@+id/mTvNotify"
+                android:layout_width="@dimen/dp14"
+                android:layout_height="@dimen/dp14"
+                android:layout_marginTop="@dimen/dp4"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp10"
+                android:visibility="gone"
+                app:layout_constraintRight_toRightOf="@id/mIvNotify"
+                app:layout_constraintTop_toTopOf="@id/mIvNotify"
+                app:shape_radius="@dimen/dp10"
+                app:shape_solidColor="@color/color_red"
+                tools:text="9"
+                tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mIvAvatar"
                 android:layout_width="@dimen/dp80"
                 android:layout_height="@dimen/dp80"
+                android:layout_marginTop="@dimen/dp20"
                 android:src="@drawable/avatar_android"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -181,28 +211,28 @@
             app:shape_shadowSize="@dimen/dp5"
             app:shape_solidColor="@color/white">
 
-            <com.memo.business.widget.IconItemCell
+            <com.memo.base.widget.IconItemCell
                 android:id="@+id/mItemTodo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:icon_item_cell_drawable="@drawable/icon_list_todo"
                 app:icon_item_cell_title="未完清单" />
 
-            <com.memo.business.widget.IconItemCell
+            <com.memo.base.widget.IconItemCell
                 android:id="@+id/mItemCollect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:icon_item_cell_drawable="@drawable/icon_list_collect"
                 app:icon_item_cell_title="网址收藏" />
 
-            <com.memo.business.widget.IconItemCell
+            <com.memo.base.widget.IconItemCell
                 android:id="@+id/mItemShare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:icon_item_cell_drawable="@drawable/icon_list_share"
                 app:icon_item_cell_title="我的分享" />
 
-            <com.memo.business.widget.IconItemCell
+            <com.memo.base.widget.IconItemCell
                 android:id="@+id/mItemSquare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -46,7 +46,7 @@ kapt {
 }
 
 dependencies {
-    api project(path: ':base:business')
+    api project(path: ':base:base')
     kapt rootProject.ext.ARouterCompiler
     testImplementation rootProject.ext.TestJunit
     androidTestImplementation rootProject.ext.TestAndroidJunit

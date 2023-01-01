@@ -1,9 +1,9 @@
 package com.memo.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.remote.WebUrl
-import com.memo.mine.repository.WebsiteRepository
+import com.memo.base.api.ApiRepository
+import com.memo.base.base.BaseViewModel
+import com.memo.base.entity.remote.WebUrl
 
 /**
  * title:
@@ -16,7 +16,6 @@ import com.memo.mine.repository.WebsiteRepository
  * Talk is cheap, Show me the code.
  */
 class WebsiteViewModel : BaseViewModel() {
-    private val repository = WebsiteRepository()
 
     val listLiveData = MutableLiveData<ArrayList<WebUrl>>()
     val addLiveData = MutableLiveData<WebUrl>()
@@ -24,22 +23,22 @@ class WebsiteViewModel : BaseViewModel() {
     val deleteLiveData = MutableLiveData<Int>()
 
     fun getWebsiteCollectList() {
-        return request(repository.getWebSiteCollectList(), listLiveData::postValue)
+        return request(ApiRepository.getWebSiteCollectList(), listLiveData::postValue)
     }
 
     fun addWebsiteCollect(name: String, link: String) {
         showLoading()
-        return request(repository.addWebSiteCollect(name, link), addLiveData::postValue)
+        return request(ApiRepository.addWebSiteCollect(name, link), addLiveData::postValue)
     }
 
     fun editWebsiteCollect(id: Int, name: String, link: String) {
         showLoading()
-        return request(repository.editWebSiteCollect(id, name, link), editLiveData::postValue)
+        return request(ApiRepository.editWebSiteCollect(id, name, link), editLiveData::postValue)
     }
 
     fun deleteWebsiteCollect(id: Int) {
         showLoading()
-        return request(repository.deleteWebSiteCollect(id)) {
+        return request(ApiRepository.deleteWebSiteCollect(id)) {
             deleteLiveData.postValue(id)
         }
     }

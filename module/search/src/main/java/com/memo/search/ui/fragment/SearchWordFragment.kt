@@ -2,9 +2,9 @@ package com.memo.search.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.entity.remote.HotKey
-import com.memo.business.utils.onItemClick
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.entity.remote.HotKey
+import com.memo.base.utils.onItemClick
 import com.memo.core.utils.DialogHelper
 import com.memo.core.utils.ext.gone
 import com.memo.core.utils.ext.onClick

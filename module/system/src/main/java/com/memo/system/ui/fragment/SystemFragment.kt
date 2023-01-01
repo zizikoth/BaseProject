@@ -2,10 +2,10 @@ package com.memo.system.ui.fragment
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
-import com.memo.business.base.BaseFragment
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.indicator.RoundCoverIndicator
-import com.memo.business.utils.indicator.init
+import com.memo.base.base.BaseFragment
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.indicator.RoundCoverIndicator
+import com.memo.base.utils.indicator.init
 import com.memo.core.adapter.BaseFragmentPager2Adapter
 import com.memo.core.utils.ext.addElevation
 import com.memo.system.databinding.FragmentSystemBinding

@@ -1,16 +1,16 @@
 package com.memo.mine.ui.activity.collect
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.memo.business.R
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.common.activity.WebActivity
-import com.memo.business.common.adapter.ArticleAdapter
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.manager.BusManager
-import com.memo.business.utils.finish
-import com.memo.business.utils.onItemChildClick
-import com.memo.business.utils.showEmpty
+import com.memo.base.R
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.manager.BusManager
+import com.memo.base.utils.finish
+import com.memo.base.utils.onItemChildClick
+import com.memo.base.utils.showEmpty
 import com.memo.mine.databinding.ActivityArticleCollectBinding
 import com.memo.mine.utils.DialogUtils
 import com.memo.mine.viewmodel.CollectViewModel

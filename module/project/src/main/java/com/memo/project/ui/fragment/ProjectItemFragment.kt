@@ -1,14 +1,14 @@
 package com.memo.project.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.common.activity.WebActivity
-import com.memo.business.common.adapter.ArticleAdapter
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.utils.finish
-import com.memo.business.utils.onItemClick
-import com.memo.business.utils.showEmpty
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.utils.finish
+import com.memo.base.utils.onItemClick
+import com.memo.base.utils.showEmpty
 import com.memo.core.utils.ext.withArguments
 import com.memo.project.databinding.FragmentProjectItemBinding
 import com.memo.project.viewmodel.ProjectViewModel

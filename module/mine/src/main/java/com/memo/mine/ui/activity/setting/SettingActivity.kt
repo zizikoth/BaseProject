@@ -1,13 +1,12 @@
 package com.memo.mine.ui.activity.setting
 
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.CleanUtils
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.FileUtils
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.manager.BusManager
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.toast
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.manager.BusManager
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.toast
 import com.memo.core.utils.DialogHelper
 import com.memo.core.utils.ext.onClick
 import com.memo.mine.databinding.ActivitySettingBinding

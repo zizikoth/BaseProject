@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.TodoActivity">
-    <com.memo.business.widget.TitleBar
+    <com.memo.base.widget.TitleBar
         app:title_title_text="未完清单"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

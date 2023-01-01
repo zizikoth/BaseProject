@@ -1,17 +1,15 @@
 package com.memo.main.ui.activity.account
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.entity.remote.UserInfo
-import com.memo.business.manager.BusManager
-import com.memo.business.manager.DataManager
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.indicator.RoundCoverIndicator
-import com.memo.business.utils.indicator.init
-import com.memo.business.utils.toast
-import com.memo.core.R
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.entity.remote.UserInfo
+import com.memo.base.manager.BusManager
+import com.memo.base.manager.DataManager
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.indicator.RoundCoverIndicator
+import com.memo.base.utils.indicator.init
+import com.memo.base.utils.toast
 import com.memo.core.adapter.BaseFragmentPager2Adapter
-import com.memo.core.utils.ext.dimen
 import com.memo.main.databinding.ActivityAccountBinding
 import com.memo.main.ui.fragment.account.LoginFragment
 import com.memo.main.ui.fragment.account.RegisterFragment

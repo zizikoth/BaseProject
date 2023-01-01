@@ -73,9 +73,9 @@ class LottieBar @JvmOverloads constructor(
                 view.setOnClickListener {
                     if (lastPosition != index) {
                         lotties[index].playAnimation()
-                        texts[lastPosition].setTextColor(color(com.memo.business.R.color.textLight))
+                        texts[lastPosition].setTextColor(color(com.memo.base.R.color.textLight))
                         texts[lastPosition].paint.typeface = Typeface.DEFAULT
-                        texts[index].setTextColor(color(com.memo.business.R.color.textDark))
+                        texts[index].setTextColor(color(com.memo.base.R.color.textDark))
                         texts[index].paint.typeface = Typeface.DEFAULT_BOLD
                         dots[lastPosition].visibility = View.GONE
                         dots[index].visibility = View.VISIBLE

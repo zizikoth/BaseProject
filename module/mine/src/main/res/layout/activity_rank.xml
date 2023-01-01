@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.activity.rank.RankActivity">
 
-    <com.memo.business.widget.TitleBar
+    <com.memo.base.widget.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title_title_text="排名" />
@@ -21,8 +21,8 @@
             android:id="@+id/mRvList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/layout_item_rank"
-            android:overScrollMode="never" />
+            android:overScrollMode="never"
+            tools:listitem="@layout/layout_item_rank" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

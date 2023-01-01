@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.blog.databinding.ActivityBlogSearchBinding
 import com.memo.blog.viewmodel.BlogViewModel
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.common.adapter.ArticleAdapter
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.utils.finish
-import com.memo.business.utils.showEmpty
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.utils.finish
+import com.memo.base.utils.showEmpty
 import com.memo.core.utils.ext.startActivity
 
 /**

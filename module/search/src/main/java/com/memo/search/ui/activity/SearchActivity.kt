@@ -1,8 +1,8 @@
 package com.memo.search.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.memo.business.base.BaseActivity
-import com.memo.business.manager.RouteManager
+import com.memo.base.base.BaseActivity
+import com.memo.base.manager.RouteManager
 import com.memo.core.adapter.BaseFragmentPager2Adapter
 import com.memo.search.databinding.ActivitySearchBinding
 import com.memo.search.ui.fragment.SearchArticleFragment

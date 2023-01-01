@@ -1,9 +1,9 @@
 package com.memo.main.ui.activity.main
 
 import com.blankj.utilcode.util.AppUtils
-import com.memo.business.base.BaseActivity
-import com.memo.business.manager.RouteManager
-import com.memo.business.utils.toast
+import com.memo.base.base.BaseActivity
+import com.memo.base.manager.RouteManager
+import com.memo.base.utils.toast
 import com.memo.core.utils.ClickHelper
 import com.memo.core.utils.FragmentHelper
 import com.memo.main.R

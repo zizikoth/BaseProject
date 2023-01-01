@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/mSwipeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:clickToClose="true"
+        app:drag_edge="right"
+        app:show_mode="lay_down">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/mItemEdit"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_edit_background">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_edit" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/mItemDelete"
+                android:layout_width="@dimen/dp100"
+                android:layout_height="match_parent"
+                android:background="@color/color_delete_background">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_delete" />
+            </FrameLayout>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mItemArticle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mIvPic"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp90"
+                    android:src="@drawable/image_holder"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/mIvIcon"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@drawable/image_holder"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/mIvPic" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:text="作者：faith-hb"
+                    android:textColor="@color/textNormal"
+                    android:textSize="@dimen/textNormal"
+                    app:layout_constraintBottom_toBottomOf="@id/mIvIcon"
+                    app:layout_constraintLeft_toRightOf="@id/mIvIcon"
+                    app:layout_constraintTop_toTopOf="@id/mIvIcon" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginEnd="@dimen/dp15"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/textDark"
+                    android:textSize="@dimen/textLarge"
+                    app:layout_constraintBottom_toTopOf="@id/mTvDesc"
+                    app:layout_constraintLeft_toLeftOf="@id/mIvIcon"
+                    app:layout_constraintRight_toLeftOf="@id/mIvPic"
+                    app:layout_constraintTop_toBottomOf="@id/mIvIcon"
+                    app:layout_goneMarginRight="0dp"
+                    tools:text="自定义控件通用库 WidgetCase" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:textColor="@color/textNormal"
+                    android:textSize="@dimen/textNormal"
+                    app:layout_constraintLeft_toLeftOf="@id/mTvTitle"
+                    app:layout_constraintRight_toRightOf="@id/mTvTitle"
+                    app:layout_constraintTop_toBottomOf="@id/mTvTitle"
+                    app:layout_goneMarginTop="0dp"
+                    tools:text="自定义控件通用库：拿来就用，API文档详细，持续集成，长期维护" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvChapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textColor="@color/textLight"
+                    android:textSize="@dimen/textSmall"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mTvDesc"
+                    app:layout_goneMarginLeft="0dp"
+                    tools:text="开源项目主Tab · 跨平台应用" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textLight"
+                    android:textSize="@dimen/textSmall"
+                    app:layout_constraintBottom_toBottomOf="@id/mTvChapter"
+                    app:layout_constraintRight_toRightOf="@id/mIvPic"
+                    tools:text="15分钟前" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvTimeDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:textColor="@color/textLight"
+                    android:textSize="@dimen/textSmall"
+                    app:layout_constraintLeft_toLeftOf="@id/mTvChapter"
+                    app:layout_constraintTop_toBottomOf="@id/mTvChapter"
+                    tools:text="3天前" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.memo.base.widget.LabelView
+                android:id="@+id/mLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                app:label_background_color="@color/colorMain50"
+                app:label_gravity="TOP_RIGHT"
+                app:label_min_size="@dimen/dp50"
+                app:label_text="TOP"
+                app:label_text_color="@color/white"
+                app:label_text_size="@dimen/textSuperSmall" />
+        </FrameLayout>
+    </com.daimajia.swipe.SwipeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"
+        android:background="@color/color_F5F5F5" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,9 +1,9 @@
 package com.memo.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.remote.UserInfo
-import com.memo.main.repository.AccountRepository
+import com.memo.base.api.ApiRepository
+import com.memo.base.base.BaseViewModel
+import com.memo.base.entity.remote.UserInfo
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.flatMapConcat
 
@@ -20,19 +20,17 @@ import kotlinx.coroutines.flow.flatMapConcat
 @FlowPreview
 class AccountViewModel : BaseViewModel() {
 
-    private val repository = AccountRepository()
-
     val liveData = MutableLiveData<UserInfo>()
 
     fun login(username: String, password: String) {
         showLoading()
-        request(repository.login(username, password), onSuccess = liveData::postValue)
+        request(ApiRepository.login(username, password), onSuccess = liveData::postValue)
     }
 
     fun register(username: String, password: String) {
         showLoading()
-        val concat = repository.register(username, password).flatMapConcat {
-            repository.login(username, password)
+        val concat = ApiRepository.register(username, password).flatMapConcat {
+            ApiRepository.login(username, password)
         }
         request(concat, onSuccess = liveData::postValue)
     }

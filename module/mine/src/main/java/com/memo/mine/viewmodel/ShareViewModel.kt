@@ -1,11 +1,11 @@
 package com.memo.mine.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.memo.business.base.BaseViewModel
-import com.memo.business.entity.remote.Article
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.entity.remote.UserShareRecord
-import com.memo.mine.repository.ShareRepository
+import com.memo.base.api.ApiRepository
+import com.memo.base.base.BaseViewModel
+import com.memo.base.entity.remote.Article
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.entity.remote.UserShareRecord
 
 /**
  * title:
@@ -18,15 +18,14 @@ import com.memo.mine.repository.ShareRepository
  * Talk is cheap, Show me the code.
  */
 class ShareViewModel : BaseViewModel() {
-    private val repository = ShareRepository()
     val articleLiveData = MutableLiveData<ListEntity<Article>>()
     val shareLiveData = MutableLiveData<UserShareRecord>()
 
     fun getSquareShareArticles(pageNum: Int) {
-        request(repository.getSquareShareArticles(pageNum), articleLiveData::postValue)
+        request(ApiRepository.getSquareShareArticles(pageNum), articleLiveData::postValue)
     }
 
     fun getUserShareArticles(userId: Int, pageNum: Int) {
-        request(repository.getUserShareArticles(userId, pageNum), shareLiveData::postValue)
+        request(ApiRepository.getUserShareArticles(userId, pageNum), shareLiveData::postValue)
     }
 }

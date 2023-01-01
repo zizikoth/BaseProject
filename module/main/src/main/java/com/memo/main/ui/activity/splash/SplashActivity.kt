@@ -2,11 +2,10 @@ package com.memo.main.ui.activity.splash
 
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.BarUtils
-import com.memo.business.manager.InitManager
+import com.memo.base.manager.InitManager
 import com.memo.core.core.CoreActivity
 import com.memo.core.utils.ext.startActivity
 import com.memo.main.databinding.ActivitySplashBinding
-import com.memo.main.ui.activity.account.AccountActivity
 import com.memo.main.ui.activity.main.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

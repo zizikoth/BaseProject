@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+    buildToolsVersion rootProject.ext.buildTools
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = '1.8' }
+
+    buildFeatures { viewBinding true }
+
+    buildTypes {
+        debug {
+            consumerProguardFiles file('.').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File file, String s) {
+                    return s.endsWith('.pro')
+                }
+            })
+        }
+        release {
+            consumerProguardFiles file('.').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File file, String s) {
+                    return s.endsWith('.pro')
+                }
+            })
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    api rootProject.ext.AppCompat
+    api rootProject.ext.ARouter
+    api rootProject.ext.AgentWeb
+    api rootProject.ext.Banner
+    api rootProject.ext.Brvah
+    api rootProject.ext.Coroutines
+    api rootProject.ext.ConstraintLayout
+    api rootProject.ext.Dialog
+    api rootProject.ext.FlexBox
+    api rootProject.ext.Gson
+    api rootProject.ext.GsonFactory
+    api rootProject.ext.Indicator
+    api rootProject.ext.Lottie
+    api rootProject.ext.LifecycleRunTime
+    api rootProject.ext.LifecycleViewModel
+    api rootProject.ext.LoadStateView
+    api rootProject.ext.Material
+    api rootProject.ext.OkHttp
+    api rootProject.ext.RecycleView
+    api rootProject.ext.RxHttp
+    api rootProject.ext.ShapeView
+    api rootProject.ext.SmartRefreshLayout
+    api rootProject.ext.SmartRefreshHeader
+    api rootProject.ext.SmartRefreshFooter
+    api rootProject.ext.SwipeLayout
+    api rootProject.ext.Utils
+
+    api rootProject.ext.Glide
+    kapt rootProject.ext.GlideCompiler
+
+    debugApi rootProject.ext.LeakCanary
+
+}

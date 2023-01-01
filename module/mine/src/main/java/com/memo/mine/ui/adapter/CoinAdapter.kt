@@ -2,7 +2,7 @@ package com.memo.mine.ui.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.memo.business.entity.remote.CoinRecord
+import com.memo.base.entity.remote.CoinRecord
 import com.memo.mine.R
 
 /**

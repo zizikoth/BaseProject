@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.coin.CoinActivity">
 
-    <com.memo.business.widget.TitleBar
+    <com.memo.base.widget.TitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title_title_text="积分" />
@@ -21,8 +21,8 @@
             android:id="@+id/mRvList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/layout_item_coin"
-            android:overScrollMode="never" />
+            android:overScrollMode="never"
+            tools:listitem="@layout/layout_item_coin" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

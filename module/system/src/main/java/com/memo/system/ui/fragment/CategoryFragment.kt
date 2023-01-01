@@ -1,11 +1,11 @@
 package com.memo.system.ui.fragment
 
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.memo.business.base.BaseVmFragment
-import com.memo.business.entity.remote.Category
-import com.memo.business.entity.remote.NodeItem
-import com.memo.business.entity.remote.NodeItemChild
-import com.memo.business.utils.supportsChangeAnimations
+import com.memo.base.base.BaseVmFragment
+import com.memo.base.entity.remote.Category
+import com.memo.base.entity.remote.NodeItem
+import com.memo.base.entity.remote.NodeItemChild
+import com.memo.base.utils.supportsChangeAnimations
 import com.memo.system.databinding.FragmentCategoryBinding
 import com.memo.system.ui.activity.CategoryArticleActivity
 import com.memo.system.ui.adapter.SystemAdapter
@@ -63,7 +63,7 @@ class CategoryFragment : BaseVmFragment<SystemViewModel, FragmentCategoryBinding
         }
         mAdapter.setList(list)
         // 第一个条目自动打开
-        mBinding.mRvList.postDelayed({ mAdapter.autoClick(0) },200)
+        mBinding.mRvList.postDelayed({ mAdapter.autoClick(0) }, 200)
     }
 
 }

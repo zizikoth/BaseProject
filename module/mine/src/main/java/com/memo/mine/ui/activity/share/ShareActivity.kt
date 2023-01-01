@@ -2,13 +2,13 @@ package com.memo.mine.ui.activity.share
 
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.common.activity.WebActivity
-import com.memo.business.common.adapter.ArticleAdapter
-import com.memo.business.entity.remote.UserShareRecord
-import com.memo.business.utils.finish
-import com.memo.business.utils.onItemClick
-import com.memo.business.utils.showEmpty
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.adapter.ArticleAdapter
+import com.memo.base.entity.remote.UserShareRecord
+import com.memo.base.utils.finish
+import com.memo.base.utils.onItemClick
+import com.memo.base.utils.showEmpty
 import com.memo.core.utils.ext.startActivity
 import com.memo.mine.databinding.ActivityShareBinding
 import com.memo.mine.viewmodel.ShareViewModel

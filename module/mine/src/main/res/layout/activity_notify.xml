@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.notify.NotifyActivity">
+
+    <com.memo.base.widget.TitleBar
+        android:id="@+id/mTitleBar"
+        app:title_title_text="系统消息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_right_drawable="@drawable/icon_readed" />
+
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/mRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRvList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            tools:listitem="@layout/layout_item_notify" />
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

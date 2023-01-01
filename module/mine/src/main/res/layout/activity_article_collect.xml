@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.collect.ArticleCollectActivity">
 
-    <com.memo.business.widget.TitleBar
+    <com.memo.base.widget.TitleBar
         android:id="@+id/mTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_right_drawable="@drawable/ic_collect_add"
+        app:title_right_drawable="@drawable/icon_add"
         app:title_title_text="我的收藏" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -21,9 +21,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRvList"
-            tools:listitem="@layout/layout_item_article_item"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            tools:listitem="@layout/layout_item_article_item" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,10 +1,11 @@
 package com.memo.main.ui.fragment.account
 
-import com.memo.business.base.BaseFragment
+import com.memo.base.base.BaseFragment
 import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.value
 import com.memo.main.databinding.FragmentLoginBinding
 import com.memo.main.ui.activity.account.AccountActivity
+import kotlinx.coroutines.FlowPreview
 
 /**
  * title:登录模组
@@ -16,6 +17,7 @@ import com.memo.main.ui.activity.account.AccountActivity
  *
  * Talk is cheap, Show me the code.
  */
+@FlowPreview
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     override fun initialize() {
         mBinding.run {

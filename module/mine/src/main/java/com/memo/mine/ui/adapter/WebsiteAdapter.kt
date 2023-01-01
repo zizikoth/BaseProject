@@ -3,7 +3,7 @@ package com.memo.mine.ui.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.daimajia.swipe.SwipeLayout
-import com.memo.business.entity.remote.WebUrl
+import com.memo.base.entity.remote.WebUrl
 import com.memo.mine.R
 
 /**

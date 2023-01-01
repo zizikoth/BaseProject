@@ -1,11 +1,11 @@
 package com.memo.mine.ui.activity.rank
 
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.memo.business.base.BaseVmActivity
-import com.memo.business.entity.remote.ListEntity
-import com.memo.business.entity.remote.RankRecord
-import com.memo.business.utils.finish
-import com.memo.business.utils.showEmpty
+import com.memo.base.base.BaseVmActivity
+import com.memo.base.entity.remote.ListEntity
+import com.memo.base.entity.remote.RankRecord
+import com.memo.base.utils.finish
+import com.memo.base.utils.showEmpty
 import com.memo.mine.databinding.ActivityRankBinding
 import com.memo.mine.ui.adapter.RankAdapter
 import com.memo.mine.viewmodel.MineViewModel

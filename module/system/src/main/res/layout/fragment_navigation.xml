@@ -4,6 +4,7 @@
     android:id="@+id/mRvList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     tools:context=".ui.fragment.CategoryFragment"
     tools:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
     tools:listitem="@layout/layout_item_system_item"

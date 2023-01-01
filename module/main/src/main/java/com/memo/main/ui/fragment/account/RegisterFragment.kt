@@ -1,6 +1,6 @@
 package com.memo.main.ui.fragment.account
 
-import com.memo.business.base.BaseFragment
+import com.memo.base.base.BaseFragment
 import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.value
 import com.memo.main.databinding.FragmentRegisterBinding
