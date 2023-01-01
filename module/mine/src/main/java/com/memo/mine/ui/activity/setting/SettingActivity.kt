@@ -30,7 +30,7 @@ class SettingActivity : BaseVmActivity<MineViewModel, ActivitySettingBinding>() 
     override fun initData() {
         mBinding.run {
             val size = FileUtils.getLength(mContext.externalCacheDir) + FileUtils.getLength(mContext.cacheDir)
-            mItemClear.setExtra(ConvertUtils.byte2FitMemorySize(size, 2))
+            if(size!=0L) mItemClear.setExtra(ConvertUtils.byte2FitMemorySize(size, 2))
         }
     }
 
