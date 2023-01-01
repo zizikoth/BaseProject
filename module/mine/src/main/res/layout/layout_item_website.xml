@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_edit_background"
                 android:padding="@dimen/dp30"
-                android:src="@drawable/ic_edit" />
+                android:src="@drawable/icon_edit" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/mIvDelete"
@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/color_delete_background"
                 android:padding="@dimen/dp30"
-                android:src="@drawable/ic_delete" />
+                android:src="@drawable/icon_delete" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat

@@ -23,14 +23,7 @@
                 android:id="@+id/mItemEdit"
                 android:layout_width="@dimen/dp100"
                 android:layout_height="match_parent"
-                android:background="@color/color_edit_background">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_edit" />
-            </FrameLayout>
+                android:background="@color/color_edit_background"/>
 
             <FrameLayout
                 android:id="@+id/mItemDelete"
@@ -42,7 +35,7 @@
                     android:layout_width="@dimen/dp30"
                     android:layout_height="@dimen/dp30"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_delete" />
+                    android:src="@drawable/icon_delete" />
             </FrameLayout>
 
 

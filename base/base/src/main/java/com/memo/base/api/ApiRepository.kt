@@ -1,5 +1,9 @@
 package com.memo.base.api
 
+import com.memo.base.entity.local.TodoFilter
+import com.memo.base.entity.local.TodoPriority
+import com.memo.base.entity.local.TodoStatus
+import com.memo.base.entity.local.TodoType
 import com.memo.base.entity.remote.*
 import com.memo.base.manager.DataManager
 import kotlinx.coroutines.flow.Flow
@@ -329,6 +333,19 @@ object ApiRepository {
      */
     fun readedMessageList(pageNum: Int): Flow<ListEntity<NotifyMessage>> {
         return RxHttp.get("/message/lg/readed_list/%d/json", pageNum).toFlowResponse()
+    }
+
+    /**
+     * 获取todo列表
+     * @param filter TodoFilter 筛选条件
+     * @return Flow<ListEntity<TodoInfo>>
+     */
+    fun todoList(filter: TodoFilter): Flow<ListEntity<TodoInfo>> {
+        val request = RxHttp.get("/lg/todo/v2/list/%d/json", filter.pageNum)
+        if (filter.priority != TodoPriority.ALL) request.add("priority", filter.priority)
+        if (filter.status != TodoStatus.ALL) request.add("status", filter.status)
+        if (filter.type != TodoType.ALL) request.add("type", filter.type)
+        return request.toFlowResponse()
     }
 
 }

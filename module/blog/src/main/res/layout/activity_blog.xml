@@ -10,7 +10,7 @@
     <com.memo.base.widget.TitleBar
         android:id="@+id/mTitleBar"
         app:title_title_text="公众号"
-        app:title_right_drawable="@drawable/ic_search"
+        app:title_right_drawable="@drawable/icon_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

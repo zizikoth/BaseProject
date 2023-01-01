@@ -53,30 +53,30 @@ object InitManager {
                 ARouter.openDebug()
             }
             ARouter.init(app)
+
+            // oom检测
+            OOMHelper.startMonitorLowMemory()
+            // Dialog
+            DialogX.DEBUGMODE = Config.debug
+            DialogX.init(Utils.getApp())
+            // LoadingStateView
+            LoadingStateView.setViewDelegatePool {
+                this.register(LoadingDelegate(), NetErrorDelegate(), ServerErrorDelegate())
+            }
+            // SmartRefreshLayout
+            SmartRefreshLayout.setDefaultRefreshInitializer { _, layout ->
+                layout.setEnableAutoLoadMore(false).setEnableOverScrollDrag(true)
+            }
+            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
+                ClassicsHeader(context)
+            }
+            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
+                BallPulseFooter(context).setNormalColor(color(R.color.refresh_footer)).setAnimatingColor(color(R.color.refresh_footer)).apply {
+                    minimumHeight = dimen(R.dimen.refresh_footer).toInt()
+                }
+            }
+
         }
     }
 
-    fun initInSplash() {
-        // oom检测
-        OOMHelper.startMonitorLowMemory()
-        // Dialog
-        DialogX.DEBUGMODE = Config.debug
-        DialogX.init(Utils.getApp())
-        // LoadingStateView
-        LoadingStateView.setViewDelegatePool {
-            this.register(LoadingDelegate(), NetErrorDelegate(), ServerErrorDelegate())
-        }
-        // SmartRefreshLayout
-        SmartRefreshLayout.setDefaultRefreshInitializer { _, layout ->
-            layout.setEnableAutoLoadMore(false).setEnableOverScrollDrag(true)
-        }
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
-            ClassicsHeader(context)
-        }
-        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
-            BallPulseFooter(context).setNormalColor(color(R.color.refresh_footer)).setAnimatingColor(color(R.color.refresh_footer)).apply {
-                minimumHeight = dimen(R.dimen.refresh_footer).toInt()
-            }
-        }
-    }
 }

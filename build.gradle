@@ -11,7 +11,7 @@ task clean(type: Delete) {
 
 ext {
     // 是否将模块单独作为app运行
-    runApp = false
+    runApp = true
 
     applicationId = "com.memo.wan"
     compileSdk = 32

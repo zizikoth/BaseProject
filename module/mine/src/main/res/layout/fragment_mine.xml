@@ -216,7 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:icon_item_cell_drawable="@drawable/icon_list_todo"
-                app:icon_item_cell_title="未完清单" />
+                app:icon_item_cell_title="待办清单" />
 
             <com.memo.base.widget.IconItemCell
                 android:id="@+id/mItemCollect"

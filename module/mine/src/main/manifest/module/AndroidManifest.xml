@@ -27,6 +27,9 @@
         <activity
             android:name=".ui.activity.notify.NotifyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.todo.TodoActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

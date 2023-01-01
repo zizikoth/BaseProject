@@ -2,6 +2,9 @@ package com.memo.base.entity.remote
 
 import com.chad.library.adapter.base.entity.node.BaseExpandNode
 import com.chad.library.adapter.base.entity.node.BaseNode
+import com.memo.base.entity.local.TodoPriority
+import com.memo.base.entity.local.TodoStatus
+import com.memo.base.entity.local.TodoType
 
 data class ListEntity<T>(
     val curPage: Int = 0,
@@ -89,9 +92,7 @@ data class RankRecord(val coinCount: Int = 0, val level: Int = 0, val rank: Int 
 data class WebUrl(val id: Int = 0, val link: String = "", val name: String = "")
 
 data class UserShareRecord(
-    val coinInfo: CoinInfo = CoinInfo(),
-    val shareArticles: ListEntity<Article> = ListEntity()
-)
+    val coinInfo: CoinInfo = CoinInfo(), val shareArticles: ListEntity<Article> = ListEntity())
 
 data class NotifyMessage(
     val fullLink: String = "",
@@ -101,3 +102,29 @@ data class NotifyMessage(
     val niceDate: String = "",
     val tag: String = "",
 )
+
+data class TodoInfo(
+    val id: Int = 0,
+    val title: String = "",
+    val content: String = "",
+    val dateStr: String = "",
+    val completeDateStr: String = "",
+    val priority: Int = 0,
+    val status: Int = 0,
+    val type: Int = 0) {
+
+    fun getPriorityDesc(): String {
+        val result = TodoPriority.values().find { it.value == priority } ?: TodoPriority.LOW
+        return result.desc
+    }
+
+    fun getStatusDesc(): String {
+        val result = TodoStatus.values().find { it.value == status } ?: TodoStatus.UN_COMPLETE
+        return result.desc
+    }
+
+    fun getTypeDesc(): String {
+        val result = TodoType.values().find { it.value == type } ?: TodoType.OTHER
+        return result.desc
+    }
+}

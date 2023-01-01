@@ -35,7 +35,7 @@
                 android:layout_marginRight="@dimen/dp10"
                 android:padding="@dimen/dp7"
                 android:background="?android:selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_delete"
+                android:src="@drawable/icon_delete"
                 android:tint="@color/color_999999" />
 
         </FrameLayout>

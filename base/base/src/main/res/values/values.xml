@@ -21,7 +21,13 @@
     <color name="tab_normal">#46485F</color>
     <color name="tab_select">#ff8056</color>
     <color name="refresh_footer">#666666</color>
+
     <color name="color_delete_background">#ff4365</color>
     <color name="color_edit_background">#49A2FF</color>
     <color name="color_status_background">#fbcead</color>
+
+    <color name="color_todo_work">#33ff4365</color>
+    <color name="color_todo_life">#33f5e02b</color>
+    <color name="color_todo_mine">#3394e2ff</color>
+    <color name="color_todo_other">#33b38776</color>
 </resources>

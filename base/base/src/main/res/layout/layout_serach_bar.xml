@@ -34,7 +34,7 @@
         android:layout_gravity="end|center_vertical"
         android:layout_marginEnd="@dimen/dp20"
         android:padding="@dimen/dp7"
-        android:src="@drawable/ic_search"
+        android:src="@drawable/icon_search"
         tools:targetApi="m" />
 
     <View

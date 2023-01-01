@@ -74,7 +74,6 @@ dependencies {
     implementation project(path: ':module:project')
     implementation project(path: ':module:system')
     implementation project(path: ':module:mine')
-    implementation project(path: ':module:todo')
     testImplementation rootProject.ext.TestJunit
     androidTestImplementation rootProject.ext.TestAndroidJunit
     androidTestImplementation rootProject.ext.TestAndroidEspresso

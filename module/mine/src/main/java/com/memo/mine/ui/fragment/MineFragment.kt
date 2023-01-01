@@ -18,6 +18,7 @@ import com.memo.mine.ui.activity.rank.RankActivity
 import com.memo.mine.ui.activity.setting.SettingActivity
 import com.memo.mine.ui.activity.share.ShareActivity
 import com.memo.mine.ui.activity.square.SquareActivity
+import com.memo.mine.ui.activity.todo.TodoActivity
 import com.memo.mine.viewmodel.MineViewModel
 
 /**
@@ -66,7 +67,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
                 if (checkLogin()) startActivity<RankActivity>()
             }
             mItemTodo.onClick {
-                if (checkLogin()) RouteManager.startTodoActivity()
+                if (checkLogin()) startActivity<TodoActivity>()
             }
             mItemCollect.onClick {
                 if (checkLogin()) startActivity<WebsiteCollectActivity>()

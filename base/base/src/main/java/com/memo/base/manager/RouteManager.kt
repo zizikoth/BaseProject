@@ -23,7 +23,6 @@ object RouteManager {
     const val BlogActivity = "/Blog/BlogActivity"
     const val NewProjectActivity = "/Project/NewProjectActivity"
     const val SearchActivity = "/Search/SearchActivity"
-    const val TodoActivity = "/Todo/TodoActivity"
 
     /**
      * 获取ProjectFragment
@@ -74,13 +73,6 @@ object RouteManager {
      */
     fun startNewProjectActivity() {
         ARouter.getInstance().build(NewProjectActivity).navigation()
-    }
-
-    /**
-     * 跳转未完成清单
-     */
-    fun startTodoActivity(){
-        ARouter.getInstance().build(TodoActivity).navigation()
     }
 
 }

@@ -17,6 +17,5 @@ class App : CoreApp() {
     override fun onCreate() {
         super.onCreate()
         InitManager.initInApp(this)
-        InitManager.initInSplash()
     }
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.todo.TodoActivity">
+
+    <com.memo.base.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_title_text="待办清单" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/mRefreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mRvList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                tools:listitem="@layout/layout_item_todo" />
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        <com.memo.base.widget.DragFloatingActionButton
+            android:id="@+id/mBtnAdd"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="@dimen/dp200"
+            android:layout_marginEnd="@dimen/dp5"
+            android:src="@drawable/icon_todo_add"
+            app:backgroundTint="@color/white"
+            app:drag_margin="@dimen/dp5"
+            app:elevation="@dimen/dp3"
+            app:fabCustomSize="@dimen/dp45" />
+
+    </FrameLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -27,8 +27,6 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
         BarUtils.transparentStatusBar(this)
         BarUtils.setNavBarVisibility(this, false)
         BarUtils.setStatusBarLightMode(this, false)
-        // 延迟初始化
-        InitManager.initInSplash()
         // 延迟进入首页
         this.lifecycleScope.launch {
             delay(1000L)

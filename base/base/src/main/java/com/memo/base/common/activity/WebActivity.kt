@@ -83,7 +83,7 @@ class WebActivity : BaseVmActivity<ArticleViewModel, ActivityWebBinding>() {
                 isArticleCollected = DataManager.hasCollected(articleId)
                 // 站外文章 && 为收藏 不显示收藏按钮
                 if (articleId != -1 || isArticleCollected) {
-                    mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.ic_collected else R.drawable.ic_collect)
+                    mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.icon_collected else R.drawable.icon_collect)
                 }
             }
             WebHelper.init(mContext, this.mConainer, R.layout.layout_delegate_web_error, url)
@@ -138,7 +138,7 @@ class WebActivity : BaseVmActivity<ArticleViewModel, ActivityWebBinding>() {
         if (!collected && articleId == -1) mBinding.mTitleBar.showRight(false)
         // 更新收藏按钮a
         isArticleCollected = collected
-        mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.ic_collected else R.drawable.ic_collect)
+        mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.icon_collected else R.drawable.icon_collect)
     }
 
     /**
@@ -147,7 +147,7 @@ class WebActivity : BaseVmActivity<ArticleViewModel, ActivityWebBinding>() {
      */
     private fun onLoginEvent(login: Boolean) {
         isArticleCollected = DataManager.hasCollected(articleId)
-        mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.ic_collected else R.drawable.ic_collect)
+        mBinding.mTitleBar.setRightDrawable(if (isArticleCollected) R.drawable.icon_collected else R.drawable.icon_collect)
     }
 
 }

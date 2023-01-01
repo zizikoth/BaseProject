@@ -77,7 +77,7 @@
             android:layout_height="@dimen/dp45"
             android:layout_gravity="end"
             android:padding="@dimen/dp14"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/icon_search" />
 
     </FrameLayout>
 
