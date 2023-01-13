@@ -9,7 +9,7 @@ import rxhttp.RxHttpPlugins
 import rxhttp.wrapper.cookie.ICookieJar
 
 /**
- * title:信息管理
+ * title:全局本地信息管理
  * describe:
  *
  * @author memo
@@ -135,7 +135,7 @@ object DataManager {
      */
     fun showSquareTip(): Boolean {
         val showTip = SP.getBoolean(SQUARE_TIP, true)
-        if(showTip) SP.put(SQUARE_TIP, false)
+        if (showTip) SP.put(SQUARE_TIP, false)
         return showTip
     }
 

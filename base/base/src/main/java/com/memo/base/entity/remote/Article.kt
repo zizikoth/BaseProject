@@ -1,10 +1,12 @@
 package com.memo.base.entity.remote
 
+import android.os.Parcelable
 import com.chad.library.adapter.base.entity.node.BaseExpandNode
 import com.chad.library.adapter.base.entity.node.BaseNode
 import com.memo.base.entity.local.TodoPriority
 import com.memo.base.entity.local.TodoStatus
 import com.memo.base.entity.local.TodoType
+import kotlinx.parcelize.Parcelize
 
 data class ListEntity<T>(
     val curPage: Int = 0,
@@ -103,15 +105,16 @@ data class NotifyMessage(
     val tag: String = "",
 )
 
+@Parcelize
 data class TodoInfo(
     val id: Int = 0,
     val title: String = "",
     val content: String = "",
     val dateStr: String = "",
-    val completeDateStr: String = "",
+    var completeDateStr: String = "",
     val priority: Int = 0,
-    val status: Int = 0,
-    val type: Int = 0) {
+    var status: Int = 0,
+    val type: Int = 0) : Parcelable {
 
     fun getPriorityDesc(): String {
         val result = TodoPriority.values().find { it.value == priority } ?: TodoPriority.LOW

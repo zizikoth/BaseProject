@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.appbar.AppBarLayout
 import com.memo.base.base.BaseVmFragment
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.local.Zip5Null
 import com.memo.base.entity.remote.*
@@ -90,17 +90,17 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
             // 轮播图
             mBanner.setOnPageClickListener { _, position ->
                 val data = mBanner.data[position] as Article
-                WebActivity.startFromList(mActivity, data.url, data.id, data.title)
+                ArticleActivity.startFromList(mActivity, data.title, data.url, data.id)
             }
             // 列表点击
             mAdapter.onItemClick {
                 when (it.multiItemType) {
                     ARTICLE_TYPE_CHAPTER -> RouteManager.startBlogActivity(it.id)
                     ARTICLE_TYPE_TITLE -> if (it.showMore) RouteManager.startNewProjectActivity()
-                    ARTICLE_TYPE_ARTICLE -> WebActivity.startFromList(mActivity, it.link, it.id, it.title)
+                    ARTICLE_TYPE_ARTICLE -> ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
                 }
             }
-            mAdapter.onProjectClick = { WebActivity.startFromList(mActivity, it.link, it.id, it.title) }
+            mAdapter.onProjectClick = { ArticleActivity.startFromList(mActivity, it.title, it.link, it.id) }
         }
 
         mViewModel.liveData.observe(this, this::onDataResponse)

@@ -12,32 +12,39 @@
         android:layout_height="wrap_content"
         app:clickToClose="true"
         app:drag_edge="right"
-        app:show_mode="lay_down">
+        app:show_mode="pull_out">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:paddingStart="@dimen/dp20"
+            android:paddingEnd="@dimen/dp20"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <com.hjq.shape.view.ShapeImageView
                 android:id="@+id/mItemEdit"
-                android:layout_width="@dimen/dp100"
-                android:layout_height="match_parent"
-                android:background="@color/color_edit_background"/>
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:gravity="center"
+                android:padding="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp20"
+                android:src="@drawable/icon_edit"
+                android:textColor="@color/white"
+                app:shape_radius="@dimen/dp60"
+                app:shape_solidColor="@color/color_edit_background" />
 
-            <FrameLayout
+
+            <com.hjq.shape.view.ShapeImageView
                 android:id="@+id/mItemDelete"
-                android:layout_width="@dimen/dp100"
-                android:layout_height="match_parent"
-                android:background="@color/color_delete_background">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/dp30"
-                    android:layout_height="@dimen/dp30"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_delete" />
-            </FrameLayout>
-
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:gravity="center"
+                android:padding="@dimen/dp20"
+                android:src="@drawable/icon_delete"
+                android:textColor="@color/white"
+                app:shape_radius="@dimen/dp60"
+                app:shape_solidColor="@color/color_delete_background" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -74,7 +81,7 @@
                     android:id="@+id/mTvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginStart="@dimen/dp10"
                     android:text="作者：faith-hb"
                     android:textColor="@color/textNormal"
                     android:textSize="@dimen/textNormal"

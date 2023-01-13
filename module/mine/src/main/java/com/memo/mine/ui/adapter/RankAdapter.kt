@@ -22,7 +22,7 @@ class RankAdapter : BaseQuickAdapter<RankRecord, BaseViewHolder>(R.layout.layout
             .setGone(R.id.mTvRank, item.rank <= 3)
             .setImageResource(
                 R.id.mIvRank,
-                if (item.rank == 1) R.drawable.icon_first else if (item.rank == 2) R.drawable.icon_second else R.drawable.icon_third)
+                if (item.rank == 1) R.drawable.icon_rank_first else if (item.rank == 2) R.drawable.icon_rank_second else R.drawable.icon_rank_third)
             .setText(R.id.mTvRank, item.rank.toString())
             .setText(R.id.mTvName, item.username)
             .setText(R.id.mTvLevel, "Lv." + item.level)

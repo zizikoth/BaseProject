@@ -2,6 +2,7 @@ package com.memo.mine.ui.fragment
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.memo.base.base.BaseVmFragment
 import com.memo.base.entity.local.Zip4
 import com.memo.base.manager.BusManager
@@ -55,7 +56,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
                 startActivity<SettingActivity>()
             }
             mIvNotify.onClick {
-                startActivity<NotifyActivity>()
+                if (checkLogin()) startActivity<NotifyActivity>()
             }
             mLlCollect.onClick {
                 if (checkLogin()) startActivity<ArticleCollectActivity>()
@@ -91,10 +92,14 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
         mViewModel.getMineInfo()
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (isPrepared) mViewModel.unReadMessageCount()
+    /*** 判断当前界面是否处于可见状态 ***/
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden&&isPrepared) {
+            mViewModel.unReadMessageCount()
+        }
     }
+
 
     private fun onNotifyResponse(count: Int) {
         mBinding.mTvNotify.run {
@@ -124,7 +129,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
      * @param refresh Boolean
      */
     private fun onCollectEvent(refresh: Boolean) {
-        mBinding.mTvCollect.text = DataManager.getUser()?.collectIds?.size.toString()
+        mViewModel.getMineInfo()
     }
 
     /**

@@ -71,12 +71,12 @@
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mIvSearch"
             android:layout_width="@dimen/dp45"
             android:layout_height="@dimen/dp45"
             android:layout_gravity="end"
-            android:padding="@dimen/dp14"
+            android:padding="@dimen/dp12_5"
             android:src="@drawable/icon_search" />
 
     </FrameLayout>

@@ -2,13 +2,14 @@ package com.memo.search.ui.fragment
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.base.BaseVmFragment
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.ListEntity
 import com.memo.base.utils.finish
 import com.memo.base.utils.onItemClick
 import com.memo.base.utils.showEmpty
+import com.memo.base.widget.EmptyView
 import com.memo.search.databinding.FragmentSearchArticleBinding
 import com.memo.search.viewmodel.SearchViewModel
 
@@ -53,7 +54,7 @@ class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArti
         }
 
         mAdapter.onItemClick {
-            WebActivity.startFromList(mActivity, it.link, it.id, it.title)
+            ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
@@ -83,7 +84,7 @@ class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArti
      * @param data ListEntity<Article>
      */
     private fun onArticleResponse(data: ListEntity<Article>) {
-        mAdapter.showEmpty(data.isEmpty())
+        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_SEARCH)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())

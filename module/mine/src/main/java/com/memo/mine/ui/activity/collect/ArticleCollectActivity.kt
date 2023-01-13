@@ -3,14 +3,16 @@ package com.memo.mine.ui.activity.collect
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.R
 import com.memo.base.base.BaseVmActivity
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.ListEntity
 import com.memo.base.manager.BusManager
+import com.memo.base.manager.DataManager
 import com.memo.base.utils.finish
 import com.memo.base.utils.onItemChildClick
 import com.memo.base.utils.showEmpty
+import com.memo.base.widget.EmptyView
 import com.memo.mine.databinding.ActivityArticleCollectBinding
 import com.memo.mine.utils.DialogUtils
 import com.memo.mine.viewmodel.CollectViewModel
@@ -32,8 +34,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
     private val mAdapter = ArticleAdapter(true)
 
     /*** 初始化数据 ***/
-    override fun initData() {
-    }
+    override fun initData() {}
 
     /*** 初始化控件 ***/
     override fun initView() {
@@ -60,13 +61,16 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
             mViewModel.getArticleCollectList(pageNum)
         }
 
-        mAdapter.onItemChildClick { id, data ->
-            when (id) {
-                R.id.mItemDelete -> mViewModel.deleteArticleCollect(data.id, data.originId)
+        mAdapter.onItemChildClick { viewId, data ->
+            when (viewId) {
+                // 在收藏列表删除收藏
+                R.id.mItemDelete -> mViewModel.deleteCollectInCollect(data.id, data.originId)
+                // 修改站外收藏文章
                 R.id.mItemEdit -> DialogUtils.showEditArticleDialog(data) { id, title, author, link ->
                     mViewModel.editOuterArticleCollect(id, title, author, link)
                 }
-                R.id.mItemArticle -> WebActivity.startFromCollect(mContext, data.link, data.id, data.originId, data.title)
+                // 跳转网页
+                R.id.mItemArticle -> ArticleActivity.startFromCollect(mContext, data.title, data.link, data.originId, data.id)
             }
         }
 
@@ -92,7 +96,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      * @param data ListEntity<Article>
      */
     private fun onListResponse(data: ListEntity<Article>) {
-        mAdapter.showEmpty(data.isEmpty())
+        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_COLLECT)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())
@@ -104,6 +108,8 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      */
     private fun onAddResponse(data: Article) {
         mAdapter.addData(data)
+        DataManager.addCollected(data.id)
+        BusManager.collectLiveData.post(true)
     }
 
     /**
@@ -127,13 +133,15 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
     private fun onDeleteResponse(id: Int) {
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
         if (mAdapter.data.size == 0) mBinding.mRefreshLayout.autoRefresh()
+        DataManager.removeCollected(id)
+        BusManager.collectLiveData.post(true)
     }
 
     /**
      * 更新收藏数据
      * @param refresh Boolean
      */
-    private fun onCollectEvent(refresh:Boolean){
+    private fun onCollectEvent(refresh: Boolean) {
         mBinding.mRefreshLayout.autoRefresh()
     }
 }

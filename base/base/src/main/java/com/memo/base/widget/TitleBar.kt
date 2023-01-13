@@ -18,7 +18,7 @@ import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.setVisible
 
 /**
- * title:
+ * title:标题栏
  * describe:
  *
  * @author memo
@@ -63,8 +63,8 @@ class TitleBar @JvmOverloads constructor(
             mTvSubTitle.setVisible(subtitleText != "")
 
             // 左侧
-            mTvLeft.setVisible(showBack)
-            mTvLeft.onClick { if (context is AppCompatActivity) context.finish() }
+            mIvLeft.setVisible(showBack)
+            mIvLeft.onClick { if (context is AppCompatActivity) context.finish() }
 
             // 右侧
             mIvRight.setVisible(rightDrawable != 0)
@@ -104,7 +104,7 @@ class TitleBar @JvmOverloads constructor(
      * @return TitleBar
      */
     fun showBack(show: Boolean): TitleBar {
-        mBinding.mTvLeft.setVisible(show)
+        mBinding.mIvLeft.setVisible(show)
         return this
     }
 
@@ -143,7 +143,7 @@ class TitleBar @JvmOverloads constructor(
      * @param action Function1<View, Unit>
      */
     fun setOnLeftClickListener(action: (View) -> Unit): TitleBar {
-        mBinding.mTvLeft.onClick(action)
+        mBinding.mIvLeft.onClick(action)
         return this
     }
 

@@ -1,9 +1,10 @@
 package com.memo.base.manager
 
+import com.memo.base.entity.remote.TodoInfo
 import com.memo.core.utils.livedata.ProtectedLiveData
 
 /**
- * title: 全局消息通知管理
+ * title: 全局事件消息通知管理
  * describe:
  *
  * @author memo
@@ -23,5 +24,10 @@ object BusManager {
      * 收藏数据更新
      */
     val collectLiveData by lazy { ProtectedLiveData<Boolean>() }
+
+    /**
+     * Todo数据更新
+     */
+    val todoLiveData by lazy { ProtectedLiveData<TodoInfo>() }
 
 }

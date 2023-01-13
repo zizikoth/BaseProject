@@ -17,7 +17,7 @@ import com.just.agentweb.AgentWeb
 import com.just.agentweb.AgentWebConfig
 
 /**
- * title:
+ * title:网页工具
  * describe:
  *
  * @author zhou
@@ -25,6 +25,14 @@ import com.just.agentweb.AgentWebConfig
  */
 object WebHelper {
 
+    /**
+     * 初始化网页
+     * @param activity AppCompatActivity    当前页面
+     * @param container ViewGroup           网页容器
+     * @param errorLayoutRes Int            网页加载失败的站位图
+     * @param url String?                   网页地址
+     * @return AgentWeb
+     */
     @SuppressLint("SetJavaScriptEnabled", "ObsoleteSdkInt")
     fun init(activity: AppCompatActivity, container: ViewGroup, @LayoutRes errorLayoutRes: Int, url: String?): AgentWeb {
 

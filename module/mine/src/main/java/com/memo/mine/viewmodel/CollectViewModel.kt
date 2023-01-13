@@ -38,9 +38,9 @@ class CollectViewModel : BaseViewModel() {
         }
     }
 
-    fun deleteArticleCollect(articleId: Int, originId: Int) {
+    fun deleteCollectInCollect(articleId: Int, originId: Int) {
         showLoading()
-        request(ApiRepository.deleteArticleCollect(articleId, originId)) {
+        request(ApiRepository.deleteCollectInCollect(articleId, originId)) {
             deleteLiveData.postValue(articleId)
         }
     }

@@ -10,7 +10,7 @@ import com.memo.core.utils.ext.gone
 import com.memo.core.utils.ext.visible
 
 /**
- * title:
+ * title:收藏与取消收藏的动画组件
  * describe:
  *
  * @author memo

@@ -8,6 +8,7 @@ import com.memo.base.utils.finish
 import com.memo.base.utils.onItemChildClick
 import com.memo.base.utils.showEmpty
 import com.memo.base.utils.toast
+import com.memo.base.widget.EmptyView
 import com.memo.mine.R
 import com.memo.mine.databinding.ActivityWebsiteCollectBinding
 import com.memo.mine.ui.adapter.WebsiteAdapter
@@ -82,7 +83,7 @@ class WebsiteCollectActivity : BaseVmActivity<WebsiteViewModel, ActivityWebsiteC
      * @param data ArrayList<WebSite>
      */
     private fun onListResponse(data: ArrayList<WebUrl>) {
-        mAdapter.showEmpty(data.isEmpty())
+        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_COLLECT)
         mAdapter.setList(data)
         mBinding.mRefreshLayout.finish(data.isNotEmpty())
     }

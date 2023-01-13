@@ -3,6 +3,7 @@ package com.memo.system.ui.activity
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.activity.WebActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.Article

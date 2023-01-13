@@ -7,16 +7,17 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="@dimen/dp179"
-        android:layout_height="@dimen/dp126"
+        android:layout_width="@dimen/dp200"
+        android:layout_height="@dimen/dp200"
         android:src="@mipmap/icon_status_web_error" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/status_server_error_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp20"
         android:text="网页加载失败"
+        android:textStyle="bold"
         android:textColor="@color/textDark"
         android:textSize="@dimen/textLarge" />
 </androidx.appcompat.widget.LinearLayoutCompat>

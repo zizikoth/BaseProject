@@ -5,6 +5,7 @@ import com.memo.base.base.BaseActivity
 import com.memo.base.manager.RouteManager
 import com.memo.base.utils.toast
 import com.memo.core.utils.ClickHelper
+import com.memo.core.utils.DialogHelper
 import com.memo.core.utils.FragmentHelper
 import com.memo.main.R
 import com.memo.main.databinding.ActivityMainBinding
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-        if (ClickHelper.isDoubleClickExit { toast("再次点击退出应用") }) {
+        if (ClickHelper.isDoubleClickExit { DialogHelper.popTip("再次点击退出应用") }) {
             AppUtils.exitApp()
         }
     }

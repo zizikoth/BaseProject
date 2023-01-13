@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kongzue.dialogx.dialogs.GuideDialog
 import com.memo.base.R
 import com.memo.base.base.BaseVmActivity
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.ListEntity
@@ -58,7 +58,7 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
 
         mAdapter.onItemChildClick { id, data ->
             if (id == R.id.mIvIcon) ShareActivity.start(mContext, data.userId)
-            else if (id == R.id.mItemArticle) WebActivity.startFromList(mContext, data.link, data.id, data.title)
+            else if (id == R.id.mItemArticle) ArticleActivity.startFromList(mContext, data.title, data.link, data.id)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

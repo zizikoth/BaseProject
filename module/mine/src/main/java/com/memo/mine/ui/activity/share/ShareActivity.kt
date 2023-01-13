@@ -3,7 +3,7 @@ package com.memo.mine.ui.activity.share
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.base.BaseVmActivity
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.UserShareRecord
 import com.memo.base.utils.finish
@@ -65,7 +65,7 @@ class ShareActivity : BaseVmActivity<ShareViewModel, ActivityShareBinding>() {
             mViewModel.getUserShareArticles(userId, pageNum)
         }
 
-        mAdapter.onItemClick { WebActivity.startFromList(mContext, it.link, it.id, it.title) }
+        mAdapter.onItemClick { ArticleActivity.startFromList(mContext, it.title, it.link, it.id) }
 
         mViewModel.shareLiveData.observe(this, this::onShareResponse)
 

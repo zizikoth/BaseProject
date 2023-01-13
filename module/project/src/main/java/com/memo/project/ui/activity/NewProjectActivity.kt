@@ -3,7 +3,7 @@ package com.memo.project.ui.activity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.memo.base.base.BaseVmActivity
-import com.memo.base.common.activity.WebActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.adapter.ArticleAdapter
 import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.ListEntity
@@ -54,7 +54,7 @@ class NewProjectActivity : BaseVmActivity<ProjectViewModel, ActivityNewProjectBi
             mViewModel.getNewProjectArticles(pageNum)
         }
         mAdapter.onItemClick {
-            WebActivity.startFromList(mContext, it.link, it.id, it.title)
+            ArticleActivity.startFromList(mContext, it.title, it.link, it.id)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

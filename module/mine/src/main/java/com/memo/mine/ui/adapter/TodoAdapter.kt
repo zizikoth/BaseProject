@@ -37,26 +37,25 @@ class TodoAdapter : BaseQuickAdapter<TodoInfo, BaseViewHolder>(R.layout.layout_i
         holder.run {
             getView<SwipeLayout>(R.id.mSwipeLayout).close()
             val color = when (item.type) {
-                TodoType.WORK.value -> color(com.memo.base.R.color.color_todo_work)
-                TodoType.LIFE.value -> color(com.memo.base.R.color.color_todo_life)
-                TodoType.MINE.value -> color(com.memo.base.R.color.color_todo_mine)
-                TodoType.OTHER.value -> color(com.memo.base.R.color.color_todo_other)
-                else -> color(com.memo.base.R.color.color_todo_other)
+                TodoType.WORK.value -> color(R.color.color_todo_work)
+                TodoType.LIFE.value -> color(R.color.color_todo_life)
+                TodoType.MINE.value -> color(R.color.color_todo_mine)
+                TodoType.OTHER.value -> color(R.color.color_todo_other)
+                else -> color(R.color.color_todo_other)
             }
             getView<LinearLayout>(R.id.mLlContent).round(color, radius)
             getView<LabelView>(R.id.mLabelView).text = item.getTypeDesc()
+            val complete = item.status == TodoStatus.COMPLETE.value
             setImageResource(
-                R.id.mIvStatus,
-                if (item.status == TodoStatus.COMPLETE.value) com.memo.base.R.drawable.icon_uncomplete else com.memo.base.R.drawable.icon_complete)
+                R.id.mIvStatus, if (complete) R.drawable.icon_todo_uncomplete else R.drawable.icon_todo_complete)
 
             setText(R.id.mTvTitle, item.title)
             setText(R.id.mTvContent, item.content)
-            setText(R.id.mTvTimePriority, item.dateStr + "        [ " + item.getPriorityDesc() + " ]")
-            setVisible(R.id.mIvComplete, item.status == TodoStatus.COMPLETE.value)
-
-            getView<ImageView>(R.id.mIvStatus).circle(color(com.memo.base.R.color.color_status_background))
-            getView<ImageView>(R.id.mIvEdit).circle(color(com.memo.base.R.color.color_edit_background))
-            getView<ImageView>(R.id.mIvDelete).circle(color(com.memo.base.R.color.color_delete_background))
+            setText(
+                R.id.mTvTimePriority,
+                (if (complete) "完成时间：${item.completeDateStr}" else "创建时间：${item.dateStr}") + "\t\t[ " + item.getPriorityDesc() + " ]")
+            setVisible(R.id.mIvComplete, complete)
+            setGone(R.id.mIvEdit,complete)
         }
     }
 

@@ -21,17 +21,16 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mIvError"
-            android:layout_width="@dimen/dp179"
-            android:layout_height="@dimen/dp126"
-            android:layout_gravity="center"
+            android:layout_width="@dimen/dp200"
+            android:layout_height="@dimen/dp200"
             tools:src="@mipmap/icon_status_server_error" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/mTvError"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp20"
+            android:textStyle="bold"
             android:textColor="@color/textDark"
             android:textSize="@dimen/textLarge"
             tools:text="服务器异常" />

@@ -5,9 +5,12 @@ import android.widget.EditText
 import android.widget.TextView
 import com.kongzue.dialogx.dialogs.FullScreenDialog
 import com.kongzue.dialogx.interfaces.OnBindView
+import com.memo.base.api.ApiErrorHandler
 import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.WebUrl
+import com.memo.base.manager.RouteManager
 import com.memo.base.utils.toast
+import com.memo.core.utils.DialogHelper
 import com.memo.core.utils.ext.onClick
 import com.memo.core.utils.ext.value
 import com.memo.mine.R
@@ -129,4 +132,5 @@ object DialogUtils {
             }
         })
     }
+
 }

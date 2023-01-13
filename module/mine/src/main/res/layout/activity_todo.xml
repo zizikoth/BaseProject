@@ -16,28 +16,93 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/mRefreshLayout"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mRvList"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never"
-                tools:listitem="@layout/layout_item_todo" />
+                android:layout_height="@dimen/dp45"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:gravity="center">
 
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvType"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="类型"
+                    android:drawableEnd="@drawable/icon_arrow_fill_down"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/mTvStatus" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvStatus"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="状态"
+                    android:drawableEnd="@drawable/icon_arrow_fill_down"
+                    app:layout_constraintLeft_toRightOf="@id/mTvType"
+                    app:layout_constraintRight_toLeftOf="@id/mTvPriority" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvPriority"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="优先"
+                    android:drawableEnd="@drawable/icon_arrow_fill_down"
+                    app:layout_constraintLeft_toRightOf="@id/mTvStatus"
+                    app:layout_constraintRight_toLeftOf="@id/mTvOrderBy" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/mTvOrderBy"
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="match_parent"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:text="排序"
+                    android:drawableEnd="@drawable/icon_arrow_fill_down"
+                    app:layout_constraintLeft_toRightOf="@id/mTvPriority"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                android:id="@+id/mRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mRvList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/layout_item_todo" />
+
+
+            </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.memo.base.widget.DragFloatingActionButton
             android:id="@+id/mBtnAdd"
             android:layout_width="@dimen/dp45"
             android:layout_height="@dimen/dp45"
             android:layout_gravity="end|bottom"
-            android:layout_marginBottom="@dimen/dp200"
             android:layout_marginEnd="@dimen/dp5"
+            android:layout_marginBottom="@dimen/dp100"
             android:src="@drawable/icon_todo_add"
             app:backgroundTint="@color/white"
             app:drag_margin="@dimen/dp5"

@@ -16,29 +16,30 @@
         android:paddingLeft="@dimen/dp20"
         android:paddingRight="@dimen/dp20">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.hjq.shape.view.ShapeImageView
             android:id="@+id/mIvStatus"
             android:layout_width="@dimen/dp60"
             android:layout_height="@dimen/dp60"
             android:gravity="center"
             android:padding="@dimen/dp20"
-            android:src="@drawable/icon_complete"
-            android:textColor="@color/white"
-            tools:background="@color/color_status_background" />
+            android:layout_marginEnd="@dimen/dp20"
+            android:src="@drawable/icon_todo_complete"
+            app:shape_radius="@dimen/dp60"
+            app:shape_solidColor="@color/color_status_background"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.hjq.shape.view.ShapeImageView
             android:id="@+id/mIvEdit"
             android:layout_width="@dimen/dp60"
             android:layout_height="@dimen/dp60"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
             android:gravity="center"
             android:padding="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
             android:src="@drawable/icon_edit"
             android:textColor="@color/white"
-            tools:background="@color/color_edit_background" />
+            app:shape_radius="@dimen/dp60"
+            app:shape_solidColor="@color/color_edit_background" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.hjq.shape.view.ShapeImageView
             android:id="@+id/mIvDelete"
             android:layout_width="@dimen/dp60"
             android:layout_height="@dimen/dp60"
@@ -46,8 +47,8 @@
             android:padding="@dimen/dp20"
             android:src="@drawable/icon_delete"
             android:textColor="@color/white"
-            tools:background="@color/color_delete_background" />
-
+            app:shape_radius="@dimen/dp60"
+            app:shape_solidColor="@color/color_delete_background" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -75,8 +76,8 @@
                 android:id="@+id/mTvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp35"
-                android:layout_marginRight="@dimen/dp35"
+                android:layout_marginStart="@dimen/dp35"
+                android:layout_marginEnd="@dimen/dp35"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="2"
@@ -112,17 +113,16 @@
             android:layout_height="wrap_content"
             app:label_background_color="@color/colorMain"
             app:label_text_color="@color/white"
-            app:label_text_size="@dimen/sp12"
+            app:label_text_size="@dimen/sp10"
             tools:label_text="工作" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/mIvComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:padding="@dimen/dp12_5"
             android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/dp15"
-            android:src="@drawable/icon_status_complete" />
+            android:src="@drawable/icon_todo_status_complete" />
     </FrameLayout>
-
 
 </com.daimajia.swipe.SwipeLayout>

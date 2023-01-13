@@ -37,5 +37,4 @@ object Config {
     @DefaultDomain
     @JvmField
     var baseUrl: String = runMode.url
-
 }

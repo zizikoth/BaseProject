@@ -14,7 +14,9 @@
         android:layout_height="@dimen/dp45"
         android:background="@null"
         android:hint="请输入用户名"
-        android:textColor="@color/textNormal"
+        android:textColor="@color/textDark"
+        android:textColorHint="@color/textLight"
+        android:textCursorDrawable="@drawable/edit_cursor"
         android:textSize="@dimen/textNormal" />
 
     <com.hjq.shape.view.ShapeView
@@ -31,7 +33,9 @@
         android:background="@null"
         android:hint="请输入密码"
         android:inputType="textPassword"
-        android:textColor="@color/textNormal"
+        android:textColor="@color/textDark"
+        android:textColorHint="@color/textLight"
+        android:textCursorDrawable="@drawable/edit_cursor"
         android:textSize="@dimen/textNormal" />
 
     <com.hjq.shape.view.ShapeView
@@ -48,7 +52,9 @@
         android:background="@null"
         android:hint="请再次输入密码"
         android:inputType="textPassword"
-        android:textColor="@color/textNormal"
+        android:textColor="@color/textDark"
+        android:textColorHint="@color/textLight"
+        android:textCursorDrawable="@drawable/edit_cursor"
         android:textSize="@dimen/textNormal" />
 
     <com.hjq.shape.view.ShapeView

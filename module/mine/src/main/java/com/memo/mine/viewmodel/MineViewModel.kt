@@ -35,8 +35,8 @@ class MineViewModel : BaseViewModel() {
     }
 
     fun getMineInfo() {
-        val combine = combine(ApiRepository.getCollectSize(), ApiRepository.getCoinInfo()) { collectSize, coinInfo ->
-            Zip4(coinInfo.level, collectSize, coinInfo.coinCount, coinInfo.rank)
+        val combine = combine(ApiRepository.getArticleCollectList(1), ApiRepository.getCoinInfo()) { collectInfo, coinInfo ->
+            Zip4(coinInfo.level, collectInfo.total, coinInfo.coinCount, coinInfo.rank)
         }
         requestOnly(combine, infoLiveData::postValue)
     }

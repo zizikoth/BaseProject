@@ -26,6 +26,9 @@ import com.memo.core.widget.recyclerview.StartSnapHelper
  *
  * Talk is cheap, Show me the code.
  */
+/**
+ * 公众号头像列表
+ */
 private val chapterAvatars = mapOf(
     0 to R.drawable.avatar_android,
     408 to R.drawable.chapter_hy,
@@ -46,10 +49,15 @@ private val chapterAvatars = mapOf(
 class ArticleAdapter(val enableSwipe: Boolean = false) : BaseProviderMultiAdapter<Article>() {
 
     init {
+        // 公众号
         addItemProvider(ChapterProvider())
+        // 条目标题
         addItemProvider(TitleProvider())
+        // 最新项目
         addItemProvider(ProjectProvider())
+        // 文章
         addItemProvider(ArticleProvider())
+        // 子组件点击
         addChildClickViewIds(R.id.mItemDelete, R.id.mItemEdit, R.id.mItemArticle, R.id.mIvIcon)
     }
 

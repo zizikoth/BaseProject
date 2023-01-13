@@ -55,9 +55,9 @@ fun <VB : ViewBinding> BaseViewHolder.getBinding(bind: (View) -> VB): VB =
     itemView.getTag(R.id.tagAdapterViewHolder) as? VB ?: bind(itemView).also { itemView.setTag(R.id.tagAdapterViewHolder, it) }
 
 
-fun BaseQuickAdapter<*, *>.showEmpty(isEmpty: Boolean, tip: String = "暂无数据") {
+fun BaseQuickAdapter<*, *>.showEmpty(isEmpty: Boolean, type: Long = EmptyView.EMPTY_DATA) {
     if (!this.hasEmptyView() && isEmpty) {
-        this.setEmptyView(EmptyView(this.context).setTip(tip))
+        this.setEmptyView(EmptyView(this.context).setType(type))
     }
 }
 

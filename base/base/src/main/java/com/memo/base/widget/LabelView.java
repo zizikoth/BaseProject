@@ -13,13 +13,13 @@ import android.view.View;
 import com.memo.base.R;
 
 /**
- * title:
+ * title: 标签控件
  * describe:
  *
  * @author memo
  * @date 2022-12-10 13:41
  * @email zhou_android@163.com
- * <p>
+ *
  * Talk is cheap, Show me the code.
  */
 

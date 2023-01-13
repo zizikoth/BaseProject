@@ -12,7 +12,7 @@ import com.memo.base.R
 import kotlin.math.sqrt
 
 /**
- * title:可拖拽button
+ * title:可拖拽悬浮button
  * describe:
  *
  * @author memo

@@ -2,6 +2,7 @@ package com.memo.base.api
 
 import com.blankj.utilcode.util.LogUtils
 import com.google.gson.JsonParseException
+import com.memo.base.manager.DataManager
 import com.memo.base.manager.RouteManager
 import com.memo.base.utils.toast
 import com.memo.core.utils.DialogHelper
@@ -36,9 +37,9 @@ object ApiErrorHandler {
             // 解析错误
             is JsonParseException -> ApiException(ApiCode.ServerError, "数据解析失败")
             // 连接错误
-            is SocketTimeoutException,
-            is TimeoutCancellationException,
-            is SocketException -> ApiException(ApiCode.ServerError, "服务器连接异常，请稍后重试")
+            is SocketTimeoutException, is TimeoutCancellationException, is SocketException -> ApiException(
+                ApiCode.ServerError,
+                "服务器连接异常，请稍后重试")
             // 网络错误
             is UnknownHostException -> ApiException(ApiCode.NetError, "网络异常，请检查网络")
             // 未知错误
@@ -46,22 +47,36 @@ object ApiErrorHandler {
         }
     }
 
-    /*** 踢出标识 ***/
-    private var tickOut = false
-
     /**
      * 对处理后的ApiException进行处理
      * @param error ApiException
      */
     fun handleError(error: ApiException) {
-        if (error.code == ApiCode.TokenError && !tickOut) {
-            tickOut = true
-            DialogHelper.alert("您的登录信息失效，请重新登录！") {
-                tickOut = false
-                RouteManager.startAccountActivity()
-            }
-        }else{
-            toast(error.message)
+        when (error.code) {
+            ApiCode.TokenError -> DataManager.loginOut()
         }
     }
+
+    /*** 踢出标识 ***/
+    private var tickOut = false
+
+    /**
+     * 对处理后的ApiException进行提示
+     * @param error ApiException
+     */
+    fun tipError(error: ApiException) {
+        when (error.code) {
+            ApiCode.TokenError -> {
+                tickOut = true
+                DialogHelper.alert("您的登录信息失效，请重新登录！") {
+                    tickOut = false
+                    RouteManager.startAccountActivity()
+                }
+            }
+            else -> {
+                toast(error.message)
+            }
+        }
+    }
+
 }

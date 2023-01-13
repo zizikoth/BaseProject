@@ -1,10 +1,12 @@
 package com.memo.base.base
 
+import android.os.UserManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memo.base.api.ApiCode
 import com.memo.base.api.ApiErrorHandler
+import com.memo.base.manager.DataManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -20,6 +22,7 @@ import kotlinx.coroutines.launch
  * Talk is cheap, Show me the code.
  */
 open class BaseViewModel : ViewModel() {
+
     /*** 是否是第一次加载 ***/
     var isFirstLoad = true
 
@@ -39,7 +42,7 @@ open class BaseViewModel : ViewModel() {
     /**
      * 隐藏加载框
      */
-    protected fun hideLoading() {
+    private fun hideLoading() {
         loadEvent.postValue(false)
     }
 
@@ -55,9 +58,10 @@ open class BaseViewModel : ViewModel() {
             request.catch {
                 // 请求失败
                 hideLoading()
+                val error = ApiErrorHandler.handleException(it)
+                ApiErrorHandler.handleError(error)
                 if (checkError) {
-                    val error = ApiErrorHandler.handleException(it)
-                    ApiErrorHandler.handleError(error)
+                    ApiErrorHandler.tipError(error)
                     if (isFirstLoad) stateEvent.postValue(error.code)
                     onError.invoke(error.code)
                 }

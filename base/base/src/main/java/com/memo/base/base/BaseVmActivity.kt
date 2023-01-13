@@ -20,36 +20,40 @@ abstract class BaseVmActivity<VM : BaseViewModel, VB : ViewBinding> : BaseActivi
 
     protected lateinit var mViewModel: VM
 
+    /*** 页面状态显示控制 ***/
     protected lateinit var mPageState: LoadingStateView
 
     /*** 是否进入页面直接显示内容 ***/
     protected open fun showContent(): Boolean = false
 
     override fun doOnBefore() {
+        // 获取当前页面的ViewModel
+        mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
+        // 初始化页面状态
         mPageState = LoadingStateView(mBinding.root, object : OnReloadListener {
             override fun onReload() {
                 mPageState.showLoadingView()
                 start()
             }
         })
-
-        mViewModel = ViewModelProvider(this)[getViewModelClass(this) as Class<VM>]
+        // 判断页面是否显示加载状态或者直接显示内容
+        if (showContent()) {
+            mViewModel.isFirstLoad = false
+            mPageState.showContentView()
+        } else {
+            mPageState.showLoadingView()
+        }
+        // 监听加载弹窗
         mViewModel.loadEvent.observe(this) {
             if (it) showLoading() else hideLoading()
         }
+        // 监听页面状态
         mViewModel.stateEvent.observe(this) {
             when (it) {
                 ApiCode.NetError -> mPageState.showEmptyView()
                 ApiCode.ServerError -> mPageState.showErrorView()
                 ApiCode.Success -> mPageState.showContentView()
             }
-        }
-        
-        if (showContent()) {
-            mViewModel.isFirstLoad = false
-            mPageState.showContentView()
-        } else {
-            mPageState.showLoadingView()
         }
     }
     

@@ -1,9 +1,7 @@
 package com.memo.base.api
 
-import com.memo.base.entity.local.TodoFilter
-import com.memo.base.entity.local.TodoPriority
-import com.memo.base.entity.local.TodoStatus
-import com.memo.base.entity.local.TodoType
+import com.blankj.utilcode.util.TimeUtils
+import com.memo.base.entity.local.*
 import com.memo.base.entity.remote.*
 import com.memo.base.manager.DataManager
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +10,7 @@ import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toFlowResponse
 
 /**
- * title:
+ * title:网络请求数据仓库
  * describe:
  *
  * @author memo
@@ -185,12 +183,30 @@ object ApiRepository {
     }
 
     /**
+     * 添加站内文章收藏
+     * @param id Int
+     * @return Flow<Any?>
+     */
+    fun addInnerArticleCollect(id:Int): Flow<Any?> {
+        return RxHttp.postForm("/lg/collect/%d/json", id).toFlowResponse()
+    }
+
+    /**
+     * 取消收藏站内文章
+     * @param id Int
+     * @return Flow<Any?>
+     */
+    fun deleteCollectInDetail(id: Int): Flow<Any?> {
+        return RxHttp.postForm("/lg/uncollect_originId/%d/json", id).toFlowResponse()
+    }
+
+    /**
      * 取消收藏 在收藏列表
      * @param id Int        收藏id
      * @param originId Int  原始文章id 收藏的外部文章为-1
      * @return Flow<Any?>
      */
-    fun deleteArticleCollect(id: Int, originId: Int): Flow<Any?> {
+    fun deleteCollectInCollect(id: Int, originId: Int): Flow<Any?> {
         return RxHttp.postForm("/lg/uncollect/%d/json", id).add("originId", originId).toFlowResponse()
     }
 
@@ -216,14 +232,6 @@ object ApiRepository {
     fun editOuterArticleCollect(id: Int, title: String, author: String, link: String): Flow<Any?> {
         return RxHttp.postForm("/lg/collect/user_article/update/%d/json", id).add("title", title).add("author", author).add("link", link)
             .toFlowResponse()
-    }
-
-    /**
-     * 获取用户收藏数量
-     * @return Flow<Int>
-     */
-    fun getCollectSize(): Flow<Int> {
-        return flowOf(DataManager.getUser()?.collectIds?.size ?: 0)
     }
 
     /**
@@ -342,10 +350,52 @@ object ApiRepository {
      */
     fun todoList(filter: TodoFilter): Flow<ListEntity<TodoInfo>> {
         val request = RxHttp.get("/lg/todo/v2/list/%d/json", filter.pageNum)
-        if (filter.priority != TodoPriority.ALL) request.add("priority", filter.priority)
-        if (filter.status != TodoStatus.ALL) request.add("status", filter.status)
-        if (filter.type != TodoType.ALL) request.add("type", filter.type)
+        if (filter.priority != TodoPriority.ALL) request.add("priority", filter.priority.value)
+        if (filter.status != TodoStatus.ALL) request.add("status", filter.status.value)
+        if (filter.type != TodoType.ALL) request.add("type", filter.type.value)
+        request.add("orderby", filter.orderBy.value)
         return request.toFlowResponse()
+    }
+
+    /**
+     * 新增Todo
+     * @param params TodoContent 输入内容
+     * @return Flow<TodoInfo>
+     */
+    fun todoAdd(params: TodoContent): Flow<TodoInfo> {
+        return RxHttp.postForm("/lg/todo/add/json").add("title", params.title).add("content", params.content)
+            .add("date", TimeUtils.getNowString(TimeUtils.getSafeDateFormat("yyyy-MM-dd"))).add("type", params.type)
+            .add("priority", params.priority).toFlowResponse()
+    }
+
+    /**
+     * 修改Todo
+     * @param params TodoContent 输入内容
+     * @return Flow<TodoInfo>
+     */
+    fun todoEdit(params: TodoContent): Flow<TodoInfo> {
+        return RxHttp.postForm("/lg/todo/update/%d/json", params.id).add("title", params.title).add("content", params.content)
+            .add("date", TimeUtils.getNowString(TimeUtils.getSafeDateFormat("yyyy-MM-dd"))).add("type", params.type)
+            .add("priority", params.priority).toFlowResponse()
+    }
+
+    /**
+     * 删除Todo
+     * @param id Int    Todo的ID
+     * @return Flow<Any?>
+     */
+    fun todoDelete(id: Int): Flow<Any?> {
+        return RxHttp.postForm("/lg/todo/delete/%d/json", id).toFlowResponse()
+    }
+
+    /**
+     * 修改Todo状态
+     * @param id Int                id
+     * @param status TodoStatus    状态
+     * @return Flow<Any?>
+     */
+    fun todoStatus(id: Int, status: TodoStatus): Flow<Any?> {
+        return RxHttp.postForm("/lg/todo/done/%d/json", id).add("status", status.value).toFlowResponse()
     }
 
 }

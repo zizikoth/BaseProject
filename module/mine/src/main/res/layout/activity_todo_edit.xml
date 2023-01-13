@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.todo.TodoEditActivity">
+
+    <com.memo.base.widget.TitleBar
+        android:id="@+id/mTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="标题："
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge"
+        android:textStyle="bold" />
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/mEtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp15"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="请输入标题"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:textColor="@color/textDark"
+        android:textColorHint="@color/textLight"
+        android:textCursorDrawable="@drawable/edit_cursor"
+        app:shape_radius="@dimen/dp10"
+        app:shape_strokeColor="@color/colorMain50"
+        app:shape_strokeWidth="@dimen/dp0_5" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="内容："
+        android:textColor="@color/textDark"
+        android:textSize="@dimen/textLarge"
+        android:textStyle="bold" />
+
+    <com.hjq.shape.view.ShapeEditText
+        android:id="@+id/mEtContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp155"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp15"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="请输入内容"
+        android:maxLines="1"
+        android:padding="@dimen/dp10"
+        android:textColor="@color/textDark"
+        android:textColorHint="@color/textLight"
+        android:textCursorDrawable="@drawable/edit_cursor"
+        app:shape_radius="@dimen/dp10"
+        app:shape_strokeColor="@color/colorMain50"
+        app:shape_strokeWidth="@dimen/dp0_5" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类型："
+            android:textColor="@color/textDark"
+            android:textSize="@dimen/textLarge"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mTvType"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dp10"
+            android:gravity="center_vertical|end"
+            android:text="请选择类型"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/textLarge"
+            android:drawableEnd="@drawable/icon_arrow_fill_down" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0_5"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:background="@color/color_F5F5F5" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginEnd="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="优先："
+            android:textColor="@color/textDark"
+            android:textSize="@dimen/textLarge"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mTvPriority"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dp10"
+            android:gravity="center_vertical|end"
+            android:text="请选择优先"
+            android:textColor="@color/textLight"
+            android:textSize="@dimen/textLarge"
+            android:drawableEnd="@drawable/icon_arrow_fill_down" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/mBtnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginStart="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp40"
+        android:layout_marginEnd="@dimen/dp15"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textLarge"
+        app:shape_radius="@dimen/dp45"
+        app:shape_solidColor="@color/colorMain" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

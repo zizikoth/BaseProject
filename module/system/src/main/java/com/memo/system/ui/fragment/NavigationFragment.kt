@@ -2,6 +2,7 @@ package com.memo.system.ui.fragment
 
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.memo.base.base.BaseVmFragment
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.activity.WebActivity
 import com.memo.base.entity.remote.Navi
 import com.memo.base.entity.remote.NodeItem

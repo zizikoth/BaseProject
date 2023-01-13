@@ -10,6 +10,7 @@ import com.memo.base.entity.remote.Article
 import com.memo.base.entity.remote.ListEntity
 import com.memo.base.utils.finish
 import com.memo.base.utils.showEmpty
+import com.memo.base.widget.EmptyView
 import com.memo.core.utils.ext.startActivity
 
 /**
@@ -86,7 +87,7 @@ class BlogSearchActivity : BaseVmActivity<BlogViewModel, ActivityBlogSearchBindi
      * @param data ListEntity<Article>
      */
     private fun onArticleResponse(data: ListEntity<Article>) {
-        mAdapter.showEmpty(data.isEmpty())
+        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_SEARCH)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage + 1
         mBinding.mRefreshLayout.finish(data.hasMore())

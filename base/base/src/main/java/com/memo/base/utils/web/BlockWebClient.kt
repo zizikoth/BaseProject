@@ -1,5 +1,6 @@
 package com.memo.base.utils.web
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.net.Uri
 import android.net.http.SslError
@@ -13,7 +14,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.just.agentweb.WebViewClient
 
 /**
- * title:
+ * title:防止app跳转和购物广告的WebClient
  * describe:
  *
  * @author memo
@@ -22,7 +23,7 @@ import com.just.agentweb.WebViewClient
  *
  * Talk is cheap, Show me the code.
  */
-class BlockWebClient() : WebViewClient() {
+class BlockWebClient : WebViewClient() {
 
     private var blockIntent = true
     private var blockAd = true
@@ -83,6 +84,7 @@ class BlockWebClient() : WebViewClient() {
         return (blockAd && isBlackHost(host)) || (blockIntent && isIntentHost(uri.toString()))
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
         if (shouldInterceptRequest(request?.url)) {
@@ -91,13 +93,10 @@ class BlockWebClient() : WebViewClient() {
         return super.shouldInterceptRequest(view, request)
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
         return shouldOverrideUrlLoading(request?.url)
-    }
-
-    override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-        return shouldOverrideUrlLoading(Uri.parse(url))
     }
 
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -111,6 +110,7 @@ class BlockWebClient() : WebViewClient() {
      * @param handler SslErrorHandler
      * @param error SslError
      */
+    @SuppressLint("WebViewClientOnReceivedSslError")
     override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
         // super.onReceivedSslError(view, handler, error)
         handler?.proceed()

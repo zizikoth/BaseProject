@@ -3,16 +3,19 @@ package com.memo.mine.ui.activity.notify
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.base.BaseVmActivity
+import com.memo.base.common.activity.ArticleActivity
 import com.memo.base.common.activity.WebActivity
 import com.memo.base.entity.remote.ListEntity
 import com.memo.base.entity.remote.NotifyMessage
 import com.memo.base.utils.finish
 import com.memo.base.utils.onItemClick
 import com.memo.base.utils.showEmpty
+import com.memo.base.widget.EmptyView
 import com.memo.core.utils.ext.startActivity
 import com.memo.mine.databinding.ActivityNotifyBinding
 import com.memo.mine.ui.adapter.NotifyAdapter
 import com.memo.mine.viewmodel.NotifyViewModel
+import okhttp3.internal.notify
 
 /**
  * title:个人消息
@@ -59,8 +62,17 @@ class NotifyActivity : BaseVmActivity<NotifyViewModel, ActivityNotifyBinding>() 
 
     /*** 初始化监听 ***/
     override fun initListener() {
-        mBinding.mTitleBar.setOnRightClickListener {
-            NotifyActivity.start(mContext, true)
+        mBinding.run {
+            mTitleBar.setOnRightClickListener {
+                NotifyActivity.start(mContext, true)
+            }
+            mRefreshLayout.setOnRefreshListener {
+                pageNum = 1
+                start()
+            }
+            mRefreshLayout.setOnLoadMoreListener {
+                start()
+            }
         }
 
         mAdapter.onItemClick {
@@ -84,7 +96,7 @@ class NotifyActivity : BaseVmActivity<NotifyViewModel, ActivityNotifyBinding>() 
      * @param data ListEntity<NotifyMessage>
      */
     private fun onListResponse(data: ListEntity<NotifyMessage>) {
-        mAdapter.showEmpty(data.isEmpty())
+        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_NOTIFY)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())

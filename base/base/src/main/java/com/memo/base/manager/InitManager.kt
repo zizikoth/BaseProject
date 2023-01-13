@@ -79,4 +79,8 @@ object InitManager {
         }
     }
 
+    fun initInSplash(){
+
+    }
+
 }

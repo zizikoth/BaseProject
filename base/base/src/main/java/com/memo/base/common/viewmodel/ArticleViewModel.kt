@@ -1,8 +1,8 @@
 package com.memo.base.common.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.memo.base.api.ApiRepository
 import com.memo.base.base.BaseViewModel
-import com.memo.base.common.repository.ArticleRepository
 
 /**
  * title: 公共ViewModel
@@ -15,37 +15,36 @@ import com.memo.base.common.repository.ArticleRepository
  * Talk is cheap, Show me the code.
  */
 class ArticleViewModel : BaseViewModel() {
-    private val repository = ArticleRepository()
 
     val collectLiveData = MutableLiveData<Boolean>()
 
     /**
-     * 添加收藏
-     * @param articleId Int
+     * 添加收藏站内文章
+     * @param articleId Int 文章的id
      */
-    fun addCollect(articleId: Int) {
-        return request(repository.addCollect(articleId)) {
+    fun addInnerArticleCollect(articleId: Int) {
+        return request(ApiRepository.addInnerArticleCollect(articleId)) {
             collectLiveData.postValue(true)
         }
     }
 
     /**
-     * 取消收藏站内文章
-     * @param articleId Int
+     * 取消收藏 从列表进入的文章
+     * @param articleId Int 文章的id
      */
-    fun deleteInnerCollect(articleId: Int) {
-        return request(repository.deleteInnerCollect(articleId)) {
+    fun deleteCollectInDetail(articleId: Int) {
+        return request(ApiRepository.deleteCollectInDetail(articleId)) {
             collectLiveData.postValue(false)
         }
     }
 
     /**
-     * 取消收藏站外文章
-     * @param articleId Int
-     * @param collectId Int
+     * 取消收藏 从收藏列表进入的文章
+     * @param articleId Int 文章的id
+     * @param collectId Int 收藏的id
      */
-    fun deleteOuterCollect(articleId: Int, collectId: Int) {
-        return request(repository.deleteOuterCollect(collectId, articleId)) {
+    fun deleteCollectInCollect(articleId: Int, collectId: Int) {
+        return request(ApiRepository.deleteCollectInCollect(collectId, articleId)) {
             collectLiveData.postValue(false)
         }
     }
