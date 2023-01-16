@@ -34,7 +34,7 @@ ext {
     Indicator = "com.github.hackware1993:MagicIndicator:1.7.0"
     Lottie = "com.airbnb.android:lottie:5.2.0"
     LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
-    LoadStateView = "com.github.DylanCaiCoding:LoadingStateView:4.0.2"
+    LoadStateView = "com.github.DylanCaiCoding.LoadingStateView:loadingstateview-ktx:4.0.2"
     Material = "com.google.android.material:material:1.7.0"
     RecycleView = "androidx.recyclerview:recyclerview:1.2.1"
     Coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
