@@ -21,9 +21,13 @@ import kotlinx.coroutines.flow.combine
  */
 class HomeViewModel : BaseViewModel() {
 
+    /*** 首页说有数据 ***/
     val liveData =
         MutableLiveData<Zip5Null<ArrayList<Article>, ArrayList<Chapter>, ArrayList<Article>, ListEntity<Article>, ListEntity<Article>>>()
 
+    /**
+     * 获取首页所有数据
+     */
     fun getData() {
         val combine = combine(
             ApiRepository.getBanner(),
@@ -36,6 +40,10 @@ class HomeViewModel : BaseViewModel() {
         request(combine, onSuccess = liveData::postValue)
     }
 
+    /**
+     * 获取首页文章
+     * @param pageNum Int   页码
+     */
     fun getArticles(pageNum: Int) {
         showLoading()
         request(ApiRepository.getArticles(pageNum)) {

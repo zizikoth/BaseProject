@@ -44,46 +44,56 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
 
     /*** 初始化控件 ***/
     override fun initView() {
-        mBinding.run {
-            root.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
-        }
+        mBinding.root.setPadding(0, BarUtils.getStatusBarHeight(), 0, 0)
     }
 
     /*** 初始化监听 ***/
     override fun initListener() {
         mBinding.run {
+            // 设置
             mIvSetting.onClick {
                 startActivity<SettingActivity>()
             }
+            // 通知
             mIvNotify.onClick {
                 if (checkLogin()) startActivity<NotifyActivity>()
             }
+            // 收藏
             mLlCollect.onClick {
                 if (checkLogin()) startActivity<ArticleCollectActivity>()
             }
+            // 积分
             mLlCoin.onClick {
                 if (checkLogin()) startActivity<CoinActivity>()
             }
+            // 排名
             mLlRank.onClick {
                 if (checkLogin()) startActivity<RankActivity>()
             }
+            // 待办清单
             mItemTodo.onClick {
                 if (checkLogin()) startActivity<TodoActivity>()
             }
+            // 我的收藏
             mItemCollect.onClick {
                 if (checkLogin()) startActivity<WebsiteCollectActivity>()
             }
+            // 我的分享
             mItemShare.onClick {
                 if (checkLogin()) ShareActivity.start(mActivity, DataManager.getUser()?.id ?: 0)
             }
+            // 分享广场
             mItemSquare.onClick {
                 startActivity<SquareActivity>()
             }
         }
-
+        // 消息通知
         mViewModel.dotLiveData.observe(this, this::onNotifyResponse)
+        // 用户展示信息
         mViewModel.infoLiveData.observe(this, this::onInfoResponse)
+        // 收藏数据更新
         BusManager.collectLiveData.observe(this, this::onCollectEvent)
+        // 用户登录通知
         BusManager.userLiveData.observe(this, this::onLoginEvent)
     }
 
@@ -95,12 +105,14 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
     /*** 判断当前界面是否处于可见状态 ***/
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if(!hidden&&isPrepared) {
-            mViewModel.unReadMessageCount()
-        }
+        // 每当页面可见并且准备好了 获取一次未读消息
+        if (!hidden && isPrepared) mViewModel.unReadMessageCount()
     }
 
-
+    /**
+     * 未读通知数据返回
+     * @param count Int 数量
+     */
     private fun onNotifyResponse(count: Int) {
         mBinding.mTvNotify.run {
             val width = if (count > 9) dimen(com.memo.core.R.dimen.dp24) else dimen(com.memo.core.R.dimen.dp14)
@@ -112,7 +124,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
 
     /**
      * 获取用户的数量信息
-     * @param data Zip4<Int, Int, Int, Int>
+     * @param data 等级，收藏，积分，排名
      */
     private fun onInfoResponse(data: Zip4<Int, Int, Int, Int>) {
         mBinding.run {

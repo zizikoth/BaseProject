@@ -40,11 +40,13 @@ class CategoryFragment : BaseVmFragment<SystemViewModel, FragmentCategoryBinding
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 条目点击
         mAdapter.childClickAction = {
             if (it is NodeItemChild) {
                 CategoryArticleActivity.start(mActivity, it.id, it.title)
             }
         }
+        // 文章返回
         mViewModel.chapterLiveData.observe(this, this::onSystemResponse)
     }
 

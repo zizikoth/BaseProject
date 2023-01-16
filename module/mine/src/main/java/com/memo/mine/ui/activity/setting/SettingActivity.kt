@@ -1,5 +1,6 @@
 package com.memo.mine.ui.activity.setting
 
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.CleanUtils
 import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.FileUtils
@@ -51,7 +52,6 @@ class SettingActivity : BaseVmActivity<MineViewModel, ActivitySettingBinding>() 
                 mViewModel.loginOut()
                 BusManager.userLiveData.post(false)
                 RouteManager.startAccountActivity()
-                finish()
             }
         }
     }

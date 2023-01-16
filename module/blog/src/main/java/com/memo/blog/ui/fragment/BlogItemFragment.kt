@@ -29,7 +29,10 @@ class BlogItemFragment : BaseVmFragment<BlogViewModel, FragmentBlogItemBinding>(
         fun newInstance(chapterId: Int) = BlogItemFragment().withArguments("cid" to chapterId)
     }
 
+    /*** 公众号Id ***/
     private var cid: Int = 0
+
+    /*** 页码 ***/
     private var pageNum: Int = 1
     private val mAdapter = ArticleAdapter()
 
@@ -50,17 +53,20 @@ class BlogItemFragment : BaseVmFragment<BlogViewModel, FragmentBlogItemBinding>(
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 条目点击
         mAdapter.onItemClick {
             ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
         }
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 1
             mViewModel.getChapterArticle(cid, pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getChapterArticle(cid, pageNum)
         }
-
+        // 列表返回
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
     }
 

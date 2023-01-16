@@ -1,5 +1,6 @@
 package com.memo.main.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
@@ -27,6 +28,7 @@ import com.memo.main.databinding.LottieBarBinding
  *
  * Talk is cheap, Show me the code.
  */
+@SuppressLint("ObsoleteSdkInt")
 class LottieBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
 
@@ -44,6 +46,7 @@ class LottieBar @JvmOverloads constructor(
             ViewCompat.setElevation(this@LottieBar, 20f)
             clipToPadding = false
         }
+
         val tabs = arrayListOf<FrameLayout>()
         val lotties = arrayListOf<LottieAnimationView>()
         val dots = arrayListOf<View>()

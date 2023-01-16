@@ -12,6 +12,7 @@ import com.memo.base.utils.finish
 import com.memo.base.utils.onItemClick
 import com.memo.base.utils.showEmpty
 import com.memo.project.databinding.ActivityNewProjectBinding
+import com.memo.project.viewmodel.NewProjectViewModel
 import com.memo.project.viewmodel.ProjectViewModel
 
 /**
@@ -25,7 +26,7 @@ import com.memo.project.viewmodel.ProjectViewModel
  * Talk is cheap, Show me the code.
  */
 @Route(path = RouteManager.NewProjectActivity)
-class NewProjectActivity : BaseVmActivity<ProjectViewModel, ActivityNewProjectBinding>() {
+class NewProjectActivity : BaseVmActivity<NewProjectViewModel, ActivityNewProjectBinding>() {
 
     private var pageNum: Int = 0
     private val mAdapter = ArticleAdapter()
@@ -46,17 +47,20 @@ class NewProjectActivity : BaseVmActivity<ProjectViewModel, ActivityNewProjectBi
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 0
             mViewModel.getNewProjectArticles(pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getNewProjectArticles(pageNum)
         }
+        // 条目点击
         mAdapter.onItemClick {
             ArticleActivity.startFromList(mContext, it.title, it.link, it.id)
         }
-
+        // 项目文章
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
     }
 

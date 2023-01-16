@@ -11,7 +11,7 @@ import com.memo.base.manager.DataManager
 import kotlinx.coroutines.flow.combine
 
 /**
- * title:
+ * title:我的
  * describe:
  *
  * @author memo
@@ -22,31 +22,22 @@ import kotlinx.coroutines.flow.combine
  */
 class MineViewModel : BaseViewModel() {
 
+    // 未读消息
     val dotLiveData = MutableLiveData<Int>()
-
+    // 用户展示数据
     val infoLiveData = MutableLiveData<Zip4<Int, Int, Int, Int>>()
 
-    val coinLiveData = MutableLiveData<ListEntity<CoinRecord>>()
-
-    val rankLiveData = MutableLiveData<ListEntity<RankRecord>>()
-
+    // 未读消息
     fun unReadMessageCount() {
         requestOnly(ApiRepository.unreadMessageCount(), dotLiveData::postValue)
     }
 
+    // 个人信息展示
     fun getMineInfo() {
         val combine = combine(ApiRepository.getArticleCollectList(1), ApiRepository.getCoinInfo()) { collectInfo, coinInfo ->
             Zip4(coinInfo.level, collectInfo.total, coinInfo.coinCount, coinInfo.rank)
         }
         requestOnly(combine, infoLiveData::postValue)
-    }
-
-    fun getCoinList(pageNum: Int) {
-        request(ApiRepository.getCoinList(pageNum), coinLiveData::postValue)
-    }
-
-    fun getRankList(pageNum: Int) {
-        request(ApiRepository.getRankList(pageNum), rankLiveData::postValue)
     }
 
     fun loginOut() {

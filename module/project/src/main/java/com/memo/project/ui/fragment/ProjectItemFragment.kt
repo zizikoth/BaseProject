@@ -29,7 +29,10 @@ class ProjectItemFragment : BaseVmFragment<ProjectViewModel, FragmentProjectItem
         fun newInstance(chapterId: Int) = ProjectItemFragment().withArguments("cid" to chapterId)
     }
 
+    /*** 分类id ***/
     private var cid: Int = 0
+
+    /*** 页码 ***/
     private var pageNum: Int = 1
     private val mAdapter = ArticleAdapter()
 
@@ -50,17 +53,20 @@ class ProjectItemFragment : BaseVmFragment<ProjectViewModel, FragmentProjectItem
 
     /*** 初始化监听 ***/
     override fun initListener() {
-        mAdapter.onItemClick {
-            ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
-        }
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 1
             mViewModel.getProjectArticle(cid, pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getProjectArticle(cid, pageNum)
         }
-
+        // 条目点击
+        mAdapter.onItemClick {
+            ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
+        }
+        // 列表
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
     }
 

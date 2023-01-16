@@ -50,7 +50,7 @@ class AccountActivity : BaseVmActivity<AccountViewModel, ActivityAccountBinding>
     }
 
     override fun initListener() {
-        mViewModel.liveData.observe(this, this::onLoginSuccess)
+        mViewModel.loginLiveData.observe(this, this::onLoginSuccess)
     }
 
     override fun start() {

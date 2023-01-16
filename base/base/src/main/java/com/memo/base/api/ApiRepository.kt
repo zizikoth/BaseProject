@@ -202,12 +202,12 @@ object ApiRepository {
 
     /**
      * 取消收藏 在收藏列表
-     * @param id Int        收藏id
+     * @param collectId Int 收藏id
      * @param originId Int  原始文章id 收藏的外部文章为-1
      * @return Flow<Any?>
      */
-    fun deleteCollectInCollect(id: Int, originId: Int): Flow<Any?> {
-        return RxHttp.postForm("/lg/uncollect/%d/json", id).add("originId", originId).toFlowResponse()
+    fun deleteCollectInCollect(collectId: Int, originId: Int): Flow<Any?> {
+        return RxHttp.postForm("/lg/uncollect/%d/json", collectId).add("originId", originId).toFlowResponse()
     }
 
     /**

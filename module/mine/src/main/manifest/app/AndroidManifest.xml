@@ -11,13 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/CoreTheme">
         <activity
-            android:name=".TodoEditActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.activity.HostActivity"
             android:exported="true"
             android:screenOrientation="portrait">

@@ -7,7 +7,7 @@ import com.memo.base.entity.remote.ListEntity
 import com.memo.base.entity.remote.NotifyMessage
 
 /**
- * title:
+ * title:通知
  * describe:
  *
  * @author memo

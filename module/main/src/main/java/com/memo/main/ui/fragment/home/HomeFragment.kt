@@ -113,8 +113,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
 
     /**
      * 所有数据返回
-     * @param data Zip4Null<ArrayList<Article>, ArrayList<Chapter>, ArrayList<Article>, ListEntity<Article>>, ListEntity<Article>>
-     * 轮播图 公众号 置顶文章 最新项目 首页文章
+     * @param data 轮播图 公众号 置顶文章 最新项目 首页文章
      */
     private fun onDataResponse(data: Zip5Null<ArrayList<Article>, ArrayList<Chapter>, ArrayList<Article>, ListEntity<Article>, ListEntity<Article>>) {
         if (pageNum == 0) {

@@ -29,6 +29,7 @@ import com.memo.mine.viewmodel.CollectViewModel
  */
 class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleCollectBinding>() {
 
+    /*** 页码 ***/
     private var pageNum: Int = 0
 
     private val mAdapter = ArticleAdapter(true)
@@ -38,25 +39,26 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
 
     /*** 初始化控件 ***/
     override fun initView() {
-        mBinding.run {
-            mTitleBar.setOnRightClickListener {
-                DialogUtils.showAddArticleDialog { title, author, link ->
-                    mViewModel.addOuterArticleCollect(title, author, link)
-                }
-            }
-            mRvList.run {
-                layoutManager = LinearLayoutManager(mContext)
-                adapter = mAdapter
-            }
+        mBinding.mRvList.run {
+            layoutManager = LinearLayoutManager(mContext)
+            adapter = mAdapter
         }
     }
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 添加站外文章收藏
+        mBinding.mTitleBar.setOnRightClickListener {
+            DialogUtils.showAddArticleDialog { title, author, link ->
+                mViewModel.addOuterArticleCollect(title, author, link)
+            }
+        }
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 0
             mViewModel.getArticleCollectList(pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getArticleCollectList(pageNum)
         }
@@ -82,8 +84,10 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
         mViewModel.editLiveData.observe(this, this::onEditResponse)
         // 删
         mViewModel.deleteLiveData.observe(this, this::onDeleteResponse)
-        // 更新了收藏
+        // 收藏更新监听
         BusManager.collectLiveData.observe(this, this::onCollectEvent)
+        // 用户登录监听
+        BusManager.userLiveData.observe(this, this::onLoginResponse)
     }
 
     /*** 页面开始请求 ***/
@@ -96,7 +100,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      * @param data ListEntity<Article>
      */
     private fun onListResponse(data: ListEntity<Article>) {
-        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_COLLECT)
+        mAdapter.showEmpty(data.isEmpty(), EmptyView.EMPTY_COLLECT)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())
@@ -107,9 +111,12 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      * @param data Article
      */
     private fun onAddResponse(data: Article) {
+        // 列表增加数据
         mAdapter.addData(data)
+        // 用户信息更新收藏
         DataManager.addCollected(data.id)
-        BusManager.collectLiveData.post(true)
+        // 发送通知收藏数据更新
+        BusManager.collectLiveData.post(false)
     }
 
     /**
@@ -118,6 +125,7 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      */
     private fun onEditResponse(data: Article) {
         val index = mAdapter.data.indexOfFirst { it.id == data.id }
+        // 直接修改数据
         mAdapter.getItemOrNull(index)?.let {
             it.title = data.title
             it.author = data.author
@@ -131,10 +139,13 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      * @param id Int
      */
     private fun onDeleteResponse(id: Int) {
+        // 删除数据
         mAdapter.removeAt(mAdapter.data.indexOfFirst { it.id == id })
         if (mAdapter.data.size == 0) mBinding.mRefreshLayout.autoRefresh()
+        // 用户信息更新收藏
         DataManager.removeCollected(id)
-        BusManager.collectLiveData.post(true)
+        // 发送消息同时收藏数据更新
+        BusManager.collectLiveData.post(false)
     }
 
     /**
@@ -142,6 +153,15 @@ class ArticleCollectActivity : BaseVmActivity<CollectViewModel, ActivityArticleC
      * @param refresh Boolean
      */
     private fun onCollectEvent(refresh: Boolean) {
-        mBinding.mRefreshLayout.autoRefresh()
+        if (refresh) mBinding.mRefreshLayout.autoRefresh()
+    }
+
+
+    /**
+     * 监听用户登录
+     * @param login Boolean
+     */
+    private fun onLoginResponse(login: Boolean) {
+        this.start()
     }
 }

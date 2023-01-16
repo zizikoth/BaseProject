@@ -8,7 +8,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.flatMapConcat
 
 /**
- * title:
+ * title:账号
  * describe:
  *
  * @author memo
@@ -20,18 +20,29 @@ import kotlinx.coroutines.flow.flatMapConcat
 @FlowPreview
 class AccountViewModel : BaseViewModel() {
 
-    val liveData = MutableLiveData<UserInfo>()
+    // 登录
+    val loginLiveData = MutableLiveData<UserInfo>()
 
+    /**
+     * 登录
+     * @param username String   账号
+     * @param password String   密码
+     */
     fun login(username: String, password: String) {
         showLoading()
-        request(ApiRepository.login(username, password), onSuccess = liveData::postValue)
+        request(ApiRepository.login(username, password), onSuccess = loginLiveData::postValue)
     }
 
+    /**
+     * 注册
+     * @param username String   账号
+     * @param password String   密码
+     */
     fun register(username: String, password: String) {
         showLoading()
         val concat = ApiRepository.register(username, password).flatMapConcat {
             ApiRepository.login(username, password)
         }
-        request(concat, onSuccess = liveData::postValue)
+        request(concat, onSuccess = loginLiveData::postValue)
     }
 }

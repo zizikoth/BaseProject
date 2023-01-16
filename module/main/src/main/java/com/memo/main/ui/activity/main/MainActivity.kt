@@ -34,13 +34,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     RouteManager.getSystemFragment(),
                     RouteManager.getMineFragment())
                 .show()
-
+            // 底部tab切换
             mLottieBar.setOnItemChangeListener {
                 fragmentHelper.show(it)
             }
         }
     }
 
+    /**
+     * 双击退出应用
+     */
     override fun onBackPressed() {
         if (ClickHelper.isDoubleClickExit { DialogHelper.popTip("再次点击退出应用") }) {
             AppUtils.exitApp()

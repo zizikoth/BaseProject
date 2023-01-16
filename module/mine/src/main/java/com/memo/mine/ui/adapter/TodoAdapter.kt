@@ -16,7 +16,7 @@ import com.memo.core.utils.ext.round
 import com.memo.mine.R
 
 /**
- * title:
+ * title:清单列表
  * describe:
  *
  * @author memo

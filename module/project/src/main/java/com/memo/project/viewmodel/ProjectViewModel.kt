@@ -18,17 +18,21 @@ import com.memo.base.entity.remote.ListEntity
  * Talk is cheap, Show me the code.
  */
 class ProjectViewModel : BaseViewModel() {
+    // 分类
     val chapterLiveData = MutableLiveData<ArrayList<Chapter>>()
+    // 分类文章
     val articleLiveData = MutableLiveData<ListEntity<Article>>()
 
-    fun getNewProjectArticles(pageNum: Int) {
-        request(ApiRepository.getNewProject(pageNum), articleLiveData::postValue)
-    }
-
+    // 项目分类
     fun getProjects() {
         request(ApiRepository.getProjects(), chapterLiveData::postValue)
     }
 
+    /**
+     * 项目分类文章
+     * @param cid Int       分类id
+     * @param pageNum Int   页码
+     */
     fun getProjectArticle(cid: Int, pageNum: Int) {
         request(ApiRepository.getProjectArticles(cid, pageNum), articleLiveData::postValue)
     }

@@ -29,7 +29,7 @@ object DialogUtils {
 
     /**
      * 显示新增收藏文章弹窗
-     * @param addAction Function3<[@kotlin.ParameterName] String, [@kotlin.ParameterName] String, [@kotlin.ParameterName] String, Unit>
+     * @param addAction 标题，作者，链接
      */
     fun showAddArticleDialog(addAction: (title: String, author: String, link: String) -> Unit) {
         FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_dialog_article_collect) {
@@ -57,7 +57,7 @@ object DialogUtils {
     /**
      * 显示修改收藏文章弹窗
      * @param data Article
-     * @param editAction Function4<[@kotlin.ParameterName] Int, [@kotlin.ParameterName] String, [@kotlin.ParameterName] String, [@kotlin.ParameterName] String, Unit>
+     * @param editAction id，标题，作者，链接
      */
     fun showEditArticleDialog(data: Article, editAction: (id: Int, title: String, author: String, link: String) -> Unit) {
         FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_dialog_article_collect) {
@@ -85,7 +85,7 @@ object DialogUtils {
 
     /**
      * 显示新增网址收藏弹窗
-     * @param addAction Function2<[@kotlin.ParameterName] String, [@kotlin.ParameterName] String, Unit>
+     * @param addAction 标题，链接
      */
     fun showAddWebUrlDialog(addAction: (name: String, link: String) -> Unit) {
         FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_dialog_weburl_collect) {
@@ -111,7 +111,7 @@ object DialogUtils {
     /**
      * 显示修改网址收藏弹窗
      * @param data WebUrl
-     * @param editAction Function3<[@kotlin.ParameterName] Int, [@kotlin.ParameterName] String, [@kotlin.ParameterName] String, Unit>
+     * @param editAction  id，标题，链接
      */
     fun showEditWebUrlDialog(data: WebUrl, editAction: (id: Int, name: String, link: String) -> Unit) {
         FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_dialog_weburl_collect) {

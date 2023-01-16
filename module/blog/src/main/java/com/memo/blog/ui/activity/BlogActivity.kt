@@ -22,7 +22,7 @@ import com.memo.base.utils.indicator.init
  */
 @Route(path = RouteManager.BlogActivity)
 class BlogActivity : BaseVmActivity<BlogViewModel, ActivityBlogBinding>() {
-
+    /*** 公众号id ***/
     private var cid: Int = 0
     private val mAdapter = BlogFragmentAdapter(this)
 
@@ -34,21 +34,19 @@ class BlogActivity : BaseVmActivity<BlogViewModel, ActivityBlogBinding>() {
     /*** 初始化控件 ***/
     override fun initView() {
         mBinding.run {
-
             mIndicator.init(mViewPager, ElasticLineIndicator(mContext))
-
             mViewPager.offscreenPageLimit = 3
-
         }
     }
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 公众号内部搜索
         mBinding.mTitleBar.setOnRightClickListener {
             val chapter = mAdapter.getData()[mBinding.mViewPager.currentItem]
             BlogSearchActivity.start(mContext, chapter.id, chapter.name)
         }
-
+        // 公众号列表返回
         mViewModel.chapterLiveData.observe(this, this::onChapterResponse)
     }
 

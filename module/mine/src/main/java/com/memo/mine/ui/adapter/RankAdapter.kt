@@ -6,7 +6,7 @@ import com.memo.base.entity.remote.RankRecord
 import com.memo.mine.R
 
 /**
- * title:
+ * title:排名列表
  * describe:
  *
  * @author memo

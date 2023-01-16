@@ -41,12 +41,13 @@ class NavigationFragment : BaseVmFragment<SystemViewModel, FragmentNavigationBin
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 条目点击
         mAdapter.childClickAction = {
             if (it is NodeItemChild) {
-                WebActivity.start(mActivity, it.link, it.title)
+                WebActivity.start(mActivity, it.title, it.link)
             }
         }
-
+        // 列表返回
         mViewModel.naviLiveData.observe(this, this::onNaviResponse)
     }
 

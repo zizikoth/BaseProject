@@ -1,12 +1,10 @@
 package com.memo.base.base
 
-import android.os.UserManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memo.base.api.ApiCode
 import com.memo.base.api.ApiErrorHandler
-import com.memo.base.manager.DataManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch

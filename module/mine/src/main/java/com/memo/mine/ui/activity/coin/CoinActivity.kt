@@ -4,10 +4,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.memo.base.base.BaseVmActivity
 import com.memo.base.entity.remote.CoinRecord
 import com.memo.base.entity.remote.ListEntity
+import com.memo.base.manager.BusManager
 import com.memo.base.utils.finish
 import com.memo.base.utils.showEmpty
 import com.memo.mine.databinding.ActivityCoinBinding
 import com.memo.mine.ui.adapter.CoinAdapter
+import com.memo.mine.viewmodel.CoinViewModel
 import com.memo.mine.viewmodel.MineViewModel
 
 /**
@@ -20,8 +22,9 @@ import com.memo.mine.viewmodel.MineViewModel
  *
  * Talk is cheap, Show me the code.
  */
-class CoinActivity : BaseVmActivity<MineViewModel, ActivityCoinBinding>() {
+class CoinActivity : BaseVmActivity<CoinViewModel, ActivityCoinBinding>() {
 
+    /*** 页码 ***/
     private var pageNum: Int = 1
 
     private val mAdapter = CoinAdapter()
@@ -40,15 +43,20 @@ class CoinActivity : BaseVmActivity<MineViewModel, ActivityCoinBinding>() {
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 1
             mViewModel.getCoinList(pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getCoinList(pageNum)
         }
 
-        mViewModel.coinLiveData.observe(this, this::onCoinResponse)
+        // 获取积分信息监听
+        mViewModel.listLiveData.observe(this, this::onCoinResponse)
+        // 用户登录监听
+        BusManager.userLiveData.observe(this, this::onLoginResponse)
     }
 
     /*** 页面开始请求 ***/
@@ -65,6 +73,14 @@ class CoinActivity : BaseVmActivity<MineViewModel, ActivityCoinBinding>() {
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage + 1
         mBinding.mRefreshLayout.finish(data.hasMore())
+    }
+
+    /**
+     * 监听用户登录
+     * @param login Boolean
+     */
+    private fun onLoginResponse(login: Boolean) {
+        this.start()
     }
 
 }

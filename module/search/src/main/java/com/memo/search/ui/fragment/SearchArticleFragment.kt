@@ -25,13 +25,15 @@ import com.memo.search.viewmodel.SearchViewModel
  */
 class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArticleBinding>() {
 
+    /*** 页码 ***/
     private var pageNum: Int = 0
+
+    /*** 关键字 ***/
     private var searchWord: String = ""
     private val mAdapter = ArticleAdapter()
 
     /*** 初始化数据 ***/
-    override fun initData() {
-    }
+    override fun initData() {}
 
     /*** 初始化控件 ***/
     override fun initView() {
@@ -45,18 +47,20 @@ class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArti
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 0
             mViewModel.searchArticle(searchWord, pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.searchArticle(searchWord, pageNum)
         }
-
+        // 条目点击
         mAdapter.onItemClick {
             ArticleActivity.startFromList(mActivity, it.title, it.link, it.id)
         }
-
+        // 列表返回
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)
     }
 
@@ -84,7 +88,7 @@ class SearchArticleFragment : BaseVmFragment<SearchViewModel, FragmentSearchArti
      * @param data ListEntity<Article>
      */
     private fun onArticleResponse(data: ListEntity<Article>) {
-        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_SEARCH)
+        mAdapter.showEmpty(data.isEmpty(), EmptyView.EMPTY_SEARCH)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         pageNum = data.curPage
         mBinding.mRefreshLayout.finish(data.hasMore())

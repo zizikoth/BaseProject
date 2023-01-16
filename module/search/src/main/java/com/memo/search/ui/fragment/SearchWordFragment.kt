@@ -13,7 +13,7 @@ import com.memo.core.utils.ext.visible
 import com.memo.search.databinding.FragmentSearchWordBinding
 import com.memo.search.ui.activity.SearchActivity
 import com.memo.search.ui.adapter.SearchWordAdapter
-import com.memo.search.viewmodel.SearchViewModel
+import com.memo.search.viewmodel.WordViewModel
 
 /**
  * title:搜索关键词界面
@@ -25,10 +25,12 @@ import com.memo.search.viewmodel.SearchViewModel
  *
  * Talk is cheap, Show me the code.
  */
-class SearchWordFragment : BaseVmFragment<SearchViewModel, FragmentSearchWordBinding>() {
+class SearchWordFragment : BaseVmFragment<WordViewModel, FragmentSearchWordBinding>() {
 
+    /*** 搜索历史 ***/
     private val mHistoryAdapter = SearchWordAdapter()
 
+    /*** 搜索热词 ***/
     private val mHotAdapter = SearchWordAdapter()
 
     override fun showContent() = true
@@ -75,7 +77,7 @@ class SearchWordFragment : BaseVmFragment<SearchViewModel, FragmentSearchWordBin
             (mActivity as SearchActivity).search(it)
         }
 
-        mViewModel.hotLiveData.observe(this, this::onHotResponse)
+        mViewModel.wordLiveData.observe(this, this::onHotResponse)
     }
 
     /*** 页面开始请求 ***/

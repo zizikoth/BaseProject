@@ -8,7 +8,7 @@ import com.memo.base.entity.remote.ListEntity
 import com.memo.base.entity.remote.UserShareRecord
 
 /**
- * title:
+ * title:分享
  * describe:
  *
  * @author memo
@@ -18,12 +18,8 @@ import com.memo.base.entity.remote.UserShareRecord
  * Talk is cheap, Show me the code.
  */
 class ShareViewModel : BaseViewModel() {
-    val articleLiveData = MutableLiveData<ListEntity<Article>>()
+    // 用户个人分享
     val shareLiveData = MutableLiveData<UserShareRecord>()
-
-    fun getSquareShareArticles(pageNum: Int) {
-        request(ApiRepository.getSquareShareArticles(pageNum), articleLiveData::postValue)
-    }
 
     fun getUserShareArticles(userId: Int, pageNum: Int) {
         request(ApiRepository.getUserShareArticles(userId, pageNum), shareLiveData::postValue)

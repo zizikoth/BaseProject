@@ -31,32 +31,34 @@ import com.memo.mine.viewmodel.TodoViewModel
  */
 class TodoActivity : BaseVmActivity<TodoViewModel, ActivityTodoBinding>() {
 
+    /*** 筛选 ***/
     private val filter = TodoFilter()
     private val mAdapter = TodoAdapter()
 
+    /*** 类型 ***/
     private val typeList = TodoType.values()
     private var typeIndex = 0
 
+    /*** 状态 ***/
     private val statusList = TodoStatus.values()
     private var statusIndex = 0
 
+    /*** 优先级 ***/
     private val priorityList = TodoPriority.values()
     private var priorityIndex = 0
 
+    /*** 排序 ***/
     private val orderByList = TodoOrderBy.values()
     private var orderByIndex = 0
 
     /*** 初始化数据 ***/
-    override fun initData() {
-    }
+    override fun initData() {}
 
     /*** 初始化控件 ***/
     override fun initView() {
-        mBinding.run {
-            mRvList.run {
-                layoutManager = LinearLayoutManager(mContext)
-                adapter = mAdapter
-            }
+        mBinding.mRvList.run {
+            layoutManager = LinearLayoutManager(mContext)
+            adapter = mAdapter
         }
     }
 
@@ -129,7 +131,7 @@ class TodoActivity : BaseVmActivity<TodoViewModel, ActivityTodoBinding>() {
                     // 修改完成未完成状态
                     R.id.mIvStatus -> {
                         val complete = data.status == TodoStatus.UN_COMPLETE.value
-                        mViewModel.todoStatus( data.id, if (complete) TodoStatus.COMPLETE else TodoStatus.UN_COMPLETE)
+                        mViewModel.todoStatus(data.id, if (complete) TodoStatus.COMPLETE else TodoStatus.UN_COMPLETE)
                     }
                     // 修改
                     R.id.mIvEdit -> TodoEditActivity.start(mContext, data)
@@ -142,12 +144,16 @@ class TodoActivity : BaseVmActivity<TodoViewModel, ActivityTodoBinding>() {
                 }
             }
         }
-
+        // 查
         mViewModel.listLiveData.observe(this, this::onListResponse)
+        // 修改状态
         mViewModel.statusLiveData.observe(this, this::onStatusResponse)
+        // 删除
         mViewModel.deleteLiveData.observe(this, this::onDeleteResponse)
-
+        // 清单数据更新
         BusManager.todoLiveData.observe(this, this::onChangeEvent)
+        // 用户登录监听
+        BusManager.userLiveData.observe(this, this::onLoginResponse)
     }
 
     /*** 页面开始请求 ***/
@@ -160,7 +166,7 @@ class TodoActivity : BaseVmActivity<TodoViewModel, ActivityTodoBinding>() {
      * @param data ListEntity<TodoInfo>
      */
     private fun onListResponse(data: ListEntity<TodoInfo>) {
-        mAdapter.showEmpty(data.isEmpty(),EmptyView.EMPTY_TODO)
+        mAdapter.showEmpty(data.isEmpty(), EmptyView.EMPTY_TODO)
         if (data.curPage == 1) mAdapter.setList(data.datas) else mAdapter.addData(data.datas)
         filter.pageNum = data.curPage + 1
         mBinding.mRefreshLayout.finish(data.hasMore())
@@ -192,6 +198,15 @@ class TodoActivity : BaseVmActivity<TodoViewModel, ActivityTodoBinding>() {
      */
     private fun onChangeEvent(info: TodoInfo) {
         mBinding.mRefreshLayout.autoRefresh()
+    }
+
+
+    /**
+     * 监听用户登录
+     * @param login Boolean
+     */
+    private fun onLoginResponse(login: Boolean) {
+        this.start()
     }
 
 }

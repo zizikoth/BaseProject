@@ -6,7 +6,7 @@ import com.memo.base.entity.remote.NotifyMessage
 import com.memo.mine.R
 
 /**
- * title:
+ * title:通知列表
  * describe:
  *
  * @author memo
@@ -18,7 +18,10 @@ import com.memo.mine.R
 class NotifyAdapter : BaseQuickAdapter<NotifyMessage, BaseViewHolder>(R.layout.layout_item_notify) {
 
     override fun convert(holder: BaseViewHolder, item: NotifyMessage) {
-        holder.setText(R.id.mTvTitle, item.title).setText(R.id.mTvContent, item.message).setText(R.id.mTvTag, item.tag)
-            .setText(R.id.mTvSender, "来自：${item.fromUser}").setText(R.id.mTvTime, item.niceDate)
+        holder.setText(R.id.mTvTitle, item.title)
+            .setText(R.id.mTvContent, item.message)
+            .setText(R.id.mTvTag, item.tag)
+            .setText(R.id.mTvSender, "来自：${item.fromUser}")
+            .setText(R.id.mTvTime, item.niceDate)
     }
 }

@@ -1,5 +1,6 @@
 package com.memo.main.ui.activity.splash
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.BarUtils
 import com.memo.base.manager.InitManager
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
  *
  * Talk is cheap, Show me the code.
  */
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : CoreActivity<ActivitySplashBinding>() {
 
     override fun init() {

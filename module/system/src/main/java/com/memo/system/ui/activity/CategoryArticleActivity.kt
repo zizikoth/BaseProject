@@ -33,8 +33,13 @@ class CategoryArticleActivity : BaseVmActivity<SystemViewModel, ActivityCategory
         }
     }
 
+    /*** 类别id ***/
     private var cid: Int = 0
+
+    /*** 标题 ***/
     private var title: String = ""
+
+    /*** 页码 ***/
     private var pageNum: Int = 0
 
     private val mAdapter = ArticleAdapter()
@@ -58,8 +63,9 @@ class CategoryArticleActivity : BaseVmActivity<SystemViewModel, ActivityCategory
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 跳转网页打开
         mAdapter.onItemClick {
-            WebActivity.start(mContext, it.link, it.title)
+            WebActivity.start(mContext, it.title, it.link)
         }
 
         mViewModel.articleLiveData.observe(this, this::onArticleResponse)

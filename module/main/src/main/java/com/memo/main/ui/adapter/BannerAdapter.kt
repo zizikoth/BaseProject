@@ -8,7 +8,7 @@ import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder
 
 /**
- * title:
+ * title:轮播图
  * describe:
  *
  * @author memo

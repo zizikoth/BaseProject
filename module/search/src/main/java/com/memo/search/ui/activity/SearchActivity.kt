@@ -21,18 +21,26 @@ import com.memo.search.ui.fragment.SearchWordFragment
 @Route(path = RouteManager.SearchActivity)
 class SearchActivity : BaseActivity<ActivitySearchBinding>() {
 
+    /*** 关键字页面 ***/
     private val mWordFragment = SearchWordFragment()
+
+    /*** 搜索文章页面 ***/
     private val mArticleFragment = SearchArticleFragment()
     private val mAdapter = BaseFragmentPager2Adapter(this)
 
     /*** 初始化 ***/
     override fun initialize() {
         mBinding.run {
+            mTitleBar.setOnLeftClickListener {
+                this@SearchActivity.onBackPressed()
+            }
 
+            // 判断如果搜索框没有文字的时候切换到关键字页面
             mSearchBar.setOnTextChangeListener {
                 if (it.isEmpty()) mViewPager.currentItem = 0
             }
 
+            // 搜索
             mSearchBar.setOnSearchListener {
                 if (it.isNotEmpty()) {
                     mWordFragment.addWord(it)
@@ -49,18 +57,26 @@ class SearchActivity : BaseActivity<ActivitySearchBinding>() {
         }
     }
 
+    /**
+     * 搜索关键字
+     * @param keyword String    关键字
+     */
     fun search(keyword: String) {
         mBinding.mViewPager.currentItem = 1
         mBinding.mSearchBar.keyword = keyword
         mArticleFragment.search(keyword)
     }
 
-    override fun finish() {
+    /**
+     * 点击返回键
+     */
+    override fun onBackPressed() {
         if (mBinding.mViewPager.currentItem == 0) {
-            super.finish()
+            super.onBackPressed()
         } else {
             mBinding.mSearchBar.keyword = ""
             mBinding.mViewPager.currentItem = 0
         }
     }
+
 }

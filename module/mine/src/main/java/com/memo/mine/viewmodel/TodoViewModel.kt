@@ -11,7 +11,7 @@ import com.memo.base.entity.remote.ListEntity
 import com.memo.base.entity.remote.TodoInfo
 
 /**
- * title:
+ * title:待办清单
  * describe:
  *
  * @author memo
@@ -22,9 +22,13 @@ import com.memo.base.entity.remote.TodoInfo
  */
 class TodoViewModel : BaseViewModel() {
 
+    // 查
     val listLiveData = MutableLiveData<ListEntity<TodoInfo>>()
+    // 新增修改
     val addOrEditLiveData = MutableLiveData<TodoInfo>()
+    // 删除
     val deleteLiveData = MutableLiveData<Int>()
+    // 修改状态
     val statusLiveData = MutableLiveData<Zip2<Int, TodoStatus>>()
 
     /**

@@ -6,7 +6,7 @@ import com.memo.base.entity.remote.CoinRecord
 import com.memo.mine.R
 
 /**
- * title:
+ * title:积分列表
  * describe:
  *
  * @author memo

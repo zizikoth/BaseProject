@@ -31,10 +31,13 @@ class BlogSearchActivity : BaseVmActivity<BlogViewModel, ActivityBlogSearchBindi
         }
     }
 
+    /*** 公众号Id ***/
     private var cid: Int = 0
 
+    /*** 页面标题 ***/
     private var title: String = "搜索"
 
+    /*** 页码 ***/
     private var pageNum: Int = 1
 
     private val mAdapter = ArticleAdapter()
@@ -61,15 +64,18 @@ class BlogSearchActivity : BaseVmActivity<BlogViewModel, ActivityBlogSearchBindi
     /*** 初始化监听 ***/
     override fun initListener() {
         mBinding.run {
+            // 搜索
             mSearchBar.setOnSearchListener {
                 mPageState.showLoadingView()
                 pageNum = 1
                 mViewModel.getChapterArticle(cid, pageNum, it)
             }
+            // 刷新
             mRefreshLayout.setOnRefreshListener {
                 pageNum = 1
                 mViewModel.getChapterArticle(cid, pageNum, mSearchBar.keyword)
             }
+            // 加载
             mRefreshLayout.setOnLoadMoreListener {
                 mViewModel.getChapterArticle(cid, pageNum, mSearchBar.keyword)
             }
@@ -79,8 +85,7 @@ class BlogSearchActivity : BaseVmActivity<BlogViewModel, ActivityBlogSearchBindi
     }
 
     /*** 页面开始请求 ***/
-    override fun start() {
-    }
+    override fun start() {}
 
     /**
      * 公众号文章返回

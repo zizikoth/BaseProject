@@ -15,6 +15,7 @@ import com.memo.base.utils.showEmpty
 import com.memo.mine.databinding.ActivitySquareBinding
 import com.memo.mine.ui.activity.share.ShareActivity
 import com.memo.mine.viewmodel.ShareViewModel
+import com.memo.mine.viewmodel.SquareViewModel
 
 /**
  * title:广场
@@ -26,7 +27,7 @@ import com.memo.mine.viewmodel.ShareViewModel
  *
  * Talk is cheap, Show me the code.
  */
-class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
+class SquareActivity : BaseVmActivity<SquareViewModel, ActivitySquareBinding>() {
 
     private var pageNum: Int = 0
 
@@ -48,20 +49,22 @@ class SquareActivity : BaseVmActivity<ShareViewModel, ActivitySquareBinding>() {
 
     /*** 初始化监听 ***/
     override fun initListener() {
+        // 刷新
         mBinding.mRefreshLayout.setOnRefreshListener {
             pageNum = 0
             mViewModel.getSquareShareArticles(pageNum)
         }
+        // 加载
         mBinding.mRefreshLayout.setOnLoadMoreListener {
             mViewModel.getSquareShareArticles(pageNum)
         }
-
+        // 点击
         mAdapter.onItemChildClick { id, data ->
             if (id == R.id.mIvIcon) ShareActivity.start(mContext, data.userId)
             else if (id == R.id.mItemArticle) ArticleActivity.startFromList(mContext, data.title, data.link, data.id)
         }
-
-        mViewModel.articleLiveData.observe(this, this::onArticleResponse)
+        // 监听列表
+        mViewModel.listLiveData.observe(this, this::onArticleResponse)
     }
 
     /*** 页面开始请求 ***/

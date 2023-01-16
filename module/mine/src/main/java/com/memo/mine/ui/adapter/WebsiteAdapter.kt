@@ -7,7 +7,7 @@ import com.memo.base.entity.remote.WebUrl
 import com.memo.mine.R
 
 /**
- * title:
+ * title:网址收藏列表
  * describe:
  *
  * @author memo
