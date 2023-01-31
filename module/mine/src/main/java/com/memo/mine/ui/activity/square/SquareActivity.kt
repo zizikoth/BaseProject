@@ -86,7 +86,7 @@ class SquareActivity : BaseVmActivity<SquareViewModel, ActivitySquareBinding>() 
         if(DataManager.showSquareTip()){
             mBinding.mRvList.postDelayed({
                 mAdapter.getViewByPosition(0, R.id.mIvIcon)?.let {
-                    GuideDialog.show(it, com.memo.mine.R.drawable.icon_click_more)
+                    GuideDialog.show(it, R.drawable.icon_click_more)
                 }
             },200)
         }

@@ -47,12 +47,12 @@ class ElasticLineIndicator(context: Context) : CommonNavigator(context) {
             override fun getIndicator(context: Context): IPagerIndicator {
                 return LinePagerIndicator(context).apply {
                     mode = LinePagerIndicator.MODE_EXACTLY
-                    lineHeight = dimen(com.memo.core.R.dimen.dp4)
-                    lineWidth = dimen(com.memo.core.R.dimen.dp14)
-                    roundRadius = dimen(com.memo.core.R.dimen.dp4)
+                    lineHeight = dimen(R.dimen.dp4)
+                    lineWidth = dimen(R.dimen.dp14)
+                    roundRadius = dimen(R.dimen.dp4)
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(2f)
-                    yOffset = dimen(com.memo.core.R.dimen.dp6)
+                    yOffset = dimen(R.dimen.dp6)
                     setColors(color(R.color.tab_select))
                 }
             }
