@@ -94,12 +94,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/icon_arrow_fill_down"
             android:drawablePadding="@dimen/dp10"
             android:gravity="center_vertical|end"
             android:text="请选择类型"
             android:textColor="@color/textLight"
-            android:textSize="@dimen/textLarge"
-            android:drawableEnd="@drawable/icon_arrow_fill_down" />
+            android:textSize="@dimen/textLarge" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
@@ -131,12 +131,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:drawableEnd="@drawable/icon_arrow_fill_down"
             android:drawablePadding="@dimen/dp10"
             android:gravity="center_vertical|end"
             android:text="请选择优先"
             android:textColor="@color/textLight"
-            android:textSize="@dimen/textLarge"
-            android:drawableEnd="@drawable/icon_arrow_fill_down" />
+            android:textSize="@dimen/textLarge" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 

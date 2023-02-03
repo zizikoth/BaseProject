@@ -10,6 +10,7 @@ import com.memo.base.manager.DataManager
 import com.memo.base.manager.RouteManager
 import com.memo.base.utils.checkLogin
 import com.memo.core.utils.ext.*
+import com.memo.mine.R
 import com.memo.mine.databinding.FragmentMineBinding
 import com.memo.mine.ui.activity.coin.CoinActivity
 import com.memo.mine.ui.activity.collect.ArticleCollectActivity
@@ -115,7 +116,7 @@ class MineFragment : BaseVmFragment<MineViewModel, FragmentMineBinding>() {
      */
     private fun onNotifyResponse(count: Int) {
         mBinding.mTvNotify.run {
-            val width = if (count > 9) dimen(com.memo.core.R.dimen.dp24) else dimen(com.memo.core.R.dimen.dp14)
+            val width = if (count > 9) dimen(R.dimen.dp24) else dimen(R.dimen.dp14)
             widthAndHeight(width.toInt(), layoutParams.height)
             text = if (count > 99) "99+" else count.toString()
             setVisible(count > 0)

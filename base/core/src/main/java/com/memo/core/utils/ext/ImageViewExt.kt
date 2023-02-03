@@ -1,14 +1,20 @@
 package com.memo.core.utils.ext
 
+import android.content.Context
 import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Registry
 import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
+import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.module.AppGlideModule
 import com.memo.core.R
 import com.memo.core.core.CoreApp
+import java.io.InputStream
 
 @GlideModule
 class GlideAppModule : AppGlideModule()

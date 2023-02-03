@@ -26,9 +26,9 @@ class RoundCoverIndicator(
     context: Context) :
     CommonNavigator(context) {
 
-    private var naviHeight:Float = dimen(com.memo.core.R.dimen.dp30)
-    private var naviRadius:Float = dimen(com.memo.core.R.dimen.dp30)
-    private var naviPadding:Int = dimen(com.memo.core.R.dimen.dp20).toInt()
+    private var naviHeight:Float = dimen(R.dimen.dp30)
+    private var naviRadius:Float = dimen(R.dimen.dp30)
+    private var naviPadding:Int = dimen(R.dimen.dp20).toInt()
     private var naviTextSize:Float = dimen(R.dimen.textNormal)
     private val naviTitles:ArrayList<String> = arrayListOf()
 
